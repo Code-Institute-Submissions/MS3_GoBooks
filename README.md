@@ -1,45 +1,163 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Milestone Project 3 - GoBooks
 
-Welcome USER_NAME,
+# Table of Contents
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+ - [**Introduction**](#introduction)
 
-## Gitpod Reminders
+ - [**User Experience**](#user-experience)
+    - [Project Goals](#project-goals)
+    - [User Stories](#user-stories)
+    - [Wireframes](#wireframes)
+    - [Site Design](#site-design)
+    - [Database Design](#database-design)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+ - [**Features**](#features)
+    - [Existing Features](#existing-features)
+    - [Future Features To implement](#future-features-to-implement)
 
-`python3 -m http.server`
+ - [**Technologies Used**](#technologies-used)
 
-A blue button should appear to click: *Make Public*,
+ - [**Testing**](#testing)
+    - [Bug Fixes](#bug-fixes)
+    - [Performance](#performance)
+    - [Validator Tests](#validator-tests)
 
-Another blue button should appear to click: *Open Browser*.
+ - [**Deployment**](#deployment)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+ - [**Credits**](#credits)
+    - [Content](#content)
+    - [Media](#media)
+    - [Code](#code)
+    - [Acknowledgements](#acknowledgements)
 
-A blue button should appear to click: *Make Public*,
+---
 
-Another blue button should appear to click: *Open Browser*.
+# Introduction
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
-## Updates Since The Instructional Video
+---
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+# User Experience
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## Project Goals
+GoBooks is a web application that allows users to build a digital library, review books they have read, and discover new reads that may interest them. 
+Once the user has signed up to the site, they will have the ability to build out their profile and create their own personal library of books they have read and reviewed.
+This site is aimed at people of all ages, races and genders who share a common interest: a love of books, and as such the site has been specifically designed to 
+encourage engagement through a user-friendly aesthetic. 
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## User Stories
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+**As a First Time Visitor I want to:**
+* Understand the purpose of the website.
+* Navigate easily through the website.
+* Locate books using the search functionality, read reviews left by members and be able to click through to the book’s Amazon page.
+* Use the website’s Book Lucky Dip to find a new book to read.
+* Understand the benefits of becoming a member and locate the Register page.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+**As a Member I want to:**
+* Be able to write, edit and delete my own reviews.
+* Benefit from the incentives of membership.
+* View my personalised Member Profile page.
+* View other members on the site and see what books they have read and reviewed.
+* Add books to my “To Read” list on the profile page.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+**As an Admin I want to:**
+* Have the ability to delete reviews that may be deemed rude or offensive.
+* Have the ability to remove members who abuse the service.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+**As Site Owner I want to:**
+* Incentivise people to become members and grow the platform.
+* Provide Affiliate links to Amazon book pages in order to earn money from sales made through the site.
 
---------
+---
 
-Happy coding!
+# Features
+
+## Existing Features
+To realise the goals of the project, the following features were implemented:
+
+### Home page 
+
+A warm and welcoming home page was created to inspire the all-inclusive nature of the site and encourage new users to discover what GoBooks has to offer.
+
+### Log In 
+
+### Register
+
+### Member Profile
+
+### Member List
+
+### Book search (by name / genre / keywords)
+
+### Book Lucky Dip
+
+### Book page
+
+
+## Future Features To Implement
+
+* Add functionality to connect with other members.
+* Expand user library to add books they intend to read to go along with the books they have read and reviewed.
+* Add a storefront that will provide exclusive discounts to members who have built up their membership level.
+* Add a social platform for users to host book club meetings and author events.
+
+---
+
+# Technologies Used
+
+1. [HTML5](https://en.wikipedia.org/wiki/HTML5)
+
+   This project uses HTML5 to display and format content on the front-end.
+
+2. [CSS3](https://en.wikipedia.org/wiki/CSS)
+
+   This project uses CSS3 to add styles and responsiveness to content.
+
+3. [JavaScript](https://www.javascript.com/)
+
+   This project uses JavaScript to add responsiveness to content.
+
+4. [Python](https://www.python.org/)
+
+   This project uses Python to integrate systems.
+
+   Pip3
+   Flask
+   Werkzeug
+   Jinja
+   MongoDB
+   PyMongo
+   DNSPython
+   Request
+   Git
+   GitHub
+   Materialize
+   RandomKeygen
+
+---
+
+# Testing
+
+https://validator.w3.org/
+https://jigsaw.w3.org/css-validator/
+https://jshint.com/
+http://pep8online.com/
+https://developers.google.com/web/tools/lighthouse
+
+---
+
+# Deployment
+
+---
+
+# Credits
+
+### Content
+
+### Media
+
+### Code
+
+### Acknowledgements
