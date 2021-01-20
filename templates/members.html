@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for member in members %}
+        {{ members.member_image }}<br>
+        {{ members.username }}<br>
+        {{ members.member_level }}
+    {% endfor %}
+
+{% endblock %}
