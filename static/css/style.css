@@ -84,3 +84,18 @@ footer.page-footer {
 .flashes {
     line-height: 2;
 }
+
+.member-info {
+    text-align: center;
+}
+
+.reviews-card {
+    border-radius: 10px;
+    min-height: 300px;
+}
+
+@media (min-width: 602px) {
+    .member-info {
+        text-align: left;
+    }
+}

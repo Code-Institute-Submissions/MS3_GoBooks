@@ -140,6 +140,13 @@ A warm and welcoming home page was created to inspire the all-inclusive nature o
 
 # Testing
 
+## Bug Fixes
+
+While implementing the new profile page, an issue arose in which the gobooks logo wouldn't load on the page. On further investigation it appeared that this page causes issues with all loading concluding in a 404 error. Will continue to watch this incase it fixes itself
+
+
+
+
 https://validator.w3.org/
 https://jigsaw.w3.org/css-validator/
 https://jshint.com/

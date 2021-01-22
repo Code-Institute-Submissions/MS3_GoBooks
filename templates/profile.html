@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel green darken-3">
+            <div class="row">
+                <div class="col s6 m3">
+
+                </div>
+                <div class="col s12 m9">
+                    <h3 class="member-info"> {{ username }}'s Profile</h3>
+                    <h5 class="member-info">Member Since: DATE</h5>
+                    <h5 class="member-info">Member Rating: RATING</h5>
+                    <h5 class="member-info">Books Reviewed: NUMBER</h5>
+                </div>
+            </div>
+            <div class="row">
+                <h4>Books Reviewed</h4>
+            </div>
+            <div class="row">
+                <div class="col s8 offset-s2 m6 l4">
+                    <div class="card reviews-card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="../images/aftermath.png">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">
+                                <i class="material-icons right">Review</i></span>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"> Aftermath
+                                <i class="material-icons right">Less</i></span>
+                            <p> 
+                                Rich characters, complex plot, great pacing and a winning central character. I thoroughly recommend this read, no spoilers, it’s just a great book. 
+                                Clever, with a lead character whom I can’t help but identify certain traits of my own with. It meant I cared about what happens to him and those 
+                                around him and I wasn’t disappointed a single bit, at any point in this read. This is a writer with a clear gift for storytelling, weaving a tapestry 
+                                that can sustain through many more adventures, I hope. I am delighted to have found this novel!
+                            </p>
+                             <p><a href="#" class="pink darken-3 btn">Amazon</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
