@@ -2,11 +2,34 @@
 
 {% block content %}
 
-<h1>GoBooks</h1>
+<div class="row header-row center-align">
+    <div class="col m8 offset-m2 s10 offset-s1 center-align">
+            <img src="static/images/logo.png" class="logo" alt="GoBooks logo">
+    </div>
+</div>
+<div class="row">
+    <div class="col s8 offset-s2 center-align">
+        <h5 class="tagline">The Number One Website for book lovers!</h5>
+    </div>
+</div>
 
-<p>The Number One Website for book lovers!</p>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col m6 offset-m3 s10 offset-s1">
+          <input id="book_search" type="text" class="validate">
+          <label for="book_search" class="center-align search">Search Books</label>
+        </div>
+      </div>
+    </form>
+  </div>
 
+  <div class="row center-align">
 
+    <a href="#" class="pink darken-3 waves-effect waves-light btn">What's Hot</a>
+    <a href="#" class="pink darken-3 waves-effect waves-light btn">Lucky Dip</a>
+
+  </div>
 
 
 {% endblock %}

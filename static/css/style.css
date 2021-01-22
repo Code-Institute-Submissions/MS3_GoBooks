@@ -1,4 +1,86 @@
-.gobooks-body {
-    background-image: linear-gradient(to bottom right, #4cba6a, #279c48);
-    height: 100vh;
+  
+*, *::before, *::after {
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    display: flex;
+    background-image: url(../images/bookshelves.png);
+    background-repeat: repeat;
+    background-color: #4cba6a;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+h1,h2,h3,h4,h5,h6 {
+    color: white;
+}
+
+main {
+    flex: 1 0 auto;
+  }   
+
+.header-row {
+    padding-top: 100px;
+}
+
+.logo {
+    max-width: 80vw;
+}
+
+.tagline {
+    color: whitesmoke;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+.fas {
+    color: white;
+}
+
+.socials {
+    color: white;
+    margin-right: 10px;
+    font-size: 2em;
+}
+
+.socials:hover{
+    color: #9c094e;
+    text-decoration: none;
+    transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out; 
+    -moz-transition: all 0.30s ease-in-out;
+    -webkit-transition: all 0.30s ease-in-out;
+}
+
+footer.page-footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input-field {
+    background-color: #d5ffd4;
+    border-radius: 20px;
+}
+
+.search {
+    color: black;
+    text-align: center;
+}
+
+.homepage-links {
+    color: white;
+    text-align: center;
+}
+
+.btn {
+    border-radius: 20px;
+}
+
+.card-panel {
+    margin-top: 50px;
+    border-radius: 20px;
+}
+
+.flashes {
+    line-height: 2;
 }
