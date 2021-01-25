@@ -27,39 +27,47 @@
                         class="logo" alt="GoBooks logo"></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for ('login') }}">Log In</a></li>
-                    <li><a href="{{ url_for ('register') }}">Sign Up</a></li>
-                    <li><a href="#">View Members</a></li>
+                    {% if session.user %}
                     <li><a href="{{ url_for ('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="#">Search Books</a></li>
                     <li><a href="#">Lucky Dip</a></li>
+                    <li><a href="#">View Members</a></li>
+                    <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for ('login') }}">Log In</a></li>
+                    <li><a href="{{ url_for ('register') }}">Join</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
 
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="{{ url_for ('homepage') }}" class="brand-logo">GoBooks</a></li>
-            <li><a href="{{ url_for ('login') }}">Log In</a></li>
-            <li><a href="{{ url_for ('register') }}">Sign Up</a></li>
-            <li><a href="#">View Members</a></li>
+            <li><a href="{{ url_for ('homepage') }}" class="brand-logo"><strong>GoBooks</strong></a></li>
+            {% if session.user %}
             <li><a href="{{ url_for ('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="#">Search Books</a></li>
             <li><a href="#">Lucky Dip</a></li>
+            <li><a href="#">View Members</a></li>
+            <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
+            {% else %}
+            <li><a href="{{ url_for ('login') }}">Log In</a></li>
+            <li><a href="{{ url_for ('register') }}">Join</a></li>
+            {% endif %}
         </ul>
     </header>
 
     <section>
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashes pink darken-3">
-                        <h4 class="center-align white-text">
-                            {{ message }}
-                        </h4>
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes pink darken-3">
+            <h4 class="center-align white-text">
+                {{ message }}
+            </h4>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </section>
     <!--Content added in below-->
