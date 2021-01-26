@@ -100,6 +100,17 @@ def members_list():
     return render_template("members.html", members=members)
 
 
+@app.route("/library")
+def library():
+    books = mongo.db.reviews.find()
+    return render_template("library.html", books=books)
+
+
+@app.route("/book/<book_name>", methods=["GET", "POST"])
+def book():
+    return render_template("book.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

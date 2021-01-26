@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel green darken-3">
+            <div class="row">
+                <div class="col s6 m3">
+                    <span class="book-cover">{{ book_cover }}</span>
+                </div>
+                <div class="col s12 m9">
+                    <h3 class="member-info">{{ book_name }}</h3>
+                    <h4 class="member-info">{{ book_author }}</h4>
+                    <p>{{ book_description }}</p>
+                </div>
+                <div>
+                    <a href="{{ book_url }}" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
+                    <a href="#" class="pink darken-3 waves-effect waves-light btn">Leave a Review</a>
+                </div>
+            </div>
+            <div class="row">
+                <h4>Reviews</h4>
+            </div>
+            <div>
+                {% for review in reviews %}
+                <div class="row">
+                    <p><strong>{{ username }}</strong></p>
+                    <p><i>{{ review_date }}</i></p>
+                    <p>{{ book_rating }}</p>
+                    <br>
+                    <p>{{ book_review }}</p>
+                    <br>
+                </div>
+                {% endfor %}
+            </div>       
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,4 +1,6 @@
-  
+
+/* ----------------------------------------------- Base Template */
+
 *, *::before, *::after {
     font-family: 'Quicksand', sans-serif;
 }
@@ -28,11 +30,6 @@ main {
     max-width: 80vw;
 }
 
-.tagline {
-    color: whitesmoke;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
-}
-
 .fas {
     color: white;
 }
@@ -57,10 +54,31 @@ footer.page-footer {
     padding-bottom: 10px;
 }
 
+/* ----------------------------------------------- Home Page */
+
+.tagline {
+    color: whitesmoke;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
+}
+
+
 .input-field {
     background-color: #d5ffd4;
     border-radius: 20px;
+    color: black;
 }
+
+#book_search{
+    width: 0;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.input-field:hover > #book_search{
+    width: 50vw;
+    transition: width 0.4s linear;
+}
+
 
 .search {
     color: black;
@@ -75,6 +93,8 @@ footer.page-footer {
 .btn {
     border-radius: 20px;
 }
+
+/* ----------------------------------------------- Profile Page */
 
 .card-panel {
     margin-top: 50px;
@@ -93,9 +113,26 @@ footer.page-footer {
     border-radius: 10px;
     min-height: 300px;
 }
+/* ----------------------------------------------- Library Page */
+
+.library-books {
+    height: 400px;
+}
+
+/* ----------------------------------------------- Book Page */
+
+.book-cover {
+    height: 100%;
+}
+
+/* ----------------------------------------------- Media Queries */
 
 @media (min-width: 602px) {
     .member-info {
         text-align: left;
     }
+    .input-field:hover > #book_search{
+    width: 30vw;
+    transition: width 0.4s linear;
+}
 }
