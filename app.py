@@ -94,15 +94,17 @@ def logout():
     return redirect(url_for("homepage"))
 
 
-@app.route("/members_list")
-def members_list():
+@app.route("/members")
+def members():
+    # views a list of registered members
     members = mongo.db.members.find()
     return render_template("members.html", members=members)
 
 
 @app.route("/library")
 def library():
-    books = mongo.db.reviews.find()
+    # views a list of books added
+    books = mongo.db.library.find()
     return render_template("library.html", books=books)
 
 

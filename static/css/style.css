@@ -115,8 +115,8 @@ footer.page-footer {
 }
 /* ----------------------------------------------- Library Page */
 
-.library-books {
-    height: 400px;
+.book-image {
+    height: 100%;
 }
 
 /* ----------------------------------------------- Book Page */

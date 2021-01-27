@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Font Awesome-->
-    <script src="https://kit.fontawesome.com/f9243baddd.js" crossorigin="anonymous"></script>
+    <!--Materialize Icons-->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!--import Quicksand font-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand"/>
     <!-- Compiled and minified CSS -->
@@ -23,13 +23,14 @@
             <div class="nav-wrapper container">
                 <a href="{{ url_for ('homepage') }}" class="brand-logo"><img src="static/images/logo_mini.png"
                         class="logo" alt="GoBooks logo"></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if session.user %}
                     <li><a href="{{ url_for ('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="{{ url_for ('library') }}">Search Books</a></li>
                     <li><a href="#">Lucky Dip</a></li>
-                    <li><a href="#">View Members</a></li>
+                    <li><a href="#">What's Hot</a></li>
+                    <li><a href="{{ url_for ('members') }}">View Members</a></li>
                     <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
                     {% else %}
                     <li><a href="{{ url_for ('login') }}">Log In</a></li>
@@ -45,7 +46,8 @@
             <li><a href="{{ url_for ('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="{{ url_for ('library') }}">Search Books</a></li>
             <li><a href="#">Lucky Dip</a></li>
-            <li><a href="#">View Members</a></li>
+            <li><a href="#">What's Hot</a></li>
+            <li><a href="{{ url_for ('members') }}">View Members</a></li>
             <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
             {% else %}
             <li><a href="{{ url_for ('login') }}">Log In</a></li>
@@ -81,11 +83,9 @@
     <footer class="page-footer green darken-3">
         <div class="container center-align">
             © 2021 GoBooks
-            <a target="_blank" href="https://www.facebook.com"><i class="socials fab fa-facebook"
-                    aria-hidden="true"></i></a>
+            <a target="_blank" href="https://www.facebook.com"><i class="socials fab fa-facebook" aria-hidden="true"></i></a>
             <a target="_blank" href="https://twitter.com"><i class="socials fab fa-twitter" aria-hidden="true"></i></a>
-            <a target="_blank" href="https://www.instagram.com"><i class="socials fab fa-instagram"
-                    aria-hidden="true"></i></a>
+            <a target="_blank" href="https://www.instagram.com"><i class="socials fab fa-instagram" aria-hidden="true"></i></a>
         </div>
     </footer>
 

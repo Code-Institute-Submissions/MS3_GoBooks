@@ -1,25 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-{% for book in library %}
-    <div class="col s6 m3 library-books">
-        <div class="card sticky-action">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{{ library.book_cover }}">
+    <div class="row">
+        <h2 class="center-align tagline">Library</h2>
+        <h5 class="center-align tagline">Have a browse and see if there's anything you'd like.</h5>
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col m6 offset-m3 s10 offset-s1 center-align">
+                    <input id="book_search" type="text" class="validate center-align black-text" placeholder="Search Books">
+                </div>
             </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ library.book_name }}<i
-                        class="material-icons right">more_vert</i></span>
-                <p><a href="{{ url_for(library.book_url) }}">This is a link</a></p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{ library.book_name }}<i
-                        class="material-icons right">close</i></span>
-                <p>{{ library.book_description }}</p>
-            </div>
-        </div>
+        </form>
     </div>
-{% endfor %}
 
+    <div class="row">
+        {% for book in books %}
+            <div class="col s6 m3">
+                <div class="card sticky-action library-books">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator book-image" src="{{ book.book_cover }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">{{ book.book_name }}<i
+                                class="material-icons right">more_vert</i></span>
+                        <p>
+                            <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
+                            <a href="#" class="pink darken-3 btn">Review</a>
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ book.book_name }}<i
+                                class="material-icons right">close</i></span>
+                        <p>{{ book.book_description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row center-align">
+        <h5 class="center-align tagline">Can't find the right book? Why not add it yourself?</h5>
+        <a href="#" class="center-align pink darken-3 btn">Add a Book</a>
+    </div>
 {% endblock %}
