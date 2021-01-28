@@ -113,10 +113,16 @@ footer.page-footer {
     border-radius: 10px;
     min-height: 300px;
 }
+
 /* ----------------------------------------------- Library Page */
 
 .book-image {
     height: 100%;
+}
+
+.book-name {
+    height: 100px;
+    overflow: hidden;
 }
 
 .footer-note {
@@ -128,6 +134,13 @@ footer.page-footer {
 
 .book-cover {
     height: 100%;
+}
+
+/* ----------------------------------------------- Members List Page */
+
+.member-image {
+    border-radius: 50%;
+    width: 100%;
 }
 
 /* ----------------------------------------------- Media Queries */

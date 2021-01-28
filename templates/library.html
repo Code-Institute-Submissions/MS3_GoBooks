@@ -15,13 +15,13 @@
 
     <div class="row">
         {% for book in books %}
-            <div class="col s6 m3">
+            <div class="col s8 offset-s2 m6 l3">
                 <div class="card sticky-action library-books">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator book-image" src="{{ book.book_cover }}">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ book.book_name }}<i
+                        <span class="card-title activator grey-text text-darken-4 book-name">{{ book.book_name }}<i
                                 class="material-icons right">more_vert</i></span>
                         <p>
                             <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
