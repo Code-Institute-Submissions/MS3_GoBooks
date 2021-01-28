@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col s12 center-align tagline">
+        <br>
+        <h4>
+           <i>"Not all those who wander are lost" </i> - J. R. R. Tolkien
+        </h4>
+        <h5>
+            Unfortunately though, you are lost. Use the link below to return to the homepage.
+        </h5>
+        <br>
+    </div>
+    <div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for ('homepage') }}" class="center-align pink darken-3 waves-effect waves-light btn">Homepage</a>
+    </div>
+    </div>
+</div>
+{% endblock %}

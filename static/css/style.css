@@ -119,6 +119,11 @@ footer.page-footer {
     height: 100%;
 }
 
+.footer-note {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 /* ----------------------------------------------- Book Page */
 
 .book-cover {
