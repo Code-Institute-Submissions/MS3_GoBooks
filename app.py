@@ -23,14 +23,20 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
+# Route for entry point of app
 @app.route("/")
 @app.route("/homepage")
 def homepage():
     return render_template("index.html")
 
 
+# Route for registering a new user
 @app.route("/register", methods=["GET", "POST"])
 def register():
+
+    if session.get('user'):
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         # checks if username exists in the database
         existing_user = mongo.db.members.find_one(
@@ -42,8 +48,14 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "member_image": request.form.get("member_image"),
+            "fav_book": request.form.get("fav_book").lower(),
+            "member_level": request.form.get("member_level"),
+            "register_date": request.form.get("register_date"),
+            "is_admin": False
         }
         mongo.db.members.insert_one(register)
 
@@ -51,11 +63,14 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
         return redirect(url_for("profile", username=session["user"]))
+
     return render_template("register.html")
 
 
+# Route for member login
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     if request.method == "POST":
         # checks if username exists in the database
         existing_user = mongo.db.members.find_one(
@@ -80,6 +95,7 @@ def login():
     return render_template("login.html")
 
 
+# Route for user's profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # finds session users info from the database and retrives just the username
@@ -92,6 +108,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# Route for user logout
 @app.route("/logout")
 def logout():
     # logs user out and removes session cookies
@@ -100,6 +117,7 @@ def logout():
     return redirect(url_for("homepage"))
 
 
+# Route for member list page
 @app.route("/members")
 def members():
     # views a list of registered members
@@ -107,6 +125,7 @@ def members():
     return render_template("members.html", members=members)
 
 
+# Route for library page
 @app.route("/library")
 def library():
     # views a list of books added
@@ -114,6 +133,7 @@ def library():
     return render_template("library.html", books=books)
 
 
+# Route for individual book page
 @app.route("/book/<book_name>", methods=["GET", "POST"])
 def book():
     return render_template("book.html")
