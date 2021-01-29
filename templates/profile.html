@@ -8,42 +8,52 @@
             <div class="row">
                 <div class="col s6 m3">
                     <div class="card-image">
-                            {% if member_image %}
-                                <img class="member-image" src="{{ member_image }}" alt="Profile Image">
+                            {% if username.member_image %}
+                                <img class="member-image" src="{{ username.member_image }}" alt="Profile Image">
                             {% else %}
                                 <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
                             {% endif %}
                         </div>
                 </div>
                 <div class="col s12 m9">
-                    <h3 class="member-info"> {{ username }}'s Profile</h3>
-                    <h5 class="member-info">Member Since: {{ register_date }}</h5>
-                    <h5 class="member-info">Member Rating: {{ member_level }}</h5>
+                    <h3 class="member-info"> {{ username.username }}'s Profile</h3>
+                    <h5 class="member-info">Member Since: {{ username.register_date }}</h5>
+                    <h5 class="member-info">Member Rating: {{ username.member_level }}</h5>
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <h4>Books Reviewed</h4>
             </div>
-            <div class="row">
-                <div class="col s8 offset-s2 m6 l4">
-                    <div class="card reviews-card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="../images/aftermath.png">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">
-                                <i class="material-icons right">unfold_more</i></span>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4"> Aftermath
-                                <i class="material-icons right">unfold_less</i></span>
-                            <p>    
-                            </p>
-                             <p><a href="#" class="pink darken-3 btn">Amazon</a></p>
+
+                {% if userreviews %}
+                    {% for review in reviews %}
+                    <div class="row">
+                        <div class="col s8 offset-s2 m6 l4">
+                            <div class="card reviews-card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="{{ review.book_cover }}">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">
+                                        <i class="material-icons right">unfold_more</i></span>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4"><strong>{{ review.book_name }}</strong>
+                                        <i class="material-icons right">unfold_less</i></span>
+                                    <p>
+                                        {{ review.book_review }} 
+                                        <br>
+                                        <strong>{{ review.book_rating }} Stars.</strong>
+                                        <i>{{ review.review_date }}</i>
+                                    </p>
+                                    <p><a href="{{ review.book_url }}" class="pink darken-3 btn">Get a Copy</a></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    {% endfor %}
+                {% endif %}
         </div>
     </div>
 </div>
