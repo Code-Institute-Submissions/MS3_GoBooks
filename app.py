@@ -149,11 +149,11 @@ def addbook():
             return redirect(url_for("addbook"))
 
         addbook = {
-            "book_name": request.form.get("book_name").lower(),
-            "book_author": request.form.get("book_author").lower(),
-            "book_asin": request.form.get("book_asin").lower(),
+            "book_name": request.form.get("book_name"),
+            "book_author": request.form.get("book_author"),
+            "book_asin": request.form.get("book_asin"),
             "book_genre": request.form.get("book_genre"),
-            "book_description": request.form.get("book_description").lower(),
+            "book_description": request.form.get("book_description"),
             "book_cover": request.form.get("book_cover"),
             "book_url": request.form.get("book_url")
         }
@@ -170,6 +170,49 @@ def addbook():
 def book(book_name):
     book = mongo.db.library.find_one({"_id": ObjectId(book_name)})
     return render_template("book.html", book=book)
+
+
+# Route for adding a new review
+@app.route("/addreview", methods=["GET", "POST"])
+def addreview():
+
+    if request.method == "POST":
+        # adds book and user data to review database
+        add_book_name = mongo.db.library.find_one(
+            {"book_name": request.form.get("book_name")})
+        add_book_author = mongo.db.library.find_one(
+            {"book_author": request.form.get("book_author")})
+        add_book_asin = mongo.db.library.find_one(
+            {"book_asin": request.form.get("book_asin")})
+        add_book_genre = mongo.db.library.find_one(
+            {"book_genre": request.form.get("book_genre")})
+        add_book_cover = mongo.db.library.find_one(
+            {"book_cover": request.form.get("book_cover")})
+        add_book_url = mongo.db.library.find_one(
+            {"book_url": request.form.get("book_url")})
+        username = mongo.db.members.find_one(
+            {"username": session["user"]})["username"]
+        today_date = date.today()
+        current_date = today_date.strftime("%d %b %y")
+
+        addreview = {
+            "book_name": add_book_name,
+            "book_author": add_book_author,
+            "book_asin": add_book_asin,
+            "book_genre": add_book_genre,
+            "book_cover": add_book_cover,
+            "book_url": add_book_url,
+            "username": username,
+            "book_review": request.form.get("book_review"),
+            "book_rating": request.form.get("book_rating"),
+            "review_date": current_date
+        }
+        mongo.db.reviews.insert_one(addreview)
+
+        flash("Book Review Added")
+        return redirect(url_for("library"))
+
+    return render_template("addreview.html")
 
 
 if __name__ == "__main__":

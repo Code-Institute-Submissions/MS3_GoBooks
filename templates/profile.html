@@ -7,7 +7,13 @@
         <div class="card-panel green darken-3">
             <div class="row">
                 <div class="col s6 m3">
-                    <img class="member-image" src="{{ member_image }}" alt="Profile Image">
+                    <div class="card-image">
+                            {% if member_image %}
+                                <img class="member-image" src="{{ member_image }}" alt="Profile Image">
+                            {% else %}
+                                <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
+                            {% endif %}
+                        </div>
                 </div>
                 <div class="col s12 m9">
                     <h3 class="member-info"> {{ username }}'s Profile</h3>

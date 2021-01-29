@@ -8,6 +8,10 @@
     <div class="col s12">
         <div class="card-panel green darken-3">
             <div class="row">
+                    <a href="{{ url_for('library') }}" class="white-text pink darken-3 btn">Return to Library</a>
+            </div>
+            <hr>
+            <div class="row">
                 <div class="col s6 offset-s3 m4 l3">
                     <img class="activator book-image" src="{{ book.book_cover }}" href="{{ book.book_url }}">
                 </div>
@@ -16,10 +20,11 @@
                     <h4 class="member-info">By {{ book.book_author }}</h4>
                     <p class="white-text">{{ book.book_description }}</p>
                     <br>
-                    <a href="{{ book.book_url }}" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
-                    <a href="#" class="pink darken-3 waves-effect waves-light btn">Leave a Review</a>
+                    <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
+                    <a href="{{ url_for ('addreview') }}" class="pink darken-3 waves-effect waves-light btn">Leave a Review</a>
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <h4>Reviews</h4>
             </div>

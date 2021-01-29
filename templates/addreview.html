@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('addreview') }}">
+            <div class="card-panel green darken-3">
+                <h3 class="center-align">Review</h3>
+                <br>
+
+                <!--Review-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="book_review" class="materialize-textarea" type="text" required>
+                        <label for="book_review">Leave a Review</label>
+                    </div>
+                </div>
+
+                <!--Rating-->
+                <div class="input-field col s12">
+                    <select id="book_rating" name="book_rating" type="text" class="validate" required>
+                        <option value="" disabled selected>Rate This Book</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                    <label>Materialize Select</label>
+                </div>
+
+                <!--Submit Button-->
+                <div class="row">
+                    <button type="submit" class="col s8 offset-s2 btn-large pink darken-3 waves-effect waves-light btn">
+                        Submit Review
+                    </button>
+                </div>  
+            </div>
+        </form>
+    </div>
+
+    <!--Return to library-->
+    <div class="row">
+        <div class="card-panel green darken-3 s12 m8 offset-m2 l6 offset-l3">
+                <p class="center-align white-text">
+                    Didn't want to leave a review? 
+                    <br>
+                    <a href="{{ url_for('library') }}" class="white-text pink darken-3 btn">Go back to the library!</a>
+                </p>
+        </div>
+    </div>
+
+{% endblock %}

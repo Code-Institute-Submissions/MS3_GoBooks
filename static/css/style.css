@@ -118,7 +118,6 @@ footer.page-footer {
 
 .book-image {
     width: 100%;
-    padding-top: 20px;
 }
 
 .book-name {
@@ -142,6 +141,10 @@ footer.page-footer {
 .member-image {
     border-radius: 50%;
     width: 100%;
+}
+
+.member-card {
+    height: 600px;
 }
 
 /* ----------------------------------------------- Media Queries */
