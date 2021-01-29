@@ -4,6 +4,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date
 if os.path.exists("env.py"):
     import env
 
@@ -45,7 +46,8 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-
+        today_date = date.today()
+        current_date = today_date.strftime("%d %b %y")
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
@@ -54,7 +56,7 @@ def register():
             "member_image": request.form.get("member_image"),
             "fav_book": request.form.get("fav_book").lower(),
             "member_level": request.form.get("member_level"),
-            "register_date": request.form.get("register_date"),
+            "register_date": current_date,
             "is_admin": False
         }
         mongo.db.members.insert_one(register)
@@ -133,10 +135,41 @@ def library():
     return render_template("library.html", books=books)
 
 
+# Route for adding a new book
+@app.route("/addbook", methods=["GET", "POST"])
+def addbook():
+
+    if request.method == "POST":
+        # checks if book exists in the database
+        existing_book = mongo.db.library.find_one(
+            {"book_name": request.form.get("book_name").lower()})
+
+        if existing_book:
+            flash("This book already exists")
+            return redirect(url_for("addbook"))
+
+        addbook = {
+            "book_name": request.form.get("book_name").lower(),
+            "book_author": request.form.get("book_author").lower(),
+            "book_asin": request.form.get("book_asin").lower(),
+            "book_genre": request.form.get("book_genre"),
+            "book_description": request.form.get("book_description").lower(),
+            "book_cover": request.form.get("book_cover"),
+            "book_url": request.form.get("book_url")
+        }
+        mongo.db.library.insert_one(addbook)
+
+        flash("Book Successfully Added")
+        return redirect(url_for("library"))
+
+    return render_template("addbook.html")
+
+
 # Route for individual book page
 @app.route("/book/<book_name>", methods=["GET", "POST"])
-def book():
-    return render_template("book.html")
+def book(book_name):
+    book = mongo.db.library.find_one({"_id": ObjectId(book_name)})
+    return render_template("book.html", book=book)
 
 
 if __name__ == "__main__":

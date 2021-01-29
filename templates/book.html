@@ -2,21 +2,21 @@
 
 {% block content %}
 
+<!--Grabs relevant information from the MongoDB database and fills the page-->
 
 <div class="row">
     <div class="col s12">
         <div class="card-panel green darken-3">
             <div class="row">
-                <div class="col s6 m3">
-                    <span class="book-cover">{{ book_cover }}</span>
+                <div class="col s6 offset-s3 m4 l3">
+                    <img class="activator book-image" src="{{ book.book_cover }}" href="{{ book.book_url }}">
                 </div>
-                <div class="col s12 m9">
-                    <h3 class="member-info">{{ book_name }}</h3>
-                    <h4 class="member-info">{{ book_author }}</h4>
-                    <p>{{ book_description }}</p>
-                </div>
-                <div>
-                    <a href="{{ book_url }}" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
+                <div class="col s12 m8 l9">
+                    <h3 class="member-info">{{ book.book_name }}</h3>
+                    <h4 class="member-info">By {{ book.book_author }}</h4>
+                    <p class="white-text">{{ book.book_description }}</p>
+                    <br>
+                    <a href="{{ book.book_url }}" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
                     <a href="#" class="pink darken-3 waves-effect waves-light btn">Leave a Review</a>
                 </div>
             </div>

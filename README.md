@@ -142,7 +142,15 @@ A warm and welcoming home page was created to inspire the all-inclusive nature o
 
 ## Bug Fixes
 
-While implementing the new profile page, an issue arose in which the gobooks logo wouldn't load on the page. On further investigation it appeared that this page causes issues with all loading concluding in a 404 error. Will continue to watch this incase it fixes itself
+While implementing the new profile page, an issue arose in which the gobooks logo wouldn't load on the page. On further investigation it appeared 
+that this page causes issues with all loading concluding in a 404 error. This issue was caused because Flask was unable to load the image, 
+so a static url path was required. This was as simple as changing the image source from:
+
+img src="static/images/logo_mini.png "
+
+to
+
+img src="{{ url_for('static', filename='/images/logo_mini.png') }}"
 
 
 

@@ -37,7 +37,7 @@
 
         <nav class="green darken-3">
             <div class="nav-wrapper container">
-                <a href="{{ url_for ('homepage') }}" class="brand-logo"><img src="static/images/logo_mini.png" class="logo" alt="GoBooks logo"></a>
+                <a href="{{ url_for ('homepage') }}" class="brand-logo"><img src="{{ url_for('static', filename='/images/logo_mini.png') }}" class="logo" alt="GoBooks logo"></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if session.user %}

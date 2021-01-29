@@ -117,7 +117,8 @@ footer.page-footer {
 /* ----------------------------------------------- Library Page */
 
 .book-image {
-    height: 100%;
+    width: 100%;
+    padding-top: 20px;
 }
 
 .book-name {

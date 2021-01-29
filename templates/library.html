@@ -25,13 +25,17 @@
                                 class="material-icons right">more_vert</i></span>
                         <p>
                             <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
-                            <a href="#" class="pink darken-3 btn">Review</a>
+                            <a href="{{ url_for('book', book_name=book._id)}}" class="pink darken-3 btn">Read More</a>
                         </p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ book.book_name }}<i
                                 class="material-icons right">close</i></span>
                         <p>{{ book.book_description }}</p>
+                        <p>
+                            <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
+                            <a href="{{ url_for('book', book_name=book._id)}}" class="pink darken-3 btn">Read More</a>
+                        </p>
                     </div>
                 </div>
             </div>
