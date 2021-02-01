@@ -6,14 +6,20 @@
     <div class="col s12">
         <div class="card-panel green darken-3">
             <div class="row">
+                <div class="col s11">
+                    <a href="{{ url_for('edit_profile', user_id=username._id) }}" class="right white-text pink darken-3 btn">Edit Profile</a>
+                </div>
+            </div>
+            <div class="row"> 
+                <hr>
                 <div class="col s6 m3">
-                    <div class="card-image">
-                            {% if username.member_image %}
-                                <img class="member-image" src="{{ username.member_image }}" alt="Profile Image">
-                            {% else %}
-                                <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
-                            {% endif %}
-                        </div>
+                    <div class="card-image center-align">
+                        {% if username.member_image %}
+                            <img class="member-image" src="{{ username.member_image }}" alt="Profile Image">
+                        {% else %}
+                            <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="col s12 m9">
                     <h3 class="member-info"> {{ username.username }}'s Profile</h3>
@@ -25,11 +31,9 @@
             <div class="row">
                 <h4>Books Reviewed</h4>
             </div>
-
-                {% if userreviews %}
-                    {% for review in reviews %}
+                {% for review in user_reviews %}
                     <div class="row">
-                        <div class="col s8 offset-s2 m6 l4">
+                        <div class="col s8 offset-s2 m4 l3">
                             <div class="card reviews-card">
                                 <div class="card-image waves-effect waves-block waves-light">
                                     <img class="activator" src="{{ review.book_cover }}">
@@ -52,8 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
-                {% endif %}
+                {% endfor %}
         </div>
     </div>
 </div>

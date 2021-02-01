@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', user_id=user._id) }}">
+        <div class="card-panel green darken-3">
+            <h3 class="center-align">Edit Profile</h3>
+            <br>
+
+            <!--Name-->
+            <div class="row">
+                <div class="input-field col s4 offset-s1">
+                    <input id="first_name" value="{{ user.first_name }}" name="first_name" type="text" pattern="^[a-zA-Z0-9]{1,20}$" class="validate"
+                    oninvalid="this.setCustomValidity('Enter first name. Only alphanumeric characters are accepted')"
+                    oninput="this.setCustomValidity('')" minlength="1" maxlength="20" required>
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s4 offset-s2">
+                    <input id="last_name" value="{{ user.last_name }}" name="last_name" type="text" pattern="^[a-zA-Z0-9]{1,30}$" class="validate"
+                    oninvalid="this.setCustomValidity('Enter last name. Only alphanumeric characters are accepted')"
+                    oninput="this.setCustomValidity('')" minlength="1" maxlength="30" required>
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+
+            <!--Reader Level-->
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <select id="member_level" value="{{ user.member_level }}" name="member_level" type="text" class="validate" required>
+                        <option value="" disabled selected>Select your option</option>
+                        <option value="Casual Reader">Casual Reader</option>
+                        <option value="Sporadic Dabbler">Sporadic Dabbler</option>
+                        <option value="Book Junkie">Book Junkie</option>
+                    </select>
+                    <label for="member_level">What kind of reader are you?</label>
+                </div>
+            </div>
+
+            <hr>
+
+            <h5 class="center-align">The Following questions are optional</h5>
+
+            <!--Favourite Book-->
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="fav_book" value="{{ user.fav_book }}" name="fav_book" type="text" class="materialize-textarea" data-length="100" maxlength="100">
+                    <label for="fav_book">What is your Favourite Book?<span><i>(Optional)</i></span></label>
+                </div>
+            </div>
+
+
+            <!--Member Image-->
+            <div class="row">
+                <div class="input-field col s10 offset-s1">
+                    <input id="member_image" value="{{ user.member_image }}" name="member_image" type="text" class="validate count" pattern="(https?:\/\/.*(?:jpg|jpeg|gif|png))" data-length="400" maxlength="400">
+                    <label for="member_image">Enter URL of your profile picture<span><i>(Optional)</i></span></label>
+                    <span class="helper-text" data-error="wrong" data-success="right">URL must begin with http(s) and end with .jpg .jpeg .png or .gif</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <button type="submit" class="col s8 offset-s2 btn-large pink darken-3 waves-effect waves-light btn">
+                    Register
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="row">
+    <div class="col s12">
+        <p class="center-align">
+            Already Registered? 
+            <a href="{{ url_for('login') }}" class="white-text pink darken-3 btn">Log In!</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

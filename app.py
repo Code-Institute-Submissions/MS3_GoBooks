@@ -69,6 +69,34 @@ def register():
     return render_template("register.html")
 
 
+# Route for editing user profile
+@app.route("/edit_profile/<username>", methods=["GET", "POST"])
+def edit_profile(user_id):
+    username = mongo.db.members.find_one(
+        {"username": session["user"]})
+    if username:
+        if request.method == "POST":
+            update_profile = {
+                "username": mongo.db.members.find_one(
+                    {"_id": ObjectId(user_id)})["username"],
+                "password": mongo.db.members.find_one(
+                    {"_id": ObjectId(user_id)})["password"],
+                "first_name": request.form.get("first_name").lower(),
+                "last_name": request.form.get("last_name").lower(),
+                "member_image": request.form.get("member_image"),
+                "fav_book": request.form.get("fav_book").lower(),
+                "member_level": request.form.get("member_level"),
+                "is_admin": mongo.db.members.find_one(
+                    {"_id": ObjectId(user_id)})["is_admin"]
+            }
+            mongo.db.members.update(
+                {"_id": ObjectId(user_id)}, update_profile)
+            flash("Profile Updated Successfully")
+            return redirect(url_for("profile", username=session["user"]))
+        user = mongo.db.members.find_one({"_id": ObjectId(user_id)})
+        return render_template("edit_profile.html", user=user)
+
+
 # Route for member login
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -104,8 +132,10 @@ def profile(username):
     username = mongo.db.members.find_one(
         {"username": session["user"]})
     if session["user"]:
+        user_reviews = list(mongo.db.reviews.find(
+            {"username": session["user"]}))
         return render_template(
-            "profile.html", username=username)
+            "profile.html", username=username, user_reviews=user_reviews)
 
     return redirect(url_for("login"))
 
@@ -177,7 +207,7 @@ def addbook():
 @app.route("/book/<book_name>", methods=["GET", "POST"])
 def book(book_name):
     book = mongo.db.library.find_one({"_id": ObjectId(book_name)})
-    reviews = mongo.db.reviews.find_one(
+    reviews = list(mongo.db.reviews.find(
         {"book_name": request.form.get("book_name")})
     return render_template("book.html", book=book, reviews=reviews)
 
