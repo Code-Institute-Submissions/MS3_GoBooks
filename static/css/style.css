@@ -30,8 +30,14 @@ main {
     max-width: 80vw;
 }
 
-.fas {
-    color: white;
+.btn {
+    border-radius: 20px;
+}
+
+p.material-icons {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0;
 }
 
 .socials {
@@ -68,30 +74,10 @@ footer.page-footer {
     color: black;
 }
 
-#book_search{
-    width: 0;
-    line-height: 40px;
-    transition: width 0.4s linear;
-}
-
-.input-field:hover > #book_search{
-    width: 50vw;
-    transition: width 0.4s linear;
-}
-
-
-.search {
-    color: black;
-    text-align: center;
-}
 
 .homepage-links {
     color: white;
     text-align: center;
-}
-
-.btn {
-    border-radius: 20px;
 }
 
 /* ----------------------------------------------- Profile Page */
@@ -128,6 +114,10 @@ footer.page-footer {
 .footer-note {
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+.library-books {
+    height: 650px;
 }
 
 /* ----------------------------------------------- Book Page */

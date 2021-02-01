@@ -18,6 +18,7 @@
                 <div class="col s12 m8 l9">
                     <h3 class="member-info">{{ book.book_name }}</h3>
                     <h4 class="member-info">By {{ book.book_author }}</h4>
+                    <br>
                     <p class="white-text">{{ book.book_description }}</p>
                     <br>
                     <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
@@ -28,17 +29,23 @@
             <div class="row">
                 <h4>Reviews</h4>
             </div>
-            <div>
-                {% for review in reviews %}
+            <div>  
                 <div class="row">
-                    <p><strong>{{ username }}</strong></p>
-                    <p><i>{{ review_date }}</i></p>
-                    <p>{{ book_rating }}</p>
-                    <br>
-                    <p>{{ book_review }}</p>
-                    <br>
+                    {% for review in reviews %}
+                        <div class="col s12 m6 l4">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">{{ review.username }}</span>
+                                    <p>{{ review.book_review }}</p>
+                                </div>
+                                <div class="card-action">
+                                    <p><i>{{ review.review_date }}</i></p>
+                                    <p>{{ review.book_rating }} Stars</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>       
         </div>
     </div>

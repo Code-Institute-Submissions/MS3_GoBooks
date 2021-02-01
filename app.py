@@ -135,6 +135,14 @@ def library():
     return render_template("library.html", books=books)
 
 
+# Route for book search functionality
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    books = mongo.db.library.find({"$text": {"$search": query}})
+    return render_template("library.html", books=books)
+
+
 # Route for adding a new book
 @app.route("/addbook", methods=["GET", "POST"])
 def addbook():
@@ -169,7 +177,9 @@ def addbook():
 @app.route("/book/<book_name>", methods=["GET", "POST"])
 def book(book_name):
     book = mongo.db.library.find_one({"_id": ObjectId(book_name)})
-    return render_template("book.html", book=book)
+    reviews = mongo.db.reviews.find_one(
+        {"book_name": request.form.get("book_name")})
+    return render_template("book.html", book=book, reviews=reviews)
 
 
 # Route for adding a new review
