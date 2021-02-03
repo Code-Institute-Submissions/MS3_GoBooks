@@ -3,4 +3,5 @@
     $(".dropdown-trigger").dropdown();
     $('.datepicker').datepicker();
     $('select').formSelect();
+    $('.modal').modal();
   });

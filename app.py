@@ -31,6 +31,9 @@ def homepage():
     return render_template("index.html")
 
 
+###########################################################################
+
+
 # Route for registering a new user
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -96,6 +99,19 @@ def edit_profile(user_id):
     return render_template("edit_profile.html", username=username)
 
 
+# Route for deleting user profile
+@app.route("/delete_profile/<user_id>")
+def delete_profile(user_id):
+    mongo.db.members.remove({"_id": ObjectId(user_id)})
+    # removes the  user from the session cookie
+    session.pop("user")
+    flash("Profile Successfully Deleted")
+    return redirect(url_for("homepage"))
+
+
+###########################################################################
+
+
 # Route for member login
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -148,12 +164,18 @@ def logout():
     return redirect(url_for("homepage"))
 
 
+###########################################################################
+
+
 # Route for member list page
 @app.route("/members")
 def members():
     # views a list of registered members
     members = mongo.db.members.find()
     return render_template("members.html", members=members)
+
+
+###########################################################################
 
 
 # Route for library page
@@ -171,6 +193,9 @@ def search():
         query = request.form.get("query")
         books = list(mongo.db.library.find({"$text": {"$search": query}}))
     return render_template("library.html", books=books)
+
+
+###########################################################################
 
 
 # Route for adding a new book
@@ -203,7 +228,7 @@ def add_book():
     return render_template("add_book.html")
 
 
-# Route for individual book page <-- NEEDS WORK
+# Route for individual book page
 @app.route("/book/<book_id>", methods=["GET", "POST"])
 def book(book_id):
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
@@ -212,6 +237,9 @@ def book(book_id):
             {"book_name": book_id["book_name"]}))
     return render_template(
         "book.html", book_id=book_id, user_reviews=user_reviews)
+
+
+###########################################################################
 
 
 # Route for adding a new review
@@ -246,6 +274,35 @@ def add_review(book_id):
         return redirect(url_for("book", book_id=book_id))
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
     return render_template("add_review.html", book_id=book_id)
+
+
+# Route to edit a review
+@app.route("/edit_review/<book_id>", methods=["GET", "POST"])
+def edit_review(book_id):
+    if request.method == "POST":
+        today_date = date.today()
+        current_date = today_date.strftime("%d %b %y")
+        edit = {
+            "book_review": request.form.get("book_review"),
+            "book_rating": request.form.get("book_rating"),
+            "review_date": current_date
+        }
+        mongo.db.reviews.update({"_id": ObjectId(book_id)}, edit)
+        flash("Review Successfully Updated")
+        return redirect(url_for("book", book_id=book_id))
+    book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
+    return render_template("edit_review.html", book_id=book_id)
+
+
+# Route to delete a review
+@app.route("/delete_review/<book_id>")
+def delete_review(book_id):
+    mongo.db.reviews.remove({"_id": ObjectId(book_id)})
+    flash("Review Successfully Deleted")
+    return redirect(url_for("book", book_id=book_id))
+
+
+###########################################################################
 
 
 # don't forget to turn debug=false before launch
