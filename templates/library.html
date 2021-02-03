@@ -34,8 +34,7 @@
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4 book-name">{{ book.book_name }}<i
                                 class="material-icons right">more_vert</i></span>
-                        <p>
-                            <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
+                        <p class="center-align">
                             <a href="{{ url_for('book', book_id=book._id)}}" class="pink darken-3 btn">Read More</a>
                         </p>
                     </div>
@@ -43,8 +42,8 @@
                         <span class="card-title grey-text text-darken-4">{{ book.book_name }}<i
                                 class="material-icons right">close</i></span>
                         <p>{{ book.book_description }}</p>
-                        <p>
-                            <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
+                        <p class="center-align">
+                            <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Shop</a>
                             <a href="{{ url_for('book', book_id=book._id)}}" class="pink darken-3 btn">Read More</a>
                         </p>
                     </div>
@@ -62,4 +61,5 @@
         <a href="{{ url_for ('addbook') }}" class="center-align pink darken-3 btn">Add a Book</a>
     </div>
 </div>
+<br>
 {% endblock %}

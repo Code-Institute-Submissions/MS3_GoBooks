@@ -207,7 +207,11 @@ def addbook():
 @app.route("/book/<book_id>", methods=["GET", "POST"])
 def book(book_id):
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
-    return render_template("book.html", book_id=book_id)
+    if book_id["book_name"]:
+        user_reviews = list(mongo.db.reviews.find(
+            {"book_name": book_id["book_name"]}))
+    return render_template(
+        "book.html", book_id=book_id, user_reviews=user_reviews)
 
 
 # Route for adding a new review
