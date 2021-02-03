@@ -2,14 +2,12 @@
 
 {% block content %}
 
-
 <div class="row">
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', user_id=username._id) }}">
         <div class="card-panel green darken-3">
             <h3 class="center-align">Edit Profile</h3>
             <br>
-
-            <!--Name-->
+        <!--Name-->
             <div class="row">
                 <div class="input-field col s4 offset-s1">
                     <input id="first_name" value="{{ username.first_name }}" name="first_name" type="text" pattern="^[a-zA-Z0-9]{1,20}$" class="validate"
@@ -24,8 +22,7 @@
                     <label for="last_name">Last Name</label>
                 </div>
             </div>
-
-            <!--Reader Level-->
+        <!--Reader Level-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <select id="member_level" value="{{ username.member_level }}" name="member_level" type="text" class="validate" required>
@@ -37,21 +34,17 @@
                     <label for="member_level">What kind of reader are you?</label>
                 </div>
             </div>
-
             <hr>
-
+        <!--User is told the following questions are optional and not required for profile creation-->
             <h5 class="center-align">The Following questions are optional</h5>
-
-            <!--Favourite Book-->
+        <!--Favourite Book-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <input id="fav_book" value="{{ username.fav_book }}" name="fav_book" type="text" class="materialize-textarea" data-length="100" maxlength="100">
                     <label for="fav_book">What is your Favourite Book?<span><i>(Optional)</i></span></label>
                 </div>
             </div>
-
-
-            <!--Member Image-->
+        <!--Member Image-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <input id="member_image" value="{{ username.member_image }}" name="member_image" type="text" class="validate count" pattern="(https?:\/\/.*(?:jpg|jpeg|gif|png))" data-length="400" maxlength="400">
@@ -59,7 +52,6 @@
                     <span class="helper-text" data-error="wrong" data-success="right">URL must begin with http(s) and end with .jpg .jpeg .png or .gif</span>
                 </div>
             </div>
-
             <div class="row">
                 <button type="submit" class="col s8 offset-s2 btn-large pink darken-3 waves-effect waves-light btn">
                     Edit Profile
@@ -67,7 +59,6 @@
             </div>
         </div>
     </form>
-
     <div class="col s12 m8 offset-m2">
         <div class="card-panel green darken-3">
             <p class="center-align white-text">

@@ -12,7 +12,7 @@ body {
     background-color: #4cba6a;
     min-height: 100vh;
     flex-direction: column;
-  }
+}
 
 h1,h2,h3,h4,h5,h6 {
     color: white;
@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6 {
 
 main {
     flex: 1 0 auto;
-  }   
+}   
 
 .header-row {
     padding-top: 100px;
@@ -65,20 +65,16 @@ footer.page-footer {
     text-shadow: 2px 2px rgba(0, 0, 0, 0.7);
 }
 
-
 .input-field {
     background-color: #d5ffd4;
     border-radius: 20px;
     color: black;
 }
 
-
 .homepage-links {
     color: white;
     text-align: center;
 }
-
-
 
 /* ----------------------------------------------- Profile Page */
 
@@ -143,8 +139,4 @@ footer.page-footer {
     .member-info {
         text-align: left;
     }
-    .input-field:hover > #book_search{
-    width: 30vw;
-    transition: width 0.4s linear;
-}
 }

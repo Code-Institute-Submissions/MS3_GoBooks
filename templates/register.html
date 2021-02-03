@@ -2,15 +2,13 @@
 
 {% block content %}
 
-
 <div class="row">
     <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel green darken-3">
             <h3 class="center-align">Register</h3>
             <h5 class="center-align">Please fill out the following questions to sign up</h5>
             <br>
-
-            <!--Name-->
+        <!--Name-->
             <div class="row">
                 <div class="input-field col s4 offset-s1">
                     <input id="first_name" name="first_name" type="text" pattern="^[a-zA-Z0-9]{1,20}$" class="validate"
@@ -25,8 +23,7 @@
                     <label for="last_name">Last Name</label>
                 </div>
             </div>
-
-            <!--Username-->
+        <!--Username-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,20}$" class="validate"
@@ -35,8 +32,7 @@
                     <label for="username">Username</label>
                 </div>
             </div>
-
-            <!--Password-->
+        <!--Password-->
             <div class="row">
                 <div>
                     <div class="input-field col s10 offset-s1">
@@ -47,8 +43,7 @@
                     </div>
                 </div>
             </div>
-
-            <!--Reader Level-->
+        <!--Reader Level-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <select id="member_level" name="member_level" type="text" class="validate" required>
@@ -60,21 +55,16 @@
                     <label for="member_level">What kind of reader are you?</label>
                 </div>
             </div>
-
             <hr>
-
             <h5 class="center-align">The Following questions are optional</h5>
-
-            <!--Favourite Book-->
+        <!--Favourite Book-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <input id="fav_book" name="fav_book" type="text" class="materialize-textarea" data-length="100" maxlength="100">
                     <label for="fav_book">What is your Favourite Book?<span><i>(Optional)</i></span></label>
                 </div>
             </div>
-
-
-            <!--Member Image-->
+        <!--Member Image-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
                     <input id="member_image" name="member_image" type="text" class="validate count" pattern="(https?:\/\/.*(?:jpg|jpeg|gif|png))" data-length="400" maxlength="400">
@@ -82,7 +72,6 @@
                     <span class="helper-text" data-error="wrong" data-success="right">URL must begin with http(s) and end with .jpg .jpeg .png or .gif</span>
                 </div>
             </div>
-
             <div class="row">
                 <button type="submit" class="col s8 offset-s2 btn-large pink darken-3 waves-effect waves-light btn">
                     Register
@@ -90,10 +79,6 @@
             </div>
         </div>
     </form>
-</div>
-
-
-<div class="row">
     <div class="col s12">
         <p class="center-align">
             Already Registered? 

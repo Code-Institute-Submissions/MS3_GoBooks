@@ -174,8 +174,8 @@ def search():
 
 
 # Route for adding a new book
-@app.route("/addbook", methods=["GET", "POST"])
-def addbook():
+@app.route("/add_book", methods=["GET", "POST"])
+def add_book():
 
     if request.method == "POST":
         # checks if book exists in the database
@@ -184,9 +184,9 @@ def addbook():
 
         if existing_book:
             flash("This book already exists")
-            return redirect(url_for("addbook"))
+            return redirect(url_for("add_book"))
 
-        addbook = {
+        add_book = {
             "book_name": request.form.get("book_name"),
             "book_author": request.form.get("book_author"),
             "book_asin": request.form.get("book_asin"),
@@ -195,12 +195,12 @@ def addbook():
             "book_cover": request.form.get("book_cover"),
             "book_url": request.form.get("book_url")
         }
-        mongo.db.library.insert_one(addbook)
+        mongo.db.library.insert_one(add_book)
 
         flash("Book Successfully Added")
         return redirect(url_for("library"))
 
-    return render_template("addbook.html")
+    return render_template("add_book.html")
 
 
 # Route for individual book page <-- NEEDS WORK
@@ -215,14 +215,14 @@ def book(book_id):
 
 
 # Route for adding a new review
-@app.route("/addreview/<book_id>", methods=["GET", "POST"])
-def addreview(book_id):
+@app.route("/add_review/<book_id>", methods=["GET", "POST"])
+def add_review(book_id):
 
     if request.method == "POST":
         # adds book and user data to review database
         today_date = date.today()
         current_date = today_date.strftime("%d %b %y")
-        addreview = {
+        add_review = {
             "book_name": mongo.db.library.find_one(
                 {"_id": ObjectId(book_id)})["book_name"],
             "book_author": mongo.db.library.find_one(
@@ -240,12 +240,12 @@ def addreview(book_id):
             "book_rating": request.form.get("book_rating"),
             "review_date": current_date
         }
-        mongo.db.reviews.insert_one(addreview)
+        mongo.db.reviews.insert_one(add_review)
 
         flash("Book Review Added")
-        return redirect(url_for("library"))
+        return redirect(url_for("book", book_id=book_id))
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
-    return render_template("addreview.html", book_id=book_id)
+    return render_template("add_review.html", book_id=book_id)
 
 
 # don't forget to turn debug=false before launch

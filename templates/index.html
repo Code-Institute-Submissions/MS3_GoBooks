@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card-panel green darken-3">
-<div class="row header-row center-align">
-    <div class="col m8 offset-m2 s10 offset-s1 center-align">
-            <img src="static/images/logo.png" class="logo" alt="GoBooks logo">
-    </div>
-</div>
-<div class="row">
-    <div class="col s8 offset-s2 center-align">
-        <h5 class="tagline">The Number One Website for book lovers!</h5>
-    </div>
-</div>
 
+<div class="card-panel green darken-3">
+    <div class="row header-row center-align">
+        <div class="col m8 offset-m2 s10 offset-s1 center-align">
+            <img src="static/images/logo.png" class="logo" alt="GoBooks logo">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s8 offset-s2 center-align">
+            <h5 class="tagline">The Number One Website for book lovers!</h5>
+        </div>
+    </div>
+    <!--if session user is a member, they are presented with the search function-->
     {% if session.user %}
-  
-  <form class="col s12">
+        <form class="col s12">
             <div class="row col m6 offset-m3 s10 offset-s1 center-align">
                 <form action="{{ url_for('search') }}" method="post" class="col s12">
                     <div class="row valign-wrapper center-align">
@@ -27,29 +27,27 @@
                 </form>
             </div>
         </form>
-
-  <div class="row center-align">
-
-    <a href="#" class="pink darken-3 waves-effect waves-light btn">What's Hot</a>
-    <a href="#" class="pink darken-3 waves-effect waves-light btn">Lucky Dip</a>
-
-  </div>
-  {% else %}
-    <div class="row">
-        <div class="col s8 offset-s2 center-align">
-            <p class="tagline">
-                GoBooks is a site for book lovers, by book lovers.
-                <br>
-                <br>
-                Our mission is to help people find and share books they love. Our incredible community searches the world
-                for new stories, and leave honest reviews that you can rely on. Our library grows every day with books you
-                can't quit, so why not sign up and find your new favourite book?
-            </p>
-            <br>
-                <a href="{{ url_for ('register') }}" class="pink darken-3 waves-effect waves-light btn">Sign Up Today!</a>
+        <div class="row center-align">
+            <a href="#" class="pink darken-3 waves-effect waves-light btn">What's Hot</a>
+            <a href="#" class="pink darken-3 waves-effect waves-light btn">Lucky Dip</a>
         </div>
-    </div>
-  {% endif %}
+    <!--if session user is not a member they are presented with brief description on GoBooks and link to sign up-->
+    {% else %}
+        <div class="row">
+            <div class="col s8 offset-s2 center-align">
+                <p class="tagline">
+                    GoBooks is a site for book lovers, by book lovers.
+                    <br>
+                    <br>
+                    Our mission is to help people find and share books they love. Our incredible community searches the world
+                    for new stories, and leave honest reviews that you can rely on. Our library grows every day with books you
+                    can't quit, so why not sign up and find your new favourite book?
+                </p>
+                <br>
+                <a href="{{ url_for ('register') }}" class="pink darken-3 waves-effect waves-light btn">Sign Up Today!</a>
+            </div>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}

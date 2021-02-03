@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="card-panel green darken-3">
     <div class="row">
         <h2 class="center-align tagline">Library</h2>
@@ -22,9 +23,8 @@
             </div>
         </form>
     </div>
-
    {% if books|length > 0 %}
-    <div class="row">
+        <div class="row">
         {% for book in books %}
             <div class="col s8 offset-s2 m6 l3">
                 <div class="card sticky-action library-books">
@@ -32,15 +32,15 @@
                         <img class="activator book-image" src="{{ book.book_cover }}">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4 book-name">{{ book.book_name }}<i
-                                class="material-icons right">more_vert</i></span>
+                        <span class="card-title activator grey-text text-darken-4 book-name">{{ book.book_name }}
+                            <i class="material-icons right">more_vert</i></span>
                         <p class="center-align">
                             <a href="{{ url_for('book', book_id=book._id)}}" class="pink darken-3 btn">Read More</a>
                         </p>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ book.book_name }}<i
-                                class="material-icons right">close</i></span>
+                        <span class="card-title grey-text text-darken-4">{{ book.book_name }}
+                            <i class="material-icons right">close</i></span>
                         <p>{{ book.book_description }}</p>
                         <p class="center-align">
                             <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Shop</a>
@@ -50,16 +50,16 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
+        </div>
     {% else %}
-    <h3 class="center-align tagline">No Results Found</h3>
+        <h3 class="center-align tagline">No Results Found</h3>
     {% endif %}
-
     <div class="row center-align footer-note">
         <h5 class="center-align tagline">Can't find the right book? Why not add it yourself?</h5>
         <br>
-        <a href="{{ url_for ('addbook') }}" class="center-align pink darken-3 btn">Add a Book</a>
+        <a href="{{ url_for ('add_book') }}" class="center-align pink darken-3 btn">Add a Book</a>
     </div>
 </div>
 <br>
+
 {% endblock %}

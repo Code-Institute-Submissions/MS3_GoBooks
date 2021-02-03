@@ -3,40 +3,36 @@
 {% block content %}
 
     <div class="row">
-        <form class="col s12" method="POST" action="{{ url_for('addbook') }}">
+        <form class="col s12" method="POST" action="{{ url_for('add_book') }}">
             <div class="card-panel green darken-3">
                 <h3 class="center-align tagline">Add a Book</h3>
                 <h5 class="center-align tagline">Fill out the form below to add the book to the library</h5>
                 <br>
-
-                <!--Book Name-->
+            <!--Book Name-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <input id="book_name" name="book_name" type="text" minlength="1" maxlength="50" required>
                         <label for="book_name">Book Name</label>
                     </div>
                 </div>
-
-                <!--Author Name-->
+            <!--Author Name-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <input id="book_author" name="book_author" type="text" minlength="1" maxlength="50" required>
                         <label for="book_author">Author</label>
                     </div>
                 </div>
-
-                <!--ASIN-->
+            <!--ASIN-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <input id="book_asin" name="book_asin" type="text" pattern="^[a-zA-Z0-9]{9,12}$" class="validate"
                         oninvalid="this.setCustomValidity('Enter ASIN. Only alphanumeric characters are accepted')"
                         oninput="this.setCustomValidity('')" minlength="9" maxlength="12" required>
-                        <label for="book_asin">Amazon Serial Identifier Number (ASIN</label>
+                        <label for="book_asin">Amazon Serial Identifier Number (ASIN)</label>
                         <span class="helper-text" data-error="wrong" data-success="right">ASIN can be found in the Product Details section on the Amazon store page for the Book.</span>
                     </div>
                 </div>
-
-                <!--Book Genre-->
+            <!--Book Genre-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <select id="book_genre" name="book_genre" type="text" class="validate" required>
@@ -57,17 +53,15 @@
                         </select>
                         <label>Select Which Genre Applies Most</label>
                     </div>
-                </div>
-                
-                <!--Book Description-->
+                </div>    
+            <!--Book Description-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <input id="book_description" name="book_description" class="materialize-textarea" type="text" required>
                         <label for="book_description">Book Description</label>
                     </div>
                 </div>
-
-                <!--Cover Image Link-->
+            <!--Cover Image Link-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <input id="book_cover" name="book_cover" type="text" class="validate count" pattern="(https?:\/\/.*(?:jpg|jpeg|gif|png))" data-length="400" maxlength="400"
@@ -76,16 +70,14 @@
                         <span class="helper-text" data-error="wrong" data-success="right">If you need help, locate the Amazon page for the book, right click on the cover, and select "Copy Image Address"</span>
                     </div>
                 </div>
-
-                <!--Book URL-->
+            <!--Book URL-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <input id="book_url" name="book_url" type="text" class="validate" minlength="1" maxlength="300" required>
                         <label for="book_url">Book URL</label>
                     </div>
                 </div>
-
-                <!--Submit Button-->
+            <!--Submit Button-->
                 <div class="row">
                     <button type="submit" class="col s8 offset-s2 btn-large pink darken-3 waves-effect waves-light btn">
                         Submit Book
@@ -94,15 +86,14 @@
             </div>
         </form>
     </div>
-
-    <!--Return to library-->
+<!--Return to library-->
     <div class="row">
         <div class="card-panel green darken-3 s12 m8 offset-m2 l6 offset-l3">
-                <p class="center-align white-text">
-                    Did you want to leave a review for a book instead? 
-                    <br>
-                    <a href="{{ url_for('library') }}" class="white-text pink darken-3 btn">Go back to the library!</a>
-                </p>
+            <p class="center-align white-text">
+                Did you want to leave a review for a book instead? 
+                <br>
+                <a href="{{ url_for('library') }}" class="white-text pink darken-3 btn">Go back to the library!</a>
+            </p>
         </div>
     </div>
 
