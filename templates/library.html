@@ -11,7 +11,7 @@
                     <div class="row valign-wrapper center-align">
                         <div class="input-field col s10">
                             <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                            <label for="query">Search Books</label>
+                            <label for="query"><i class="material-icons">search</i> Search Books</label>
                         </div>
                         <div class="col s2">
                             <button type="submit" class="pink darken-3 waves-effect waves-light btn-floating"><p class="material-icons">search</p></button>
@@ -23,7 +23,7 @@
         </form>
     </div>
 
-   
+   {% if books|length > 0 %}
     <div class="row">
         {% for book in books %}
             <div class="col s8 offset-s2 m6 l3">
@@ -36,7 +36,7 @@
                                 class="material-icons right">more_vert</i></span>
                         <p>
                             <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
-                            <a href="{{ url_for('book', book_name=book._id)}}" class="pink darken-3 btn">Read More</a>
+                            <a href="{{ url_for('book', book_id=book._id)}}" class="pink darken-3 btn">Read More</a>
                         </p>
                     </div>
                     <div class="card-reveal">
@@ -45,13 +45,16 @@
                         <p>{{ book.book_description }}</p>
                         <p>
                             <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Get a Copy</a>
-                            <a href="{{ url_for('book', book_name=book._id)}}" class="pink darken-3 btn">Read More</a>
+                            <a href="{{ url_for('book', book_id=book._id)}}" class="pink darken-3 btn">Read More</a>
                         </p>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+    {% else %}
+    <h3 class="center-align tagline">No Results Found</h3>
+    {% endif %}
 
     <div class="row center-align footer-note">
         <h5 class="center-align tagline">Can't find the right book? Why not add it yourself?</h5>

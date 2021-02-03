@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="col s12 m9">
-                    <h3 class="member-info"> {{ username.username }}'s Profile</h3>
+                    <h3 class="member-info"> {{ username.username|capitalize }}'s Profile</h3>
                     <h5 class="member-info">Member Since: {{ username.register_date }}</h5>
                     <h5 class="member-info">Member Rating: {{ username.member_level }}</h5>
                 </div>
@@ -31,8 +31,8 @@
             <div class="row">
                 <h4>Books Reviewed</h4>
             </div>
-                {% for review in user_reviews %}
                     <div class="row">
+                        {% for review in user_reviews %}
                         <div class="col s8 offset-s2 m4 l3">
                             <div class="card reviews-card">
                                 <div class="card-image waves-effect waves-block waves-light">
@@ -40,23 +40,29 @@
                                 </div>
                                 <div class="card-content">
                                     <span class="card-title activator grey-text text-darken-4">
+                                        <b>{{ review.book_rating }} Stars.</b>
                                         <i class="material-icons right">unfold_more</i></span>
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4"><strong>{{ review.book_name }}</strong>
+                                    <span class="card-title grey-text text-darken-4"><p>{{ review.book_name }}</p>
                                         <i class="material-icons right">unfold_less</i></span>
                                     <p>
                                         {{ review.book_review }} 
                                         <br>
-                                        <strong>{{ review.book_rating }} Stars.</strong>
+                                        <b>{{ review.book_rating }} Stars.</b>
+                                        <br>
                                         <i>{{ review.review_date }}</i>
                                     </p>
-                                    <p><a href="{{ review.book_url }}" class="pink darken-3 btn">Get a Copy</a></p>
+                                        <a href="{{ review.book_url }}" class="pink darken-3 btn">Buy</a>
+                                    {% if session.user|lower == review.username|lower %}
+                                        <a href="#" class="pink darken-3 waves-effect waves-light btn">Edit</a>
+                                        <a href="#" class="pink darken-3 waves-effect waves-light btn">Delete</a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
         </div>
     </div>
 </div>

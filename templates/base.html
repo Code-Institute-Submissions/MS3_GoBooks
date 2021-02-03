@@ -23,7 +23,6 @@
 
         <ul id="dropdown1" class="dropdown-content">
             <li><a href="{{ url_for ('profile', username=session['user']) }}">My Profile</a></li>
-            <li><a href="{{ url_for('edit_profile', user_id=username._id) }}">Edit Profile</a></li>
             <li class="divider"></li>
             <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
         </ul>

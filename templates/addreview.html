@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('addreview') }}">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('addreview', book_id=book_id._id) }}">
             <div class="card-panel green darken-3">
                 <h3 class="center-align">Review</h3>
                 <br>

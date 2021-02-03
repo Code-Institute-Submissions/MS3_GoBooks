@@ -160,15 +160,16 @@ def members():
 @app.route("/library")
 def library():
     # views a list of books added
-    books = mongo.db.library.find()
+    books = list(mongo.db.library.find())
     return render_template("library.html", books=books)
 
 
 # Route for book search functionality  <-- NEEDS WORK
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    query = request.form.get("query")
-    books = mongo.db.library.find({"$text": {"$search": query}})
+    if request.method == "POST":
+        query = request.form.get("query")
+        books = list(mongo.db.library.find({"$text": {"$search": query}}))
     return render_template("library.html", books=books)
 
 
@@ -203,47 +204,34 @@ def addbook():
 
 
 # Route for individual book page <-- NEEDS WORK
-@app.route("/book/<book_name>", methods=["GET", "POST"])
-def book(book_name):
-    book = mongo.db.library.find_one({"_id": ObjectId(book_name)})
-    reviews = mongo.db.reviews.find_one({"_id": ObjectId(book_name)})
-    if book == reviews:
-        return render_template("book.html", book=book, reviews=reviews)
-    else:
-        return render_template("book.html", book=book)
+@app.route("/book/<book_id>", methods=["GET", "POST"])
+def book(book_id):
+    book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
+    return render_template("book.html", book_id=book_id)
 
 
 # Route for adding a new review <-- NEEDS WORK
-@app.route("/addreview", methods=["GET", "POST"])
-def addreview():
+@app.route("/addreview/<book_id>", methods=["GET", "POST"])
+def addreview(book_id):
 
     if request.method == "POST":
         # adds book and user data to review database
-        add_book_name = mongo.db.library.find_one(
-            {"book_name": request.form.get("book_name")})
-        add_book_author = mongo.db.library.find_one(
-            {"book_author": request.form.get("book_author")})
-        add_book_asin = mongo.db.library.find_one(
-            {"book_asin": request.form.get("book_asin")})
-        add_book_genre = mongo.db.library.find_one(
-            {"book_genre": request.form.get("book_genre")})
-        add_book_cover = mongo.db.library.find_one(
-            {"book_cover": request.form.get("book_cover")})
-        add_book_url = mongo.db.library.find_one(
-            {"book_url": request.form.get("book_url")})
-        username = mongo.db.members.find_one(
-            {"username": session["user"]})["username"]
         today_date = date.today()
         current_date = today_date.strftime("%d %b %y")
-
         addreview = {
-            "book_name": add_book_name,
-            "book_author": add_book_author,
-            "book_asin": add_book_asin,
-            "book_genre": add_book_genre,
-            "book_cover": add_book_cover,
-            "book_url": add_book_url,
-            "username": username,
+            "book_name": mongo.db.library.find_one(
+                {"_id": ObjectId(book_id)})["book_name"],
+            "book_author": mongo.db.library.find_one(
+                {"_id": ObjectId(book_id)})["book_author"],
+            "book_asin": mongo.db.library.find_one(
+                {"_id": ObjectId(book_id)})["book_asin"],
+            "book_genre": mongo.db.library.find_one(
+                {"_id": ObjectId(book_id)})["book_genre"],
+            "book_cover": mongo.db.library.find_one(
+                {"_id": ObjectId(book_id)})["book_cover"],
+            "book_url": mongo.db.library.find_one(
+                {"_id": ObjectId(book_id)})["book_url"],
+            "username": session["user"],
             "book_review": request.form.get("book_review"),
             "book_rating": request.form.get("book_rating"),
             "review_date": current_date
@@ -252,10 +240,11 @@ def addreview():
 
         flash("Book Review Added")
         return redirect(url_for("library"))
+    book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
+    return render_template("addreview.html", book_id=book_id)
 
-    return render_template("addreview.html")
 
-
+# don't forget to turn debug=false before launch
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
