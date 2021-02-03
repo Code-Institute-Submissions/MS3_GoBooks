@@ -210,7 +210,7 @@ def book(book_id):
     return render_template("book.html", book_id=book_id)
 
 
-# Route for adding a new review <-- NEEDS WORK
+# Route for adding a new review
 @app.route("/addreview/<book_id>", methods=["GET", "POST"])
 def addreview(book_id):
 
