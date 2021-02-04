@@ -1,4 +1,5 @@
 import os
+import random
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
@@ -75,6 +76,7 @@ def register():
 # Route for editing user profile
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
+
     if request.method == "POST":
         update_profile = {
             "username": mongo.db.members.find_one(
@@ -95,6 +97,7 @@ def edit_profile(user_id):
 
         flash("Profile Successfully Updated")
         return redirect(url_for("profile", username=session["user"]))
+
     username = mongo.db.members.find_one({"_id": ObjectId(user_id)})
     return render_template("edit_profile.html", username=username)
 
@@ -102,6 +105,7 @@ def edit_profile(user_id):
 # Route for deleting user profile
 @app.route("/delete_profile/<user_id>")
 def delete_profile(user_id):
+
     mongo.db.members.remove({"_id": ObjectId(user_id)})
     # removes the  user from the session cookie
     session.pop("user")
@@ -143,9 +147,11 @@ def login():
 # Route for user's profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+
     # finds session users info from the database and retrieves the username
     username = mongo.db.members.find_one(
         {"username": session["user"]})
+
     if session["user"]:
         user_reviews = list(mongo.db.reviews.find(
             {"username": session["user"]}))
@@ -158,6 +164,7 @@ def profile(username):
 # Route for user logout
 @app.route("/logout")
 def logout():
+
     # logs user out and removes session cookies
     flash("You have been logged out")
     session.pop("user")
@@ -170,6 +177,7 @@ def logout():
 # Route for member list page
 @app.route("/members")
 def members():
+
     # views a list of registered members
     members = mongo.db.members.find()
     return render_template("members.html", members=members)
@@ -181,11 +189,13 @@ def members():
 # Route for library page
 @app.route("/library")
 def library():
+
     if session.get("user"):
         user = mongo.db.members.find_one({"username": session["user"]})
         # views a list of books added
         books = list(mongo.db.library.find())
         return render_template("library.html", books=books, user=user)
+
     flash("Get full access to GoBooks by signing up!")
     return redirect(url_for("homepage"))
 
@@ -193,10 +203,27 @@ def library():
 # Route for book search functionality  <-- NEEDS WORK
 @app.route("/search", methods=["GET", "POST"])
 def search():
+
     if request.method == "POST":
         query = request.form.get("query")
         books = list(mongo.db.library.find({"$text": {"$search": query}}))
+
     return render_template("library.html", books=books)
+
+
+###########################################################################
+
+
+# Route for returning a book at random
+@app.route("/lucky_dip", methods=["GET", "POST"])
+def lucky_dip():
+
+    books = list(mongo.db.library.find())
+    random_book = random.choice(books)
+    if request.method == "POST":
+        return redirect(url_for("library"))
+
+    return render_template("lucky_dip.html", random_book=random_book)
 
 
 ###########################################################################
@@ -235,6 +262,7 @@ def add_book():
 # Route for editing a book in the library <-- NEEDS WORK
 @app.route("/edit_book/<book_id>", methods=["GET", "POST"])
 def edit_book(book_id):
+
     # ADD IF STATEMENT TO CHECK IF SESSION USER IS ADMIN
     if request.method == "POST":
         edit_book = {
@@ -249,6 +277,7 @@ def edit_book(book_id):
         mongo.db.library.update(edit_book)
         flash("Book Successfully Updated")
         return redirect(url_for("book", book_id=book_id))
+
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
     return render_template("edit_book.html", book_id=book_id)
 
@@ -256,10 +285,12 @@ def edit_book(book_id):
 # Route for individual book page
 @app.route("/book/<book_id>", methods=["GET", "POST"])
 def book(book_id):
+
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
     if book_id["book_name"]:
         user_reviews = list(mongo.db.reviews.find(
             {"book_name": book_id["book_name"]}))
+
     return render_template(
         "book.html", book_id=book_id, user_reviews=user_reviews)
 
@@ -297,6 +328,7 @@ def add_review(book_id):
 
         flash("Book Review Added")
         return redirect(url_for("book", book_id=book_id))
+
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
     return render_template("add_review.html", book_id=book_id)
 
@@ -304,10 +336,18 @@ def add_review(book_id):
 # Route to edit a review <-- NEEDS WORK
 @app.route("/edit_review/<book_id>", methods=["GET", "POST"])
 def edit_review(book_id):
+
     if request.method == "POST":
         today_date = date.today()
         current_date = today_date.strftime("%d %b %y")
         edit = {
+            "book_name": request.form.get("book_name"),
+            "book_author": request.form.get("book_author"),
+            "book_asin": request.form.get("book_asin"),
+            "book_genre": request.form.get("book_genre"),
+            "book_cover": request.form.get("book_cover"),
+            "book_url": request.form.get("book_url"),
+            "username": session["user"],
             "book_review": request.form.get("book_review"),
             "book_rating": request.form.get("book_rating"),
             "review_date": current_date
@@ -315,6 +355,7 @@ def edit_review(book_id):
         mongo.db.reviews.update({"_id": ObjectId(book_id)}, edit)
         flash("Review Successfully Updated")
         return redirect(url_for("book", book_id=book_id))
+
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
     return render_template("edit_review.html", book_id=book_id)
 
@@ -322,6 +363,7 @@ def edit_review(book_id):
 # Route to delete a review <-- NEEDS WORK
 @app.route("/delete_review/<book_id>")
 def delete_review(book_id):
+
     mongo.db.reviews.remove({"_id": ObjectId(book_id)})
     flash("Review Successfully Deleted")
     return redirect(url_for("book", book_id=book_id))

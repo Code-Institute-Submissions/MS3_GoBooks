@@ -124,6 +124,7 @@ footer.page-footer {
     display: -webkit-box;
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
+    padding-top: 10px;
 }
 
 /* ----------------------------------------------- Book Page */
