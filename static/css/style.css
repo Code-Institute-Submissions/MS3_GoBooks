@@ -99,7 +99,7 @@ footer.page-footer {
 /* ----------------------------------------------- Library Page */
 
 .book-image {
-    width: 100%;
+    max-width: 100%;
 }
 
 .book-name {
@@ -114,6 +114,16 @@ footer.page-footer {
 
 .library-books {
     height: 650px;
+}
+
+/* Credit to https://stackoverflow.com/questions/26973570/setting-a-max-character-length-in-css for truncated description */
+
+.truncate-desc {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
 }
 
 /* ----------------------------------------------- Book Page */
@@ -135,8 +145,35 @@ footer.page-footer {
 
 /* ----------------------------------------------- Media Queries */
 
+@media (min-width: 400px) {
+    .library-books {
+        max-width: 70%;
+        margin-left: 15%;
+    }
+    .book-image {
+        max-height: 80%;
+    }
+}
+
 @media (min-width: 602px) {
     .member-info {
         text-align: left;
+    }
+    .library-books {
+        min-width: 100%;
+        max-height: 550px;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .library-books {
+        max-height: 470px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .library-books {
+        max-height: 650px;
     }
 }

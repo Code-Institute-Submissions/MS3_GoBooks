@@ -23,12 +23,14 @@
             </div>
         </form>
     </div>
+    <hr>
+    <br>
    {% if books|length > 0 %}
-        <div class="row">
+        <div class="row center-align">
         {% for book in books %}
-            <div class="col s8 offset-s2 m6 l3">
-                <div class="card sticky-action library-books">
-                    <div class="card-image waves-effect waves-block waves-light">
+            <div class="col s12 m4 l3">
+                <div class="card center-align sticky-action library-books">
+                    <div class="card-image center-align waves-effect waves-block waves-light">
                         <img class="activator book-image" src="{{ book.book_cover }}">
                     </div>
                     <div class="card-content">
@@ -41,9 +43,8 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ book.book_name }}
                             <i class="material-icons right">close</i></span>
-                        <p>{{ book.book_description }}</p>
+                        <p class="truncate-desc">{{ book.book_description }}</p>
                         <p class="center-align">
-                            <a href="{{ book.book_url }}" target="_blank" class="pink darken-3 btn">Shop</a>
                             <a href="{{ url_for('book', book_id=book._id)}}" class="pink darken-3 btn">Read More</a>
                         </p>
                     </div>

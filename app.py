@@ -181,9 +181,13 @@ def members():
 # Route for library page
 @app.route("/library")
 def library():
-    # views a list of books added
-    books = list(mongo.db.library.find())
-    return render_template("library.html", books=books)
+    if session.get("user"):
+        user = mongo.db.members.find_one({"username": session["user"]})
+        # views a list of books added
+        books = list(mongo.db.library.find())
+        return render_template("library.html", books=books, user=user)
+    flash("Get full access to GoBooks by signing up!")
+    return redirect(url_for("homepage"))
 
 
 # Route for book search functionality  <-- NEEDS WORK
@@ -198,7 +202,7 @@ def search():
 ###########################################################################
 
 
-# Route for adding a new book
+# Route for adding a new book to the library
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
 
@@ -226,6 +230,27 @@ def add_book():
         return redirect(url_for("library"))
 
     return render_template("add_book.html")
+
+
+# Route for editing a book in the library <-- NEEDS WORK
+@app.route("/edit_book/<book_id>", methods=["GET", "POST"])
+def edit_book(book_id):
+    # ADD IF STATEMENT TO CHECK IF SESSION USER IS ADMIN
+    if request.method == "POST":
+        edit_book = {
+            "book_name": request.form.get("book_name"),
+            "book_author": request.form.get("book_author"),
+            "book_asin": request.form.get("book_asin"),
+            "book_genre": request.form.get("book_genre"),
+            "book_description": request.form.get("book_description"),
+            "book_cover": request.form.get("book_cover"),
+            "book_url": request.form.get("book_url")
+        }
+        mongo.db.library.update(edit_book)
+        flash("Book Successfully Updated")
+        return redirect(url_for("book", book_id=book_id))
+    book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
+    return render_template("edit_book.html", book_id=book_id)
 
 
 # Route for individual book page
@@ -276,7 +301,7 @@ def add_review(book_id):
     return render_template("add_review.html", book_id=book_id)
 
 
-# Route to edit a review
+# Route to edit a review <-- NEEDS WORK
 @app.route("/edit_review/<book_id>", methods=["GET", "POST"])
 def edit_review(book_id):
     if request.method == "POST":
@@ -294,7 +319,7 @@ def edit_review(book_id):
     return render_template("edit_review.html", book_id=book_id)
 
 
-# Route to delete a review
+# Route to delete a review <-- NEEDS WORK
 @app.route("/delete_review/<book_id>")
 def delete_review(book_id):
     mongo.db.reviews.remove({"_id": ObjectId(book_id)})

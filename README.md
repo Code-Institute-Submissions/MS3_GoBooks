@@ -152,6 +152,28 @@ to
 
 img src="{{ url_for('static', filename='/images/logo_mini.png') }}"
 
+---
+
+Difficulties inputting data from library database to populate review database
+
+---
+
+Users reaching pages that they shouldn't be able to access (eg member only pages as a non member)
+
+---
+
+Search bar
+
+---
+
+admin implementation
+
+---
+
+Edit and delete reviews not working like it does for edit and delete members
+
+---
+
 
 
 
