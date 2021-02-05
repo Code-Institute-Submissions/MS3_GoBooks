@@ -156,9 +156,6 @@ img src="{{ url_for('static', filename='/images/logo_mini.png') }}"
 
 Difficulties inputting data from library database to populate review database
 
----
-
-Users reaching pages that they shouldn't be able to access (eg member only pages as a non member)
 
 ---
 
@@ -173,6 +170,10 @@ admin implementation
 Edit and delete reviews not working like it does for edit and delete members
 
 ---
+
+Following a review by Precious_Mentor a security issue was highlighted that allowed non-members to access areas of the project that should be exlusive to members (such as the library).
+To fix this, a Login Required Decorator was created to accompany each member-exclusive page, that was sourced from PalletsProjects, via Igor_CI on Slack. 
+https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/#login-required-decorator
 
 
 
@@ -197,4 +198,9 @@ https://developers.google.com/web/tools/lighthouse
 
 ### Code
 
+Thanks to Pallets Projects for the Login Required Decorator
+https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/#login-required-decorator
+
 ### Acknowledgements
+
+Thanks to Igor Basuga for his assistance in locating the Login Required Decorator.

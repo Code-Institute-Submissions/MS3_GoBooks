@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
+from functools import wraps
 if os.path.exists("env.py"):
     import env
 
@@ -17,6 +18,16 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "user" not in session:
+            flash("Get full access to GoBooks by signing up!")
+            return redirect(url_for("homepage"))
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 # 404 redirect
@@ -75,6 +86,7 @@ def register():
 
 # Route for editing user profile
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+@login_required
 def edit_profile(user_id):
 
     if request.method == "POST":
@@ -104,6 +116,7 @@ def edit_profile(user_id):
 
 # Route for deleting user profile
 @app.route("/delete_profile/<user_id>")
+@login_required
 def delete_profile(user_id):
 
     mongo.db.members.remove({"_id": ObjectId(user_id)})
@@ -146,6 +159,7 @@ def login():
 
 # Route for user's profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
+@login_required
 def profile(username):
 
     # finds session users info from the database and retrieves the username
@@ -176,6 +190,7 @@ def logout():
 
 # Route for member list page
 @app.route("/members")
+@login_required
 def members():
 
     # views a list of registered members
@@ -188,20 +203,17 @@ def members():
 
 # Route for library page
 @app.route("/library")
+@login_required
 def library():
 
-    if session.get("user"):
-        user = mongo.db.members.find_one({"username": session["user"]})
-        # views a list of books added
-        books = list(mongo.db.library.find())
-        return render_template("library.html", books=books, user=user)
-
-    flash("Get full access to GoBooks by signing up!")
-    return redirect(url_for("homepage"))
+    # views a list of books added
+    books = list(mongo.db.library.find())
+    return render_template("library.html", books=books)
 
 
 # Route for book search functionality  <-- NEEDS WORK
 @app.route("/search", methods=["GET", "POST"])
+@login_required
 def search():
 
     if request.method == "POST":
@@ -216,6 +228,7 @@ def search():
 
 # Route for returning a book at random
 @app.route("/lucky_dip", methods=["GET", "POST"])
+@login_required
 def lucky_dip():
 
     books = list(mongo.db.library.find())
@@ -231,6 +244,7 @@ def lucky_dip():
 
 # Route for adding a new book to the library
 @app.route("/add_book", methods=["GET", "POST"])
+@login_required
 def add_book():
 
     if request.method == "POST":
@@ -261,6 +275,7 @@ def add_book():
 
 # Route for editing a book in the library <-- NEEDS WORK
 @app.route("/edit_book/<book_id>", methods=["GET", "POST"])
+@login_required
 def edit_book(book_id):
 
     # ADD IF STATEMENT TO CHECK IF SESSION USER IS ADMIN
@@ -284,6 +299,7 @@ def edit_book(book_id):
 
 # Route for individual book page
 @app.route("/book/<book_id>", methods=["GET", "POST"])
+@login_required
 def book(book_id):
 
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
@@ -300,6 +316,7 @@ def book(book_id):
 
 # Route for adding a new review
 @app.route("/add_review/<book_id>", methods=["GET", "POST"])
+@login_required
 def add_review(book_id):
 
     if request.method == "POST":
@@ -335,6 +352,7 @@ def add_review(book_id):
 
 # Route to edit a review
 @app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+@login_required
 def edit_review(review_id):
 
     if request.method == "POST":
@@ -367,6 +385,7 @@ def edit_review(review_id):
 
 # Route to delete a review
 @app.route("/delete_review/<review_id>")
+@login_required
 def delete_review(review_id):
 
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
