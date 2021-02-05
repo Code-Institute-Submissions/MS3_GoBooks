@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card-panel green darken-3">
+    <div class="row">
+        <h2 class="center-align tagline">What's Hot?</h2>
+        <h5 class="center-align tagline">The latest reviews are in. What will you read next?</h5>
+    </div>
+    <hr>
+    <br>
+    {% for review in reviews %}
+        <div class="row card-content green darken-4">
+            <div class="col s12">
+                <div class="row">
+                <div class="col s6 offset-s3 m4 l3">
+                    <img class="activator book-image" src="{{ review.book_cover }}" href="{{ review.book_url }}">
+                </div>
+                <div class="col s12 m8 l9">
+                    <h4 class="review tagline">{{ review.book_name }}</h4>
+                    <div class="review">
+                        {% if review.book_rating == "5" %}
+                            <h4 class="review tagline material-icons">star star star star star</h4>
+                        {% elif review.book_rating == "4" %}
+                            <h4 class="review tagline material-icons">star star star star star_border</h4>
+                        {% elif review.book_rating == "3" %}
+                            <h4 class="review tagline material-icons">star star star star_border star_border</h4>
+                        {% elif review.book_rating == "2" %}
+                            <h4 class="review tagline material-icons">star star star_border star_border star_border</h4>
+                        {% elif review.book_rating == "1" %}
+                            <h4 class="review tagline material-icons">star star_border star_border star_border star_border</h4>
+                        {% endif %}
+                    </div>
+                    <h5 class="review tagline">By {{ review.username }} on {{ review.review_date }}</h5>
+                    <p class="review white-text">{{ review.book_review }}</p>
+                    <div class="review">
+                        <a href="{{ review.book_url }}" target="_blank" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<br>
+
+{% endblock %}

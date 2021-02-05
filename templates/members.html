@@ -27,13 +27,10 @@
                     <div class="card-action center-align">
                         <a href="#" class="pink darken-3 btn">View Profile</a>
                     </div>
-                {% if session["user"] %}
-                    {% if is_admin == true %}
+                {% if session["user"].is_admin == True %}
                         <div class="card-action center-align">
-                            <a href="#" class="pink darken-3 btn">Ban User</a>
                             <a href="#" class="pink darken-3 btn">Remove User</a>
                         </div>
-                    {% endif %}
                 {% endif %}
                 </div>
             </div>

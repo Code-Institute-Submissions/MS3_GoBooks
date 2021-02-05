@@ -239,6 +239,15 @@ def lucky_dip():
     return render_template("lucky_dip.html", random_book=random_book)
 
 
+# Route for returning most recent reviews
+@app.route("/whats_hot", methods=["GET", "POST"])
+@login_required
+def whats_hot():
+
+    reviews = list(mongo.db.reviews.find())
+    return render_template("whats_hot.html", reviews=reviews)
+
+
 ###########################################################################
 
 

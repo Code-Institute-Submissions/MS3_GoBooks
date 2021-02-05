@@ -106,6 +106,12 @@ footer.page-footer {
     max-width: 300px;
 }
 
+/* ----------------------------------------------- What's Hot Page */
+
+.review {
+    text-align: center;
+}
+
 /* ----------------------------------------------- Library Page */
 
 .book-image {
@@ -168,6 +174,9 @@ footer.page-footer {
 
 @media (min-width: 602px) {
     .member-info {
+        text-align: left;
+    }
+    .review {
         text-align: left;
     }
     .library-books {
