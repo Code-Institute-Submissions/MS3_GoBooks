@@ -89,7 +89,7 @@ A warm and welcoming home page was created to inspire the all-inclusive nature o
 
 ### Member List
 
-### Book search (by name / genre / keywords)
+### Book search (by name / genre / author)
 
 ### Book Lucky Dip
 
@@ -175,6 +175,14 @@ Following a review by Precious_Mentor a security issue was highlighted that allo
 To fix this, a Login Required Decorator was created to accompany each member-exclusive page, that was sourced from PalletsProjects, via Igor_CI on Slack. 
 https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/#login-required-decorator
 
+---
+
+One issue that was raised by a project tester was that the add_book function only allowed inputs from Amazon, and not other pages. This was due to the inclusion of a required input of the
+Amazon Serial Identifier Number (ASIN), which is only found on Amazon products. If someone wanted to add a book via a different platform, they would be unable to proceed past this point.
+The reason this was initially included was to ensure that the same book could not be added twice, but if two books with the same name existed they could be included. Further research into this
+showed that books have their own unique identifier, known as an ISBN (International Standard Book Number) which is unified across all physical and digital books no matter their storefront.
+Therefore the database was updated to allow the inclusion of the ISBN, along with the ASIN, as this will provide the groundwork for a future feature, which will generate a sales link that
+scrapes the user's location by country and searches for the ISBN or ASIN with a unique affiliate link included at the end.
 
 
 
