@@ -10,13 +10,13 @@
             <!--Review-->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="book_review" name="book_review" class="materialize-textarea" type="text" required>
+                        <input id="book_review" name="book_review" value="{{ review.book_review }}" class="materialize-textarea" type="text" required>
                         <label for="book_review">Leave a Review</label>
                     </div>
                 </div>
             <!--Rating-->
                 <div class="input-field col s12">
-                    <select id="book_rating" name="book_rating" type="text" class="validate" required>
+                    <select id="book_rating" value="{{ review.book_rating }}" name="book_rating" type="text" class="validate" required>
                         <option value="" disabled selected>Rate This Book</option>
                         <option value="1">1 Star</option>
                         <option value="2">2 Stars</option>

@@ -289,12 +289,22 @@ def edit_book(book_id):
             "book_cover": request.form.get("book_cover"),
             "book_url": request.form.get("book_url")
         }
-        mongo.db.library.update(edit_book)
+        mongo.db.library.update({"_id": ObjectId(book_id)}, edit_book)
         flash("Book Successfully Updated")
         return redirect(url_for("book", book_id=book_id))
 
-    book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_book.html", book_id=book_id)
+    book = mongo.db.library.find_one({"_id": ObjectId(book_id)})
+    return render_template("edit_book.html", book=book)
+
+
+# Route to delete a book
+@app.route("/delete_book/<book_id>")
+@login_required
+def delete_book(book_id):
+
+    mongo.db.library.remove({"_id": ObjectId(book_id)})
+    flash("Book Successfully Deleted")
+    return redirect(url_for("library"))
 
 
 # Route for individual book page
