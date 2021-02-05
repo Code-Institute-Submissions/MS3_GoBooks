@@ -333,40 +333,45 @@ def add_review(book_id):
     return render_template("add_review.html", book_id=book_id)
 
 
-# Route to edit a review <-- NEEDS WORK
-@app.route("/edit_review/<book_id>", methods=["GET", "POST"])
-def edit_review(book_id):
+# Route to edit a review
+@app.route("/edit_review/<review_id>", methods=["GET", "POST"])
+def edit_review(review_id):
 
     if request.method == "POST":
         today_date = date.today()
         current_date = today_date.strftime("%d %b %y")
         edit = {
-            "book_name": request.form.get("book_name"),
-            "book_author": request.form.get("book_author"),
-            "book_asin": request.form.get("book_asin"),
-            "book_genre": request.form.get("book_genre"),
-            "book_cover": request.form.get("book_cover"),
-            "book_url": request.form.get("book_url"),
+            "book_name": mongo.db.reviews.find_one(
+                {"_id": ObjectId(review_id)})["book_name"],
+            "book_author": mongo.db.reviews.find_one(
+                {"_id": ObjectId(review_id)})["book_author"],
+            "book_asin": mongo.db.reviews.find_one(
+                {"_id": ObjectId(review_id)})["book_asin"],
+            "book_genre": mongo.db.reviews.find_one(
+                {"_id": ObjectId(review_id)})["book_genre"],
+            "book_cover": mongo.db.reviews.find_one(
+                {"_id": ObjectId(review_id)})["book_cover"],
+            "book_url": mongo.db.reviews.find_one(
+                {"_id": ObjectId(review_id)})["book_url"],
             "username": session["user"],
             "book_review": request.form.get("book_review"),
             "book_rating": request.form.get("book_rating"),
             "review_date": current_date
         }
-        mongo.db.reviews.update({"_id": ObjectId(book_id)}, edit)
+        mongo.db.reviews.update({"_id": ObjectId(review_id)}, edit)
         flash("Review Successfully Updated")
-        return redirect(url_for("book", book_id=book_id))
 
-    book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
-    return render_template("edit_review.html", book_id=book_id)
+    review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+    return render_template("edit_review.html", review=review)
 
 
-# Route to delete a review <-- NEEDS WORK
-@app.route("/delete_review/<book_id>")
-def delete_review(book_id):
+# Route to delete a review
+@app.route("/delete_review/<review_id>")
+def delete_review(review_id):
 
-    mongo.db.reviews.remove({"_id": ObjectId(book_id)})
+    mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review Successfully Deleted")
-    return redirect(url_for("book", book_id=book_id))
+    return redirect(url_for("library"))
 
 
 ###########################################################################

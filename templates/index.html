@@ -29,7 +29,7 @@
         </form>
         <div class="row center-align">
             <a href="#" class="pink darken-3 waves-effect waves-light btn">What's Hot</a>
-            <a href="#" class="pink darken-3 waves-effect waves-light btn">Lucky Dip</a>
+            <a href="{{ url_for ('lucky_dip' )}}" class="pink darken-3 waves-effect waves-light btn">Lucky Dip</a>
         </div>
     <!--if session user is not a member they are presented with brief description on GoBooks and link to sign up-->
     {% else %}

@@ -96,6 +96,16 @@ footer.page-footer {
     height: 550px;
 }
 
+/* ----------------------------------------------- Lucky Dip Page */
+
+.random-book-cover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    max-width: 300px;
+}
+
 /* ----------------------------------------------- Library Page */
 
 .book-image {
