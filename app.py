@@ -198,6 +198,20 @@ def members():
     return render_template("members.html", members=members)
 
 
+# Route for viewing other member profiles
+@app.route("/view_member/<username>", methods=["GET", "POST"])
+@login_required
+def view_member(username):
+
+    username = mongo.db.members.find_one({"_id": ObjectId(username)})
+    if username["username"]:
+        user_reviews = list(mongo.db.reviews.find(
+            {"username": username["username"]}))
+
+    return render_template(
+        "view_member.html", username=username, user_reviews=user_reviews)
+
+
 ###########################################################################
 
 

@@ -8,27 +8,27 @@
             <div class="row">
                 <div class="col s11 right">
                     <ul id="dropdown3" class="dropdown-content">
-                        <li><a href="{{ url_for('edit_profile', user_id=username._id) }}">Edit Profile</a> </li>
-                        <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
+                        <li><a href="#">Delete Profile</a></li>
                     </ul>
-                    <a class="btn-flat dropdown-trigger white-text right" href="#!" data-target="dropdown3">Profile Options<i class="material-icons right">arrow_drop_down</i></a>
+                    <a class="btn-flat dropdown-trigger white-text right" href="#!" data-target="dropdown3">Admin Options<i class="material-icons right">arrow_drop_down</i></a>
+                    <a href="{{ url_for('members') }}" class="right white-text btn-flat">Return to Member List</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row"> 
                 <hr>
-                <div class="col s8 offset-s2 m3">
+                <div class="col s6 m3">
                     <div class="card-image center-align">
                         <!--Checks if user has added an image url to their profile and returns a template image if not-->
                         {% if username.member_image %}
-                        <img class="member-image" src="{{ username.member_image }}" alt="Profile Image">
+                            <img class="member-image" src="{{ username.member_image }}" alt="Profile Image">
                         {% else %}
-                        <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
+                            <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
                         {% endif %}
                     </div>
                 </div>
                 <!--Shows the profile member's information-->
                 <div class="col s12 m9">
-                    <h4 class="member-info"> {{ username.username|capitalize }}'s Profile</h4>
+                    <h3 class="member-info"> {{ username.username|capitalize }}'s Profile</h3>
                     <h5 class="member-info">Member Since: {{ username.register_date }}</h5>
                     <h5 class="member-info">Member Rating: {{ username.member_level }}</h5>
                     <h5 class="member-info">Favourite Book: {{ username.fav_book }}</h5>
@@ -64,12 +64,8 @@
                                     </div>
                                     <h5 class="review tagline">By {{ review.username }} on {{ review.review_date }}</h5>
                                     <p class="review white-text">{{ review.book_review }}</p>
-                                    <!--if the session user is the profile owner, they can delete or edit their reviews-->
                                     <div class="review">
-                                        {% if session.user|lower == review.username|lower %}
-                                            <a href="#" class="pink darken-3 waves-effect waves-light btn">Edit</a>
-                                            <a href="#" class="pink darken-3 waves-effect waves-light btn">Delete</a>
-                                        {% endif %}
+                                        <a href="{{ review.book_url }}" target="_blank" class="pink darken-3 waves-effect waves-light btn">Get a Copy</a>
                                     </div>
                                 </div>
                             </div>
