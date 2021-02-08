@@ -207,7 +207,7 @@ def members():
 def library():
 
     # views a list of books added
-    books = list(mongo.db.library.find())
+    books = list(mongo.db.library.find().sort("book_name"))
     return render_template("library.html", books=books)
 
 
@@ -239,12 +239,13 @@ def lucky_dip():
     return render_template("lucky_dip.html", random_book=random_book)
 
 
-# Route for returning most recent reviews
+# Route for returning 10 most recent reviews
 @app.route("/whats_hot", methods=["GET", "POST"])
 @login_required
 def whats_hot():
 
-    reviews = list(mongo.db.reviews.find())
+    reviews = list(mongo.db.reviews.find().sort(
+        '_id', -1).limit(10))
     return render_template("whats_hot.html", reviews=reviews)
 
 
