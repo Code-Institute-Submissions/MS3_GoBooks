@@ -6,21 +6,38 @@
     <div class="row">
         <h2 class="center-align tagline">Library</h2>
         <h5 class="center-align tagline">Have a browse and see if there's anything you'd like.</h5>
-        <form class="col s12">
-            <div class="row col s12 m10 offset-m1 center-align">
-                <form action="{{ url_for('search') }}" method="post" class="col s12">
-                    <div class="row valign-wrapper center-align">
-                        <div class="input-field col s10">
-                            <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                            <label for="query"><i class="material-icons">search</i> Search Books</label>
-                        </div>
-                        <div class="col s2">
-                            <button type="submit" class="pink darken-3 waves-effect waves-light btn-floating"><p class="material-icons">search</p></button>
-                            <a href="{{ url_for('library' )}}" class="pink darken-3 waves-effect waves-light btn-floating"><p class="material-icons">close</p></a>
-                        </div>
+        <div class="row col s12 m10 offset-m1 center-align">
+            <form action="{{ url_for('search') }}" method="POST" class="col s12">
+                <div class="row valign-wrapper center-align">
+                    <div class="input-field col s10">
+                        <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                        <label for="query"><i class="material-icons">search</i> Search Books</label>
                     </div>
-                </form>
-            </div>
+                    <div class="col s2">
+                        <button type="submit" class="pink darken-3 waves-effect waves-light btn-floating"><p class="material-icons">search</p></button>
+                        <a href="{{ url_for('library' )}}" class="pink darken-3 waves-effect waves-light btn-floating"><p class="material-icons">close</p></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- TO SORT THIS SO USER CAN SORT RESULTS BY NAME, AUTHOR OR GENRE -->
+    <div class="row center-align">
+        <form action="#">
+            <p class="tagline">Sort By:
+            <label>
+                <input class="with-gap pink darken-3" name="group1" type="radio" checked/>
+                <span class="tagline">Book</span>
+            </label>
+            <label>
+                <input class="with-gap pink darken-3" name="group1" type="radio"/>
+                <span class="tagline">Author</span>
+            </label>
+            <label>
+                <input class="with-gap pink darken-3" name="group1" type="radio"/>
+                <span class="tagline">Genre</span>
+            </label>
+            </p>
         </form>
     </div>
     <hr>

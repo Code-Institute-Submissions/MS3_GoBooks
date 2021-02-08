@@ -226,13 +226,14 @@ def library():
 
 
 # Route for book search functionality  <-- NEEDS WORK
-@app.route("/search", methods=["GET", "POST"])
+@app.route("/search/", methods=["GET", "POST"])
 @login_required
 def search():
 
     if request.method == "POST":
         query = request.form.get("query")
         books = list(mongo.db.library.find({"$text": {"$search": query}}))
+        print(query)
 
     return render_template("library.html", books=books)
 
@@ -338,11 +339,12 @@ def book(book_id):
 
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
     if book_id["book_name"]:
+        users = list(mongo.db.members.find())
         user_reviews = list(mongo.db.reviews.find(
             {"book_name": book_id["book_name"]}))
 
     return render_template(
-        "book.html", book_id=book_id, user_reviews=user_reviews)
+        "book.html", book_id=book_id, users=users, user_reviews=user_reviews)
 
 
 ###########################################################################

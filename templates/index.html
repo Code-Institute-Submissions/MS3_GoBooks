@@ -15,21 +15,19 @@
     </div>
     <!--if session user is a member, they are presented with the search function-->
     {% if session.user %}
-        <form class="col s12">
-            <div class="row col center-align">
-                <form action="{{ url_for('search') }}" method="post" class="col">
-                    <div class="row valign-wrapper center-align m5 offset-m2">
-                        <div class="input-field col s10 m8 offset-m2">
-                            <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                            <label for="query"><i class="material-icons">search</i> Search Books</label>
-                        </div>
-                        <div class="col s2">
-                            <button type="submit" class="pink darken-3 left waves-effect waves-light btn-floating"><p class="material-icons">search</p></button>
-                        </div>
+        <div class="row center-align">
+            <form action="{{ url_for('search') }}" method="POST">
+                <div class="row valign-wrapper center-align s12">
+                    <div class="input-field col s10 m8 offset-m2">
+                        <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                        <label for="query"><i class="material-icons">search</i> Search Books</label>
                     </div>
-                </form>
-            </div>
-        </form>
+                    <div class="col s2">
+                        <button type="submit" class="pink darken-3 left waves-effect waves-light btn-floating"><p class="material-icons">search</p></button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="row center-align">
             <a href="{{ url_for ('whats_hot' )}}" class="pink darken-3 waves-effect waves-light btn">What's Hot</a>
             <a href="{{ url_for ('lucky_dip' )}}" class="pink darken-3 waves-effect waves-light btn">Lucky Dip</a>

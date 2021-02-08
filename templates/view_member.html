@@ -7,10 +7,12 @@
         <div class="card-panel green darken-3">
             <div class="row">
                 <div class="col s11 right">
+                    {% if session.is_admin == True %}
                     <ul id="dropdown3" class="dropdown-content">
                         <li><a href="#">Delete Profile</a></li>
                     </ul>
                     <a class="btn-flat dropdown-trigger white-text right" href="#!" data-target="dropdown3">Admin Options<i class="material-icons right">arrow_drop_down</i></a>
+                    {% endif %}
                     <a href="{{ url_for('members') }}" class="right white-text btn-flat">Return to Member List</a>
                 </div>
             </div>
@@ -29,6 +31,9 @@
                 <!--Shows the profile member's information-->
                 <div class="col s12 m9">
                     <h3 class="member-info"> {{ username.username|capitalize }}'s Profile</h3>
+                    {% if username.is_admin == True %}
+                        <h5><i class="material-icons">brightness_auto</i> GoBooks Admin</h5>
+                    {% endif %}
                     <h5 class="member-info">Member Since: {{ username.register_date }}</h5>
                     <h5 class="member-info">Member Rating: {{ username.member_level }}</h5>
                     <h5 class="member-info">Favourite Book: {{ username.fav_book }}</h5>
