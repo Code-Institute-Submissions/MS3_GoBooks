@@ -171,8 +171,9 @@ def profile(username):
     if session["user"]:
         user_reviews = list(mongo.db.reviews.find(
             {"username": session["user"]}))
-        return render_template(
-            "profile.html", username=username, user_reviews=user_reviews)
+        return render_template("profile.html",
+                               username=username,
+                               user_reviews=user_reviews)
 
     return redirect(url_for("login"))
 
@@ -210,8 +211,9 @@ def view_member(username):
         user_reviews = list(mongo.db.reviews.find(
             {"username": username["username"]}))
 
-    return render_template(
-        "view_member.html", username=username, user_reviews=user_reviews)
+    return render_template("view_member.html",
+                           username=username,
+                           user_reviews=user_reviews)
 
 
 ###########################################################################
@@ -244,12 +246,10 @@ def library():
 def search():
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    per_page = 12
-    offset = page * per_page
+
     query = request.args.get("query")
-    print(f"QUERY:{query}")
-    total = mongo.db.library.find({"testname": {"$regex": query}}).count()
-    books = mongo.db.library.find({"testname": {"$regex": query}})
+    books = mongo.db.library.find({"$text": {"$search": query}})
+    total = books.count()
     paginatedResults = books[offset: offset + per_page]
     pagination = Pagination(page=page, per_page=per_page, total=total)
     return render_template("library.html",
@@ -364,8 +364,10 @@ def book(book_id):
         user_reviews = list(mongo.db.reviews.find(
             {"book_name": book_id["book_name"]}))
 
-    return render_template(
-        "book.html", book_id=book_id, users=users, user_reviews=user_reviews)
+    return render_template("book.html",
+                           book_id=book_id,
+                           users=users,
+                           user_reviews=user_reviews)
 
 
 ###########################################################################

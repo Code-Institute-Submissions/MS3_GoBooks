@@ -56,24 +56,23 @@ encourage engagement through a user-friendly aesthetic.
 
 **As a First Time Visitor I want to:**
 * Understand the purpose of the website.
-* Navigate easily through the website.
-* Locate books using the search functionality, read reviews left by members and be able to click through to the book’s Amazon page.
-* Use the website’s Book Lucky Dip to find a new book to read.
+* Navigate easily through the website available to non-members.
 * Understand the benefits of becoming a member and locate the Register page.
 
 **As a Member I want to:**
 * Be able to write, edit and delete my own reviews.
+* Locate books using the search functionality, read reviews left by members and be able to click through to the book’s Amazon page.
+* Use the website’s Book Lucky Dip to find a new book to read.
 * Benefit from the incentives of membership.
 * View my personalised Member Profile page.
-* View other members on the site and see what books they have read and reviewed.
+* View other members on the site and see what books they have reviewed.
 
 **As an Admin I want to:**
 * Have the ability to delete reviews that may be deemed rude or offensive.
 * Have the ability to remove members who abuse the service.
 
 **As Site Owner I want to:**
-* Incentivise people to become members and grow the platform.
-* Provide Affiliate links to Amazon book pages in order to earn money from sales made through the site.
+* Encourage users to become members and grow the platform.
 
 
 ## Wireframes
@@ -123,10 +122,18 @@ A warm and welcoming home page was created to inspire the all-inclusive nature o
 
 ## Future Features To Implement
 
-* Add functionality to connect with other members.
-* Expand user library to add books they intend to read to go along with the books they have read and reviewed.
+* Add functionality to connect with other members, adding each other as friends that would show on their profiles.
+* Expand user profile to add books they intend to read to go along with the books they have reviewed.
 * Add a storefront that will provide exclusive discounts to members who have built up their membership level.
 * Add a social platform for users to host book club meetings and author events.
+* A feature that was intended for this project was the implementation of affiliate links, however time overran on the project so it was moved to a future feature. This would have taken the ASIN
+or ISBN from the book entry in the library collection and paired it with an amazon url based on the user's geographic location, then it would have added a dedicated affilite link to the end. 
+By using the ASIN or ISBN, the result would have returned one result as these identifiers are unique to the book, which are identical regardless of geographic location. Due to the developer being
+a self-published author, he has access to his own affiliate link generator, so the end result would look something like this:
+   ```
+   {amazon_link}{ASIN/ISBN}{affiliate_link}
+   {https://www.amazon.co.uk/dp/}{1787633616}{&linkCode=ll1&tag=robertclark08-21&linkId=d522b720d1fabb445aea2ff6829000fb}
+   ```
 
 ---
 
@@ -255,6 +262,16 @@ def search():
     return render_template("library.html", books=pagination_results,
                            page=page, per_page=per_page, pagination=pagination)
  ```
+Unfortunately this issue persisted for a long time. The library and search functions were rebuild following guidance from **[mozillag's flask pagination](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
+which consolodated the get_results function into the parent function. This at least made the results per page go up to the intended 12 results (so that it would look uniform on all screen sizes)
+however the issue continued.
+ ```
+pymongo.errors.OperationFailure: "$search" had the wrong type. Expected string, found null, full error: {'operationTime': Timestamp(1612977003, 22), 'ok': 0.0, 
+'errmsg': '"$search" had the wrong type. Expected string, found null', 'code': 14, 'codeName': 'TypeMismatch', '$clusterTime': {'clusterTime': Timestamp(1612977003, 22), 
+'signature': {'hash': b'\x91\x1a\x9d\xee\xc9\x0c4\x17\x01\xfb\x93\xd3Vt$\xbe\xd7\xca\xe3\xed', 'keyId': 6916065002138894339}}}
+ ```
+ The search would return the first page of results, but it would not recognise the page arguments for any further pages.
+
 <------------------------INSERT ANSWER TO PROBLEM HERE 
 ---
 
