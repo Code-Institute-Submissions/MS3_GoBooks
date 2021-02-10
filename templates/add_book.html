@@ -11,14 +11,18 @@
             <!--Book Name-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <input id="book_name" name="book_name" type="text" minlength="1" maxlength="50" required>
+                        <input id="book_name" name="book_name" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
+                        oninvalid="this.setCustomValidity('Please enter a book name between 2 and 50 characters. Only alphanumeric characters are accepted')"
+                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required>
                         <label for="book_name">Book Name</label>
                     </div>
                 </div>
             <!--Author Name-->
-                <div class="row">
+                <div class="row">   
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <input id="book_author" name="book_author" type="text" minlength="1" maxlength="50" required>
+                        <input id="book_author" name="book_author" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
+                        oninvalid="this.setCustomValidity('Please enter a book name between 2 and 50 characters. Only alphanumeric characters are accepted')"
+                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required>
                         <label for="book_author">Author</label>
                     </div>
                 </div>
@@ -29,14 +33,14 @@
                         oninvalid="this.setCustomValidity('Enter ASIN. Only alphanumeric characters are accepted')"
                         oninput="this.setCustomValidity('')" minlength="9" maxlength="12" required>
                         <label for="book_asin">ISBN or ASIN number</label>
-                        <span class="helper-text" data-error="wrong" data-success="right">ASIN can be found in the Product Details section on the Amazon store page for the Book.</span>
+                        <span class="helper-text" data-error="wrong" data-success="right">ASIN/ ISBN can be found in the Product Details section on the Amazon store page for the Book.</span>
                     </div>
                 </div>
             <!--Book Genre-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
                         <select id="book_genre" name="book_genre" type="text" class="validate" required>
-                            <option value="" disabled selected>Genre</option>
+                            <option value="" disabled selected>Select Genre</option>
                             <option value="Crime">Crime</option>
                             <option value="Thriller">Thriller</option>
                             <option value="Fantasy">Fantasy</option>
@@ -51,13 +55,14 @@
                             <option value="Nonfiction">Nonfiction</option>
                             <option value="Poetry">Poetry</option>
                         </select>
-                        <label>Select Which Genre Applies Most</label>
                     </div>
                 </div>    
             <!--Book Description-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <input id="book_description" name="book_description" class="materialize-textarea" type="text" required>
+                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" data-length="500" pattern="^[a-zA-Z0-9]{9,500}$"
+                        oninvalid="this.setCustomValidity('Enter Book Description. Only alphanumeric characters are accepted')"
+                        oninput="this.setCustomValidity('')" minlength="9" maxlength="500" required></textarea>
                         <label for="book_description">Book Description</label>
                     </div>
                 </div>
@@ -73,7 +78,8 @@
             <!--Book URL-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <input id="book_url" name="book_url" type="text" class="validate" minlength="1" maxlength="300" required>
+                        <input id="book_url" name="book_url" type="text" class="validate count" pattern="(https?:\/\/.*(?))" data-length="400" maxlength="400"
+                        oninvalid="this.setCustomValidity('URL must begin with http(s)')" oninput="this.setCustomValidity('')" required>
                         <label for="book_url">Book URL</label>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import os
 import random
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for)
+from flask_paginate import Pagination, get_page_args
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -20,6 +21,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# Login Required Decorator by PalletsProjects
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -218,24 +220,43 @@ def view_member(username):
 # Route for library page
 @app.route("/library")
 @login_required
+# views a list of books added with pagination to 12 per page
 def library():
 
-    # views a list of books added
-    books = list(mongo.db.library.find().sort("book_name"))
-    return render_template("library.html", books=books)
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 12
+    offset = page * per_page
+    total = mongo.db.library.find().count()
+    books = mongo.db.library.find().sort("book_name")
+    paginatedResults = books[offset: offset + per_page]
+    pagination = Pagination(page=page, per_page=per_page, total=total)
+    return render_template("library.html",
+                           books=paginatedResults,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination)
 
 
 # Route for book search functionality  <-- NEEDS WORK
-@app.route("/search/", methods=["GET", "POST"])
+@app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
-
-    if request.method == "POST":
-        query = request.form.get("query")
-        books = list(mongo.db.library.find({"$text": {"$search": query}}))
-        print(query)
-
-    return render_template("library.html", books=books)
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    per_page = 12
+    offset = page * per_page
+    query = request.args.get("query")
+    print(f"QUERY:{query}")
+    total = mongo.db.library.find({"testname": {"$regex": query}}).count()
+    books = mongo.db.library.find({"testname": {"$regex": query}})
+    paginatedResults = books[offset: offset + per_page]
+    pagination = Pagination(page=page, per_page=per_page, total=total)
+    return render_template("library.html",
+                           books=paginatedResults,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination)
 
 
 ###########################################################################

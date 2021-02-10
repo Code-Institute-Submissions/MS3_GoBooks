@@ -10,7 +10,9 @@
             <!--Review-->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="book_review" name="book_review" value="{{ review.book_review }}" class="materialize-textarea" type="text" required>
+                        <textarea id="book_review" name="book_review" value="{{ review.book_review }}" data-length="500" pattern="^[a-zA-Z]{2,500}$"
+                        class="materialize-textarea validate" type="text" oninvalid="this.setCustomValidity('Enter Review. Only alphabetic characters are accepted')"
+                        oninput="this.setCustomValidity('')" minlength="2" maxlength="500" required></textarea>
                         <label for="book_review">Leave a Review</label>
                     </div>
                 </div>

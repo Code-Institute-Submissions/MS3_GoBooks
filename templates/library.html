@@ -42,8 +42,8 @@
     </div>
     <hr>
     <br>
-   {% if books|length > 0 %}
         <div class="row center-align">
+        {{ pagination.links }}
         {% for book in books %}
             <div class="col s12 m4 l3">
                 <div class="card center-align sticky-action library-books">
@@ -69,9 +69,9 @@
             </div>
         {% endfor %}
         </div>
-    {% else %}
-        <h3 class="center-align tagline">No Results Found</h3>
-    {% endif %}
+        <div class="center-align">
+            {{ pagination.links }}
+        </div>
     <div class="row center-align footer-note">
         <h5 class="center-align tagline">Can't find the right book? Why not add it yourself?</h5>
         <br>

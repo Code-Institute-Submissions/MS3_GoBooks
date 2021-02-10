@@ -11,15 +11,15 @@
         <!--Name-->
             <div class="row">
                 <div class="input-field col s4 offset-s1">
-                    <input id="first_name" name="first_name" type="text" pattern="^[a-zA-Z0-9]{1,20}$" class="validate"
-                    oninvalid="this.setCustomValidity('Enter first name. Only alphanumeric characters are accepted')"
-                    oninput="this.setCustomValidity('')" minlength="1" maxlength="20" required>
+                    <input id="first_name" name="first_name" type="text" pattern="^[a-zA-Z]{2,20}$" class="validate"
+                    oninvalid="this.setCustomValidity('Enter first name. Only alphabetic characters are accepted')"
+                    oninput="this.setCustomValidity('')" minlength="2" maxlength="20" required>
                     <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s4 offset-s2">
-                    <input id="last_name" name="last_name" type="text" pattern="^[a-zA-Z0-9]{1,30}$" class="validate"
-                    oninvalid="this.setCustomValidity('Enter last name. Only alphanumeric characters are accepted')"
-                    oninput="this.setCustomValidity('')" minlength="1" maxlength="30" required>
+                    <input id="last_name" name="last_name" type="text" pattern="^[a-zA-Z]{2,30}$" class="validate"
+                    oninvalid="this.setCustomValidity('Enter last name. Only alphabetic characters are accepted')"
+                    oninput="this.setCustomValidity('')" minlength="2" maxlength="30" required>
                     <label for="last_name">Last Name</label>
                 </div>
             </div>
@@ -43,20 +43,19 @@
                     </div>
                 </div>
             </div>
+            <hr>
+            <h5 class="center-align">The Following questions are optional</h5>
         <!--Reader Level-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">
-                    <select id="member_level" name="member_level" type="text" class="validate" required>
-                        <option value="" disabled selected>Select your option</option>
+                    <select id="member_level" name="member_level" type="text" class="validate">
+                        <option value="" disabled selected>What kind of reader are you?</option>
                         <option value="Casual Reader">Casual Reader</option>
                         <option value="Sporadic Dabbler">Sporadic Dabbler</option>
                         <option value="Book Junkie">Book Junkie</option>
                     </select>
-                    <label for="member_level">What kind of reader are you?</label>
                 </div>
             </div>
-            <hr>
-            <h5 class="center-align">The Following questions are optional</h5>
         <!--Favourite Book-->
             <div class="row">
                 <div class="input-field col s10 offset-s1">

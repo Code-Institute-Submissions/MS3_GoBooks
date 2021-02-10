@@ -4,4 +4,5 @@
     $('.datepicker').datepicker();
     $('select').formSelect();
     $('.modal').modal();
+    $('textarea#book_review, textarea#book_description').characterCounter();
   });

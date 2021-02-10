@@ -227,6 +227,35 @@ return any solutions as the search bar was submitting a GET request, not a POST 
 
 Finally, CI tutor **Igor_CI** discovered that the form was actually nested inside another form tag, which was causing the issue. Once this outer form was deleted, the form worked exactly as intended.
 
+
+### Searching With Pagination
+
+Following the implementation of a pagination function to split the library down into sections, a new error arose with the search bar. The pagination for the library (when no search was made)
+worked perfectly (albiet with an issue wherein pages would split into sets of 10, not the intended 12), and the user could move through paginated pages with no issues. However, as the search function
+required the use of an if statement to generate results, the pagination started to malfunction. The get_results function had to be moved within the if statement as it needed to return the results
+of the query, but this threw up issues wherein the rendered template would be referencing local variables before they had been assigned.
+
+ ```
+def search():
+
+    if request.method == "POST":
+        query = request.form.get("query")
+        books = list(mongo.db.library.find({"$text": {"$search": query}}))
+        total = len(books)
+
+        # Sets Pagination Pages
+        def get_results(offset=0, per_page=12):
+            return books[offset: offset + per_page]
+
+        page, per_page, offset = get_page_args(page_parameter='page',
+                                               per_page_parameter='per_page')
+        pagination_results = get_results(offset=offset, per_page=per_page)
+
+        pagination = Pagination(page=page, per_page=per_page, total=total)
+    return render_template("library.html", books=pagination_results,
+                           page=page, per_page=per_page, pagination=pagination)
+ ```
+<------------------------INSERT ANSWER TO PROBLEM HERE 
 ---
 
 ### Admin Implementation
@@ -238,6 +267,12 @@ Finally, CI tutor **Igor_CI** discovered that the form was actually nested insid
 Following a review by **Precious_Mentor** a security issue was highlighted that allowed non-members to access areas of the project that should be exlusive to members (such as the library).
 To fix this, a Login Required Decorator was created to accompany each member-exclusive page, that was sourced from **[PalletsProjects](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/#login-required-decorator)**, 
 via **Igor_CI** on Slack. 
+```
+@app.route("/members")
+@login_required
+```
+As you can see, the decorator sits within the app route for pages that only members of the site can access. Any attempts to break through this will be met with a redirect to the homepage and a 
+flash message telling them to sign up to get access.
 
 
 ### Expanding Functionality Beyond Amazon
@@ -250,6 +285,22 @@ Therefore the database was updated to allow the inclusion of the ISBN, along wit
 scrapes the user's location by country and searches for the ISBN or ASIN with a unique affiliate link included at the end.
 
 
+### Adding Validation to Forms
+
+Following a review by **Precious_Mentor** an issue was highlighted that allowed users to input answers to forms that should have been incorrect (such as numbers for names or whitespace for text).
+To counter this, validation was added to each form to ensure that only the correct data was being inputted.
+```
+<div class="row">
+    <div class="input-field col s10 offset-s1">
+        <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,20}$" class="validate"
+            oninvalid="this.setCustomValidity('Please enter a username between 5 and 20 characters. Only alphanumeric characters are accepted')"
+            oninput="this.setCustomValidity('')" minlength="5" maxlength="20" required>
+        <label for="username">Username</label>
+    </div>
+</div>
+```
+
+
 ## Performance
 
 USE LIGHTHOUSE HERE
@@ -258,19 +309,23 @@ USE LIGHTHOUSE HERE
 ## Validator Testing
 
 ### W3 HTML Validator 
-https://validator.w3.org/
+The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML met the necessary standards.
 
-### W3 CSS Validator
-https://jigsaw.w3.org/css-validator/
+
+### Jigsaw CSS Validator
+[Jigsaw](https://jigsaw.w3.org/css-validator/validator) was used to validate CSS code used in the project.
+
 
 # JSHint JS Validator
-https://jshint.com/
+[JS Hint](https://jshint.com/) was used to validate JavaScript code used in the project.
+
 
 # PEP8 Python Validator 
-http://pep8online.com/
+[PEP8](http://pep8online.com/) was used to validated Python code used in this project.
+
 
 # Google Chrome Lighthouse 
-https://developers.google.com/web/tools/lighthouse
+[Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to ensure this project ran efficently.
 
 ---
 

@@ -58,6 +58,24 @@ footer.page-footer {
     padding-bottom: 10px;
 }
 
+.input-field>label {
+    color: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    -webkit-transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: color .2s ease-out, -webkit-transform .2s ease-out;
+    transition: transform .2s ease-out, color .2s ease-out;
+    transition: transform .2s ease-out, color .2s ease-out, -webkit-transform .2s ease-out;
+    -webkit-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    text-align: initial;
+    -webkit-transform: translateY(12px);
+    transform: translateY(12px);
+}
+
 /* ----------------------------------------------- Home Page */
 
 .tagline {
@@ -143,6 +161,31 @@ footer.page-footer {
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
     padding-top: 10px;
+}
+
+.pagination li a {
+    color: #ffffff;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.pagination li.active {
+    background-color: #9c094e;
+    border-radius: 50%;
+}
+
+[type="radio"]:not(:checked)+span:before, [type="radio"]:not(:checked)+span:after {
+    border: 2px solid #ffffff;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+    background-color: #9c094e;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
+    border: 2px solid #9c094e;
 }
 
 /* ----------------------------------------------- Book Page */
