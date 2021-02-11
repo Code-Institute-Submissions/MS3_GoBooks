@@ -2,41 +2,42 @@
 
 {% block content %}
 
-<div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
-        <div class="card-panel green darken-3">
-            <h3 class="center-align">Log In</h3>
-        <!--Username-->
-            <div class="row">
-                <div class="input-field col s10 offset-s1">
-                    <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,20}$" class="validate" required>
-                    <label for="username">Username</label>
+<!--User Login Page-->
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel green darken-3">
+                <h3 class="center-align">Log In</h3>
+            <!--Username-->
+                <div class="row">
+                    <div class="input-field col s10 offset-s1">
+                        <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,20}$" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
                 </div>
-            </div>
-        <!--Password-->
-            <div class="row">
-                <div>
+            <!--Password-->
+                <div class="row">
                     <div class="input-field col s10 offset-s1">
                         <input id="password" name="password" type="password" pattern="^[a-zA-Z0-9]{5,20}$" minlength="5" maxlength="20" class="validate" required>
                         <label for="password">Password</label>
                     </div>
                 </div>
+            <!--Submit Button-->
+                <div class="row">
+                    <button type="submit" class="col s8 offset-s2 btn-large pink darken-3 waves-effect waves-light btn">
+                        Sign In
+                    </button>
+                </div>
             </div>
-            <div class="row">
-                <button type="submit" class="col s8 offset-s2 btn-large pink darken-3 waves-effect waves-light btn">
-                    Sign In
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="row">
-    <div class="col s12">
-        <p class="center-align">
-            Not got an account yet? 
-            <a href="{{ url_for('register') }}" class="white-text pink darken-3 btn">Sign Up!</a>
-        </p>
+        </form>
     </div>
-</div>
+<!--Link for users who don't yet have an account-->
+    <div class="row">
+        <div class="col s12">
+            <p class="center-align">
+                Not got an account yet? 
+                <a href="{{ url_for('register') }}" class="white-text pink darken-3 btn">Sign Up!</a>
+            </p>
+        </div>
+    </div>
 
 {% endblock %}

@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!--Form to allow user to add review. Book data populated in app.py file-->
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_review', book_id=book_id._id) }}">
             <div class="card-panel green darken-3">
@@ -36,7 +37,7 @@
             </div>
         </form>
     </div>
-    <!--Return to library-->
+<!--Return to library-->
     <div class="row">
         <div class="card-panel green darken-3 s12 m8 offset-m2 l6 offset-l3">
             <p class="center-align white-text">

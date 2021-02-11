@@ -39,7 +39,8 @@ p.material-icons {
 }
 
 /* filter used to convert white social media images to a close representation of the button colours */
-.social-logo:hover{
+/* Credit to Barrett Sonntag for the filter. Link in README */
+.social-logo:hover {
     filter: invert(87%) sepia(91%) saturate(7478%) hue-rotate(325deg) brightness(96%) contrast(96%);
     border-radius: 50%;
     text-decoration: none;
@@ -70,6 +71,14 @@ footer.page-footer {
     text-align: initial;
     -webkit-transform: translateY(12px);
     transform: translateY(12px);
+}
+
+.input-field input[type=text].valid {
+     border-radius: 1px solid rgb(2, 163, 2);
+}
+
+.input-field input[type=text].invalid {
+     border-radius: 1px solid rgb(163, 2, 2);
 }
 
 /* ----------------------------------------------- Home Page */
@@ -148,7 +157,7 @@ footer.page-footer {
     height: 650px;
 }
 
-/* Credit to https://stackoverflow.com/questions/26973570/setting-a-max-character-length-in-css for truncated description */
+/* Credit to Stack Overflow for truncated description . Link in README*/
 
 .truncate-desc {
     text-overflow: ellipsis;

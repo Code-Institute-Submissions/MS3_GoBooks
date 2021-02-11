@@ -366,6 +366,10 @@ The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML m
 
 - Flask Pagination by [DarilliGames](https://github.com/DarilliGames/flaskpaginate/blob/master/app.py#L80)
 
+- CSS filter generator by [Barrett Sonntag](https://codepen.io/sosuke/pen/Pjoqqp)
+
+- Truncate Descriptions thanks to [StackOverflow](https://stackoverflow.com/questions/26973570/setting-a-max-character-length-in-css)
+
 
 ### Acknowledgements
 

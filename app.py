@@ -35,6 +35,7 @@ def login_required(f):
 # 404 redirect
 @app.errorhandler(404)
 def page_not_found(e):
+
     return render_template('404.html'), 404
 
 
@@ -42,6 +43,7 @@ def page_not_found(e):
 @app.route("/")
 @app.route("/homepage")
 def homepage():
+
     return render_template("index.html")
 
 
@@ -113,6 +115,7 @@ def edit_profile(user_id):
         return redirect(url_for("profile", username=session["user"]))
 
     username = mongo.db.members.find_one({"_id": ObjectId(user_id)})
+
     return render_template("edit_profile.html", username=username)
 
 
@@ -125,6 +128,7 @@ def delete_profile(user_id):
     # removes the  user from the session cookie
     session.pop("user")
     flash("Profile Successfully Deleted")
+
     return redirect(url_for("homepage"))
 
 
@@ -142,11 +146,11 @@ def login():
 
         if existing_user:
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(request.form.get("username")))
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 # invalid password
                 flash("Incorrect Username and/or Password")
@@ -185,6 +189,7 @@ def logout():
     # logs user out and removes session cookies
     flash("You have been logged out")
     session.pop("user")
+
     return redirect(url_for("homepage"))
 
 
@@ -202,6 +207,7 @@ def members():
     members = list(mongo.db.members.find().sort('register_date'))
     paginatedResults = members[offset: offset + per_page]
     pagination = Pagination(page=page, per_page=per_page, total=total)
+
     return render_template("members.html",
                            members=paginatedResults,
                            page=page,
@@ -241,6 +247,7 @@ def library():
     books = mongo.db.library.find().sort("book_name")
     paginatedResults = books[offset: offset + per_page]
     pagination = Pagination(page=page, per_page=per_page, total=total)
+
     return render_template("library.html",
                            books=paginatedResults,
                            page=page,
@@ -248,7 +255,7 @@ def library():
                            pagination=pagination)
 
 
-# Route for book search functionality  <-- NEEDS WORK
+# Route for book search functionality
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
@@ -261,6 +268,7 @@ def search():
     total = books.count()
     paginatedResults = books[offset: offset + per_page]
     pagination = Pagination(page=page, per_page=per_page, total=total)
+
     return render_template("library.html",
                            books=paginatedResults,
                            page=page,
@@ -272,25 +280,24 @@ def search():
 
 
 # Route for returning a book at random
-@app.route("/lucky_dip", methods=["GET", "POST"])
+@app.route("/lucky_dip")
 @login_required
 def lucky_dip():
 
     books = list(mongo.db.library.find())
     random_book = random.choice(books)
-    if request.method == "POST":
-        return redirect(url_for("library"))
 
     return render_template("lucky_dip.html", random_book=random_book)
 
 
 # Route for returning 10 most recent reviews
-@app.route("/whats_hot", methods=["GET", "POST"])
+@app.route("/whats_hot")
 @login_required
 def whats_hot():
 
     reviews = list(mongo.db.reviews.find().sort(
         '_id', -1).limit(10))
+
     return render_template("whats_hot.html", reviews=reviews)
 
 
@@ -349,6 +356,7 @@ def edit_book(book_id):
         return redirect(url_for("book", book_id=book_id))
 
     book = mongo.db.library.find_one({"_id": ObjectId(book_id)})
+
     return render_template("edit_book.html", book=book)
 
 
@@ -359,6 +367,7 @@ def delete_book(book_id):
 
     mongo.db.library.remove({"_id": ObjectId(book_id)})
     flash("Book Successfully Deleted")
+
     return redirect(url_for("library"))
 
 
@@ -415,6 +424,7 @@ def add_review(book_id):
         return redirect(url_for("book", book_id=book_id))
 
     book_id = mongo.db.library.find_one({"_id": ObjectId(book_id)})
+
     return render_template("add_review.html", book_id=book_id)
 
 
@@ -448,6 +458,7 @@ def edit_review(review_id):
         flash("Review Successfully Updated")
 
     review = mongo.db.reviews.find_one({"_id": ObjectId(review_id)})
+
     return render_template("edit_review.html", review=review)
 
 
@@ -458,6 +469,7 @@ def delete_review(review_id):
 
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review Successfully Deleted")
+
     return redirect(url_for("library"))
 
 

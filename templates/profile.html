@@ -2,83 +2,85 @@
 
 {% block content %}
 
-<div class="row">
-    <div class="col s12">
-        <div class="card-panel green darken-3">
-            <div class="row">
-                <div class="col s11 right">
-                    <ul id="dropdown3" class="dropdown-content">
-                        <li><a href="{{ url_for('edit_profile', user_id=username._id) }}">Edit Profile</a> </li>
-                        <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
-                    </ul>
-                    <a class="btn-flat dropdown-trigger white-text right" href="#!" data-target="dropdown3">Profile Options<i class="material-icons right">arrow_drop_down</i></a>
-                </div>
-            </div>
-            <div class="row">
-                <hr>
-                <div class="col s8 offset-s2 m3">
-                    <div class="card-image center-align">
-                        <!--Checks if user has added an image url to their profile and returns a template image if not-->
-                        {% if username.member_image %}
-                        <img class="member-image" src="{{ username.member_image }}" alt="Profile Image">
-                        {% else %}
-                        <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
-                        {% endif %}
+<!--User's profile page-->
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel green darken-3">
+                <div class="row">
+                    <div class="col s11 right">
+                        <ul id="dropdown3" class="dropdown-content">
+                            <li><a href="{{ url_for('edit_profile', user_id=username._id) }}">Edit Profile</a> </li>
+                            <li><a href="{{ url_for ('logout') }}">Log Out</a></li>
+                        </ul>
+                        <a class="btn-flat dropdown-trigger white-text right" href="#!" data-target="dropdown3">Profile Options<i class="material-icons right">arrow_drop_down</i></a>
                     </div>
                 </div>
+                <div class="row">
+                    <hr>
+                    <div class="col s8 offset-s2 m3">
+                        <div class="card-image center-align">
+                        <!--Checks if user has added an image url to their profile and returns a template image if not-->
+                            {% if username.member_image %}
+                                <img class="member-image" src="{{ username.member_image }}" alt="Profile Image">
+                            {% else %}
+                                <img class="member-image" src="{{ url_for('static', filename='images/template-user.png') }}" alt="Profile Image">
+                            {% endif %}
+                        </div>
+                    </div>
                 <!--Shows the profile member's information-->
-                <div class="col s12 m9">
-                    <h4 class="member-info"> {{ username.username|capitalize }}'s Profile</h4>
-                    <h5 class="member-info">Member Since: {{ username.register_date }}</h5>
-                    <h5 class="member-info">Member Rating: {{ username.member_level }}</h5>
-                    <h5 class="member-info">Favourite Book: {{ username.fav_book }}</h5>
+                    <div class="col s12 m9">
+                        <h4 class="member-info"> {{ username.username|capitalize }}'s Profile</h4>
+                        <h5 class="member-info">Member Since: {{ username.register_date }}</h5>
+                        <h5 class="member-info">Member Rating: {{ username.member_level }}</h5>
+                        <h5 class="member-info">Favourite Book: {{ username.fav_book }}</h5>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="row">
-                <h4>Books Reviewed</h4>
-            </div>
-            <div class="row">
+                <hr>
+                <div class="row">
+                    <h4>Books Reviewed</h4>
+                </div>
+                <div class="row">
                 <!--iterates through user reviews and returns reviews posted by the profile member-->
-                {% for review in user_reviews %}
-                    <div class="row card-content green darken-4">
-                        <div class="col s12">
-                            <div class="row">
-                                <div class="col s6 offset-s3 m4 l3">
-                                    <img class="activator book-image" src="{{ review.book_cover }}" href="{{ review.book_url }}">
-                                </div>
-                                <div class="col s12 m8 l9">
-                                    <h4 class="review tagline">{{ review.book_name }}</h4>
-                                    <div class="review">
-                                        {% if review.book_rating == "5" %}
-                                            <h4 class="review tagline material-icons">star star star star star</h4>
-                                        {% elif review.book_rating == "4" %}
-                                            <h4 class="review tagline material-icons">star star star star star_border</h4>
-                                        {% elif review.book_rating == "3" %}
-                                            <h4 class="review tagline material-icons">star star star star_border star_border</h4>
-                                        {% elif review.book_rating == "2" %}
-                                            <h4 class="review tagline material-icons">star star star_border star_border star_border</h4>
-                                        {% elif review.book_rating == "1" %}
-                                            <h4 class="review tagline material-icons">star star_border star_border star_border star_border</h4>
-                                        {% endif %}
+                    {% for review in user_reviews %}
+                        <div class="row card-content green darken-4">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="col s6 offset-s3 m4 l3">
+                                        <img class="activator book-image" src="{{ review.book_cover }}" href="{{ review.book_url }}">
                                     </div>
-                                    <h5 class="review tagline">By {{ review.username }} on {{ review.review_date }}</h5>
-                                    <p class="review white-text">{{ review.book_review }}</p>
+                                    <div class="col s12 m8 l9">
+                                        <h4 class="review tagline">{{ review.book_name }}</h4>
+                                    <!--Converts user review scores into stars-->
+                                        <div class="review">
+                                            {% if review.book_rating == "5" %}
+                                                <h4 class="review tagline material-icons">star star star star star</h4>
+                                            {% elif review.book_rating == "4" %}
+                                                <h4 class="review tagline material-icons">star star star star star_border</h4>
+                                            {% elif review.book_rating == "3" %}
+                                                <h4 class="review tagline material-icons">star star star star_border star_border</h4>
+                                            {% elif review.book_rating == "2" %}
+                                                <h4 class="review tagline material-icons">star star star_border star_border star_border</h4>
+                                            {% elif review.book_rating == "1" %}
+                                                <h4 class="review tagline material-icons">star star_border star_border star_border star_border</h4>
+                                            {% endif %}
+                                        </div>
+                                        <h5 class="review tagline">By {{ review.username }} on {{ review.review_date }}</h5>
+                                        <p class="review white-text">{{ review.book_review }}</p>
                                     <!--if the session user is the profile owner, they can delete or edit their reviews-->
-                                    <div class="review">
-                                        {% if session.user|lower == review.username|lower %}
-                                            <a href="#" class="pink darken-3 waves-effect waves-light btn">Edit</a>
-                                            <a href="#" class="pink darken-3 waves-effect waves-light btn">Delete</a>
-                                        {% endif %}
+                                        <div class="review">
+                                            {% if session.user|lower == review.username|lower %}
+                                                <a href="#" class="pink darken-3 waves-effect waves-light btn">Edit</a>
+                                                <a href="#" class="pink darken-3 waves-effect waves-light btn">Delete</a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

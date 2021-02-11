@@ -19,8 +19,7 @@
 <body>
     <header>
 
-        <!-- Dropdown Structure -->
-
+    <!-- Dropdown Structure -->
         <ul id="dropdown1" class="dropdown-content">
             <li><a href="{{ url_for ('profile', username=session['user']) }}">My Profile</a></li>
             <li class="divider"></li>
@@ -33,15 +32,14 @@
             <li><a href="{{ url_for ('whats_hot' )}}">What's Hot</a></li>
         </ul>
 
-        <!--Navbar-->
-
+    <!--Navbar-->
         <nav class="green darken-3">
             <div class="nav-wrapper container">
                 <a href="{{ url_for ('homepage') }}" class="brand-logo"><img src="{{ url_for('static', filename='/images/logo_mini.png') }}" class="logo" alt="GoBooks logo"></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if session.user %}
-                        <!-- Dropdown Trigger -->
+                    <!-- Dropdown Trigger -->
                         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Profile<i class="material-icons right">arrow_drop_down</i></a></li>
                         <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Library<i class="material-icons right">arrow_drop_down</i></a></li>
                         <li><a href="{{ url_for ('members') }}">View Members</a></li>
@@ -70,7 +68,7 @@
     </header>
 
     <section>
-        <!-- Flash Messages -->
+    <!-- Flash Messages -->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -84,7 +82,7 @@
         {% endwith %}
     </section>
 
-    <!--Content added in below-->
+<!--Content added in below-->
     <main>
         <div class="container content">
             {% block content %}
@@ -92,7 +90,7 @@
         </div>
     </main>
 
-    <!--Footer-->
+<!--Footer-->
 
     <footer class="page-footer green darken-3">
         <div class="container center-align">
