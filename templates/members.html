@@ -5,6 +5,9 @@
         <h2 class="center-align tagline">Members</h2>
             <h5 class="center-align tagline">Discover members of GoBooks and view their profiles!</h5>
             <br>
+        <div class="center-align">
+            {{ pagination.links }}
+        </div>
         <div class="row">
             <!--iterates through a list of all active members-->
             {% for member in members %}
@@ -34,6 +37,9 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
+        <div class="center-align">
+            {{ pagination.links }}
         </div>
     </div>
 {% endblock %}

@@ -195,10 +195,18 @@ def logout():
 @app.route("/members")
 @login_required
 def members():
-
-    # views a list of registered members
-    members = list(mongo.db.members.find())
-    return render_template("members.html", members=members)
+    # Pagination Credit to DarilliGames (Link in README)
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    total = mongo.db.members.find().count()
+    members = list(mongo.db.members.find().sort('register_date'))
+    paginatedResults = members[offset: offset + per_page]
+    pagination = Pagination(page=page, per_page=per_page, total=total)
+    return render_template("members.html",
+                           members=paginatedResults,
+                           page=page,
+                           per_page=per_page,
+                           pagination=pagination)
 
 
 # Route for viewing other member profiles
@@ -224,7 +232,7 @@ def view_member(username):
 @login_required
 # views a list of books added with pagination to 12 per page
 def library():
-
+    # Pagination Credit to DarilliGames (Link in README)
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 12
@@ -244,6 +252,7 @@ def library():
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
+    # Pagination Credit to DarilliGames (Link in README)
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
 
