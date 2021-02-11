@@ -237,10 +237,11 @@ Finally, CI tutor **Igor_CI** discovered that the form was actually nested insid
 
 ### Searching With Pagination
 
-Following the implementation of a pagination function to split the library down into sections, a new error arose with the search bar. The pagination for the library (when no search was made)
-worked perfectly (albiet with an issue wherein pages would split into sets of 10, not the intended 12), and the user could move through paginated pages with no issues. However, as the search function
-required the use of an if statement to generate results, the pagination started to malfunction. The get_results function had to be moved within the if statement as it needed to return the results
-of the query, but this threw up issues wherein the rendered template would be referencing local variables before they had been assigned.
+Following the implementation of a pagination function (With credit given to **[mozillag's flask pagination](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)** for the flask pagination)
+to split the library down into sections, a new error arose with the search bar. The pagination for the library (when no search was made) worked perfectly (albiet with an issue wherein pages would split 
+into sets of 10, not the intended 12), and the user could move through paginated pages with no issues. However, as the search functionrequired the use of an if statement to generate results, the pagination
+started to malfunction. The get_results function had to be moved within the if statement as it needed to return the results of the query, but this threw up issues wherein the rendered template would be 
+referencing local variables before they had been assigned.
 
  ```
 def search():
@@ -262,7 +263,7 @@ def search():
     return render_template("library.html", books=pagination_results,
                            page=page, per_page=per_page, pagination=pagination)
  ```
-Unfortunately this issue persisted for a long time. The library and search functions were rebuild following guidance from **[mozillag's flask pagination](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9)
+Unfortunately this issue persisted for a long time. The library and search functions were rebuild following guidance from **[DarilliGames](https://github.com/DarilliGames/flaskpaginate/blob/master/app.py#L80)**
 which consolodated the get_results function into the parent function. This at least made the results per page go up to the intended 12 results (so that it would look uniform on all screen sizes)
 however the issue continued.
  ```
@@ -270,10 +271,9 @@ pymongo.errors.OperationFailure: "$search" had the wrong type. Expected string, 
 'errmsg': '"$search" had the wrong type. Expected string, found null', 'code': 14, 'codeName': 'TypeMismatch', '$clusterTime': {'clusterTime': Timestamp(1612977003, 22), 
 'signature': {'hash': b'\x91\x1a\x9d\xee\xc9\x0c4\x17\x01\xfb\x93\xd3Vt$\xbe\xd7\xca\xe3\xed', 'keyId': 6916065002138894339}}}
  ```
- The search would return the first page of results, but it would not recognise the page arguments for any further pages.
+ The search would return the first page of results, but it would not recognise the page arguments for any further pages. After many long hours, this finally was resolved when the form used 
+ on the library page was no longer set to POST. Al that remained was to add an if statement that would return the correct response if the user's search returned no results.
 
-<------------------------INSERT ANSWER TO PROBLEM HERE 
----
 
 ### Admin Implementation
 
@@ -320,7 +320,8 @@ To counter this, validation was added to each form to ensure that only the corre
 
 ## Performance
 
-USE LIGHTHOUSE HERE
+### Google Chrome Lighthouse 
+[Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to ensure this project ran efficently.
 
 
 ## Validator Testing
@@ -333,16 +334,13 @@ The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML m
 [Jigsaw](https://jigsaw.w3.org/css-validator/validator) was used to validate CSS code used in the project.
 
 
-# JSHint JS Validator
+### JSHint JS Validator
 [JS Hint](https://jshint.com/) was used to validate JavaScript code used in the project.
 
 
-# PEP8 Python Validator 
+### PEP8 Python Validator 
 [PEP8](http://pep8online.com/) was used to validated Python code used in this project.
 
-
-# Google Chrome Lighthouse 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to ensure this project ran efficently.
 
 ---
 
@@ -356,16 +354,23 @@ The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML m
 
 - Book covers and descriptions provided by individual authors / publishers via Amazon.
 
+
 ### Media
 
 - Background artwork and Project Logo created by the developer, [Robert Clark](https://github.com/Robert-Clark-1990).
+
 
 ### Code
 
 - Login Required Decorator by [PalletsProjects](https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/#login-required-decorator)
 
+- Flask Pagination by [DarilliGames](https://github.com/DarilliGames/flaskpaginate/blob/master/app.py#L80)
+
+
 ### Acknowledgements
 
-- Thanks to **Igor Basuga** for his assistance in locating the Login Required Decorator and help with the Search Bar function.
+- Thanks to **Igor_CI** for his assistance in locating the Login Required Decorator and help with the Search Bar function.
 
-- Thanks to **Precious Igene** for his continued assistance as mentor.
+- Thanks to all the Code Institue tutors for their help with the pagination problem.
+
+- Thanks to **Precious Ijege** for his continued assistance as mentor.

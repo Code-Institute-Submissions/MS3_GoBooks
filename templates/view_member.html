@@ -18,7 +18,7 @@
             </div>
             <div class="row"> 
                 <hr>
-                <div class="col s6 m3">
+                <div class="col s6 offset-s3 m3">
                     <div class="card-image center-align">
                         <!--Checks if user has added an image url to their profile and returns a template image if not-->
                         {% if username.member_image %}
@@ -30,9 +30,9 @@
                 </div>
                 <!--Shows the profile member's information-->
                 <div class="col s12 m9">
-                    <h3 class="member-info"> {{ username.username|capitalize }}'s Profile</h3>
+                    <h4 class="member-info"> {{ username.username|capitalize }}'s Profile</h4>
                     {% if username.is_admin == True %}
-                        <h5><i class="material-icons">brightness_auto</i> GoBooks Admin</h5>
+                        <h5 class="member-info"><i class="material-icons">brightness_auto</i> GoBooks Admin</h5>
                     {% endif %}
                     <h5 class="member-info">Member Since: {{ username.register_date }}</h5>
                     <h5 class="member-info">Member Rating: {{ username.member_level }}</h5>

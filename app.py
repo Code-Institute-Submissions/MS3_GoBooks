@@ -197,7 +197,7 @@ def logout():
 def members():
 
     # views a list of registered members
-    members = mongo.db.members.find()
+    members = list(mongo.db.members.find())
     return render_template("members.html", members=members)
 
 

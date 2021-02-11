@@ -27,7 +27,7 @@ main {
 }
 
 .logo {
-    max-width: 80vw;
+    max-width: 60vw;
 }
 
 .btn {
@@ -38,14 +38,10 @@ p.material-icons {
     margin: 10px;
 }
 
-.socials {
-    color: white;
-    margin-right: 10px;
-    font-size: 2em;
-}
-
-.socials:hover{
-    color: #9c094e;
+/* filter used to convert white social media images to a close representation of the button colours */
+.social-logo:hover{
+    filter: invert(87%) sepia(91%) saturate(7478%) hue-rotate(325deg) brightness(96%) contrast(96%);
+    border-radius: 50%;
     text-decoration: none;
     transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out; 
@@ -202,7 +198,7 @@ footer.page-footer {
 }
 
 .member-card {
-    height: 600px;
+    min-height: 400px;
 }
 
 /* ----------------------------------------------- Media Queries */
@@ -229,6 +225,9 @@ footer.page-footer {
         max-height: 550px;
         margin-left: 0;
     }
+    .member-card {
+        height: 500px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -240,5 +239,8 @@ footer.page-footer {
 @media (min-width: 1200px) {
     .library-books {
         max-height: 650px;
+    }
+    .member-card {
+        height: 600px;
     }
 }
