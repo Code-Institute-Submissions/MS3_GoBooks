@@ -11,15 +11,15 @@
             <!--Review-->
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="book_review" name="book_review" value="{{ review.book_review }}" data-length="500" pattern="^[a-zA-Z]{2,500}$"
-                        class="materialize-textarea validate" type="text" oninvalid="this.setCustomValidity('Enter Review. Only alphabetic characters are accepted')"
+                        <textarea id="book_review" name="book_review" data-length="500"
+                        class="materialize-textarea validate" oninvalid="this.setCustomValidity('Enter Review. Only alphabetic characters are accepted')"
                         oninput="this.setCustomValidity('')" minlength="2" maxlength="500" required></textarea>
                         <label for="book_review">Leave a Review</label>
                     </div>
                 </div>
             <!--Rating-->
                 <div class="input-field col s12">
-                    <select id="book_rating" value="{{ review.book_rating }}" name="book_rating" type="text" class="validate" required>
+                    <select id="book_rating" name="book_rating" class="validate" required>
                         <option value="" disabled selected>Rate This Book</option>
                         <option value="1">1 Star</option>
                         <option value="2">2 Stars</option>

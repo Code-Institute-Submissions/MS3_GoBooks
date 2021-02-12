@@ -84,11 +84,24 @@ encourage engagement through a user-friendly aesthetic.
 
 ## Wireframes
 
+In order to visualise the project before creation, a series of wireframes were created. These outlined the basic structure of the site and the individual page layouts. Over the course of
+the project, the designs evolved to meet the expanded scope, however the basic structure and design remained intact. 
+
+![Wireframes 1](documents/wireframes/wireframe_1.png)
+
+![Wireframes 2](documents/wireframes/wireframe_2.png)
+
+A PDF of the wireframes can be viewed [here](https://github.com/Robert-Clark-1990/MS3_GoBooks/blob/c573d315a86344e52b700cc4535d0468ab17deec/documents/wireframes/wireframes.pdf)
+
 
 ## Site Design
 
 ### Colour Scheme
-GoBooks uses a simple yet effective colour palette. The use of Green illicit thoughts of harmony and health, relaxing and encouraging a positive mindset to the user.
+
+![Colour Palette](documents/images/color_palette.png)
+
+GoBooks uses a simple yet effective colour palette. The use of Green illicit thoughts of harmony and health, relaxing and encouraging a positive mindset to the user. These colours form
+the primary colours, though variations occur throughout the project.
 
 ### Typography
 GoBooks uses the font [Quicksand](https://fonts.google.com/specimen/Quicksand?query=quicksand&preview.text_type=custom), sourced from **Google Fonts**. This font was chosen to work in
@@ -96,9 +109,28 @@ conjunction with the colour palette to instil a calm and comforting sense across
 
 ### Artwork
 
+![GoBooks Design](documents/images/gobooks_design.png)
+
+The GoBooks logo and background were designed by developer, [Robert Clark](https://github.com/Robert-Clark-1990) to provide further foundation to the site's primary goals.
 
 
 ## Database Design
+
+Before work on the project began, the database schema was designed. This diagram shows the **GoBooks MongoDB Database** with the three collections it contains: **Members**, **Library** and **Reviews**
+
+![Schema](documents/images/database_schema.png)
+
+Users start by creating an account, which is held in the **Members** collection, and contains all their personal data. The password is encrypted using **Werkzeug's** *generate_password_hash* and *check_password_hash*.
+Users can add additional information beyond the required fields to personalise their account with a favourite book, profile image and reading level.
+
+Once a user has become a member, they can add a book to the **Library**. Pulling easily-sourced information from popular booksellers such as Amazon or Waterstones, the user populates the necessary fields.
+These fields are protected with validation requirements to deter the user from inputting incorrect information (such as URLs for the product page or book cover image).
+
+Once the user has added a book, they can **Review** it. The decision was made to keep the Reviews and Library collections separate so that entries in the Library collection didn't become overburdened with
+reviews. This also meant that a review could be deleted without affecting the book entry.
+
+Reviews auto populate the necessary information from the user's entry in the Members collection, and the book's information from the Library collection, so that the user only needs to add their written review
+and a book rating while the rest is filled in behind the scenes.
 
 
 ---
@@ -195,9 +227,11 @@ data themselves. Admins can edit and delete books that do not contain correct da
 
 ## Future Features To Implement
 
-* Add functionality to connect with other members, adding each other as friends that would show on their profiles.
+* Add functionality to connect with other members, adding each other as friends that would show on their profiles. This social aspect would further develop the site, bringing people together
+with their love of books.
 * Expand user profile to add books they intend to read to go along with the books they have reviewed.
-* Add a storefront that will provide exclusive discounts to members who have built up their membership level.
+* Add a storefront that will provide exclusive discounts to members who have built up their membership level. This would further incentivise people to become members, but also drive revenue to the
+site owner.
 * Add a social platform for users to host book club meetings and author events.
 * A feature that was intended for this project was the implementation of affiliate links, however time overran on the project, so it was moved to a future feature. This would have taken the ASIN
 or ISBN from the book entry in the library collection and paired it with an Amazon URL based on the user's geographic location, then it would have added a dedicated affiliate link to the end. 
@@ -207,6 +241,8 @@ a self-published author, he has access to his own affiliate link generator, so t
    `{amazon_link}{ASIN/ISBN}{affiliate_link}`
 
    `{https://www.amazon.co.uk/dp/}{1787633616}{&linkCode=ll1&tag=robertclark08-21&linkId=d522b720d1fabb445aea2ff6829000fb}`
+* Expanding the admin function to encompass more than just the **"AdminUser"** user. This would be devloped by granting current admins the access to nominate other users to admin status, toggling
+their "is_admin" field in the member database to True. Unfortunately time constraints stopped this from being included in the current build.
    
 
 ---
@@ -351,7 +387,11 @@ pymongo.errors.OperationFailure: "$search" had the wrong type. Expected string, 
 
 ### Admin Implementation
 
----
+In order to meet the needs of the project, the inclusion of admin privileges was required. This was in order to allow a dedicated admin user the access to edit or delete users or books that
+didn't meet the site standards. Much research was done in working this feature out, however as time began to run short, it was decided to limit this to just the user **AdminUser**. Through
+the use of Jinja, certain elements will now only appear when the session user is logged into this profile. However the hope is to expand upon this in the future to implement a more robust and
+reliable function.
+
 
 ### Login Decorator
 
@@ -404,17 +444,144 @@ To counter this, validation was added to each form to ensure that only the corre
 ### W3 HTML Validator 
 The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML met the necessary standards.
 
+**The validator found issue with the use of Jinja, but as this is paramount to the site, these issues were discarded.**
+
+#### 404
+
+* Validator confirmed **no errors or warnings to show**.
+
+#### Add Book Page
+
+* Error: Attribute type not allowed on element select at this point.
+   From line 43, column 25; to line 43, column 104
+
+   To fix: Deleted forbidden attribute
+
+* Error: Attribute pattern not allowed on element textarea at this point.
+   From line 64, column 25; to line 66, column 100
+
+   To fix: Deleted forbidden attribute
+
+#### Add Review Page
+
+* Error: Attribute pattern not allowed on element textarea at this point.
+   From line 14, column 25; to line 16, column 100
+
+   To fix: Deleted forbidden attribute
+
+#### Base HTML
+
+* Validator confirmed **no errors or warnings to show**.
+
+#### Book Page
+
+* Validator confirmed **no errors or warnings to show**.
+
+#### Edit Book Page
+
+* Error: Attribute value not allowed on element select at this point.
+   From line 47, column 24; to line 47, column 122
+
+   To fix: Deleted forbidden attribute
+
+#### Edit Profile Page
+
+* Error: Attribute value not allowed on element select at this point.
+   From line 36, column 25; to line 36, column 144
+
+   To fix: Deleted forbidden attribute
+
+* Error: Attribute type not allowed on element select at this point.
+   From line 36, column 25; to line 36, column 144
+
+   To fix: Deleted forbidden attribute
+ 
+ #### Edit Review Page
+
+* Error: Attribute type not allowed on element textarea at this point.
+   From line 14, column 25; to line 16, column 100
+
+   To fix: Deleted forbidden attribute
+
+* Error: Attribute type not allowed on element select at this point.
+   From line 22, column 21; to line 22, column 135
+
+   To fix: Deleted forbidden attribute
+
+#### Index homepage
+
+* Error: Element p not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+   From line 27, column 116; to line 27, column 14
+
+   To fix: Deleted p tag and included icon within button.
+
+#### Library Page
+
+* Error: Element p not allowed as child of element button in this context. (Suppressing further errors from this subtree.)
+   From line 20, column 111; to line 20, column 136
+
+   To fix: Deleted p tag and included icon within button.
+
+#### Login Page
+
+* Validator confirmed **no errors or warnings to show**.
+
+#### Lucky Dip Page
+
+* Error: An img element must have an alt attribute, except under certain conditions.
+   From line 19, column 25; to line 19, column 147
+
+   To fix: Alt tag added.
+
+#### Members Page
+
+* Validator confirmed **no errors or warnings to show**.
+
+#### Profile Page
+
+* Error: An img element must have an alt attribute, except under certain conditions.
+   From line 49, column 41; to line 49, column 133
+
+   To fix: Alt tag added.
+
+#### Register Page
+
+* Error: Attribute type not allowed on element select at this point.
+   From line 53, column 25; to line 53, column 99
+
+   To fix: Deleted forbidden attribute
+
+#### View Member Page
+
+* Error: An img element must have an alt attribute, except under certain conditions.
+   From line 54, column 41; to line 54, column 133
+
+   To fix: Alt tag added.
+
+#### What's Hot Page
+
+* Error: An img element must have an alt attribute, except under certain conditions.
+   From line 18, column 25; to line 18, column 117
+
+   To fix: Alt tag added.
+
 
 ### Jigsaw CSS Validator
 [Jigsaw](https://jigsaw.w3.org/css-validator/validator) was used to validate CSS code used in the project.
+
+* Validator confirmed **Document checking completed. No errors or warnings to show.**
 
 
 ### JSHint JS Validator
 [JS Hint](https://jshint.com/) was used to validate JavaScript code used in the project.
 
+* Validator confirmed **There is only one function in this file. It takes no arguments. This function contains 6 statements. Cyclomatic complexity number for this function is 1.**
+
 
 ### PEP8 Python Validator 
 [PEP8](http://pep8online.com/) was used to validated Python code used in this project.
+
+* Validator confirmed **All right**
 
 ---
 
@@ -443,6 +610,9 @@ new and unexpected. Members can add books, and add, edit or delete reviews, and 
 **As an Admin I want to:**
 1. Have the ability to delete reviews that may be deemed rude or offensive.
 2. Have the ability to remove members who abuse the service.
+
+A dedicated Admin account was created to meet these needs. When the user logs into **AdminUser** they can access restricted options to edit or delete books or members who do not meet the standards
+of the GoBooks website.
 
 
 **As Site Owner I want to:**
@@ -516,7 +686,7 @@ Then follow these steps:
 
 ### Content
 
-- Book covers and descriptions provided by individual authors / publishers via Amazon.
+- Books, covers and descriptions sourced from individual authors / publishers via Amazon.
 
 
 ### Media

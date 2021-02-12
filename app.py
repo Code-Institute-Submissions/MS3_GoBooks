@@ -47,7 +47,7 @@ def homepage():
     return render_template("index.html")
 
 
-###########################################################################
+# ------------------ADD, EDIT, DELETE AND VIEW PROFILE------------------ #
 
 
 # Route for registering a new user
@@ -138,7 +138,26 @@ def delete_profile(user_id):
     return redirect(url_for("homepage"))
 
 
-###########################################################################
+# Route for user's profile page
+@app.route("/profile/<username>", methods=["GET", "POST"])
+@login_required
+def profile(username):
+
+    # finds session users info from the database and retrieves username
+    username = mongo.db.members.find_one(
+        {"username": session["user"]})
+
+    if session["user"]:
+        user_reviews = list(mongo.db.reviews.find(
+            {"username": session["user"]}))
+        return render_template("profile.html",
+                               username=username,
+                               user_reviews=user_reviews)
+
+    return redirect(url_for("login"))
+
+
+# ---------------------LOGIN AND LOGOUT--------------------- #
 
 
 # Route for member login
@@ -169,25 +188,6 @@ def login():
     return render_template("login.html")
 
 
-# Route for user's profile page
-@app.route("/profile/<username>", methods=["GET", "POST"])
-@login_required
-def profile(username):
-
-    # finds session users info from the database and retrieves the username
-    username = mongo.db.members.find_one(
-        {"username": session["user"]})
-
-    if session["user"]:
-        user_reviews = list(mongo.db.reviews.find(
-            {"username": session["user"]}))
-        return render_template("profile.html",
-                               username=username,
-                               user_reviews=user_reviews)
-
-    return redirect(url_for("login"))
-
-
 # Route for user logout
 @app.route("/logout")
 def logout():
@@ -199,13 +199,14 @@ def logout():
     return redirect(url_for("homepage"))
 
 
-###########################################################################
+# ---------------------VIEW MEMBERS--------------------- #
 
 
 # Route for member list page
 @app.route("/members")
 @login_required
 def members():
+
     # Pagination Credit to DarilliGames (Link in README)
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -236,7 +237,7 @@ def view_member(username):
                            user_reviews=user_reviews)
 
 
-###########################################################################
+# ---------------------VIEW AND SEARCH LIBRARY--------------------- #
 
 
 # Route for library page
@@ -244,6 +245,7 @@ def view_member(username):
 @login_required
 # views a list of books added with pagination to 12 per page
 def library():
+
     # Pagination Credit to DarilliGames (Link in README)
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -265,6 +267,7 @@ def library():
 @app.route("/search", methods=["GET", "POST"])
 @login_required
 def search():
+
     # Pagination Credit to DarilliGames (Link in README)
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
@@ -282,7 +285,7 @@ def search():
                            pagination=pagination)
 
 
-###########################################################################
+# ---------------------LUCKY DIP AND WHATS HOT--------------------- #
 
 
 # Route for returning a book at random
@@ -307,7 +310,7 @@ def whats_hot():
     return render_template("whats_hot.html", reviews=reviews)
 
 
-###########################################################################
+# --------------------ADD, EDIT, DELETE AND VIEW BOOK-------------------- #
 
 
 # Route for adding a new book to the library
@@ -341,12 +344,11 @@ def add_book():
     return render_template("add_book.html")
 
 
-# Route for editing a book in the library <-- NEEDS WORK
+# Route for editing a book in the library
 @app.route("/edit_book/<book_id>", methods=["GET", "POST"])
 @login_required
 def edit_book(book_id):
 
-    # ADD IF STATEMENT TO CHECK IF SESSION USER IS ADMIN
     if request.method == "POST":
         edit_book = {
             "book_name": request.form.get("book_name"),
@@ -394,7 +396,7 @@ def book(book_id):
                            user_reviews=user_reviews)
 
 
-###########################################################################
+# ---------------------ADD, EDIT, DELETE REVIEW--------------------- #
 
 
 # Route for adding a new review

@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col s12">
             <div class="card-panel green darken-3">
+            <!--Admin access to edit or delete books-->
                 <div class="row">
                     {% if session["user"] == "adminuser" %}
                         <ul id="dropdown4" class="dropdown-content">
@@ -18,7 +19,7 @@
                 <hr>
                 <div class="row">
                     <div class="col s6 offset-s3 m4 l3">
-                        <img class="activator book-image" src="{{ book_id.book_cover }}" href="{{ book_id.book_url }}">
+                        <img class="activator book-image" src="{{ book_id.book_cover }}" href="{{ book_id.book_url }}" alt="book cover">
                     </div>
                     <div class="col s12 m8 l9">
                         <h3 class="member-info tagline">{{ book_id.book_name }}</h3>

@@ -73,14 +73,6 @@ footer.page-footer {
     transform: translateY(12px);
 }
 
-.input-field input[type=text].valid {
-     border-radius: 1px solid rgb(2, 163, 2);
-}
-
-.input-field input[type=text].invalid {
-     border-radius: 1px solid rgb(163, 2, 2);
-}
-
 /* ----------------------------------------------- Home Page */
 
 .tagline {

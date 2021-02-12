@@ -40,7 +40,7 @@
             <!--Book Genre-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <select id="book_genre" name="book_genre" type="text" class="validate" required>
+                        <select id="book_genre" name="book_genre" class="validate" required>
                             <option value="" disabled selected>Select Genre</option>
                             <option value="Crime">Crime</option>
                             <option value="Thriller">Thriller</option>
@@ -61,7 +61,7 @@
             <!--Book Description-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" data-length="500" pattern="^[a-zA-Z0-9]{9,500}$"
+                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" data-length="500"
                         oninvalid="this.setCustomValidity('Enter Book Description. Only alphanumeric characters are accepted')"
                         oninput="this.setCustomValidity('')" minlength="9" maxlength="500" required></textarea>
                         <label for="book_description">Book Description</label>
