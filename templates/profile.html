@@ -66,13 +66,6 @@
                                         </div>
                                         <h5 class="review tagline">By {{ review.username }} on {{ review.review_date }}</h5>
                                         <p class="review white-text">{{ review.book_review }}</p>
-                                    <!--if the session user is the profile owner, they can delete or edit their reviews-->
-                                        <div class="review">
-                                            {% if session.user|lower == review.username|lower %}
-                                                <a href="#" class="pink darken-3 waves-effect waves-light btn">Edit</a>
-                                                <a href="#" class="pink darken-3 waves-effect waves-light btn">Delete</a>
-                                            {% endif %}
-                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -124,6 +124,12 @@ def edit_profile(user_id):
 @login_required
 def delete_profile(user_id):
 
+    # if admin, removes the user without logging admin out
+    if session["user"] == "adminuser":
+        mongo.db.members.remove({"_id": ObjectId(user_id)})
+        flash("Profile Successfully Deleted")
+        return redirect(url_for("members"))
+
     mongo.db.members.remove({"_id": ObjectId(user_id)})
     # removes the  user from the session cookie
     session.pop("user")

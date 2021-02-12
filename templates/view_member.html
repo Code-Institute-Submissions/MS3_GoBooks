@@ -8,9 +8,9 @@
             <div class="card-panel green darken-3">
                 <div class="row">
                     <div class="col s11 right">
-                        {% if session.is_admin == True %}
+                        {% if session["user"] == "adminuser" %}
                             <ul id="dropdown3" class="dropdown-content">
-                                <li><a href="#">Delete Profile</a></li>
+                                <li><a href="{{ url_for('delete_profile', user_id=username._id) }}">Delete Profile</a></li>
                             </ul>
                             <a class="btn-flat dropdown-trigger white-text right" href="#!" data-target="dropdown3">Admin Options<i class="material-icons right">arrow_drop_down</i></a>
                         {% endif %}
