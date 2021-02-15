@@ -21,7 +21,7 @@
  - [**Technologies Used**](#technologies-used)
     - [Languages](#languages)
     - [APIS and Frameworks](#apis-and-frameworks)
-    - [Hosting, Databases and Version Control](#hosting,-databases-and-version-control)
+    - [Hosting Databases and Version Control](#hosting-databases-and-version-control)
     - [Websites](#websites)
 
  - [**Testing**](#testing)
@@ -31,6 +31,9 @@
     - [Meeting Project Needs](#meeting-project-needs)
 
  - [**Deployment**](#deployment)
+    - [Heroku Deployment](#heroku-deployment)
+    - [Running This Project From The Repository](#running-this-project-from-the-repository)
+    - [Running This Project Locally](#running-this-project-locally)
 
  - [**Credits**](#credits)
     - [Content](#content)
@@ -76,6 +79,7 @@ encourage engagement through a user-friendly aesthetic.
 
 **As an Admin I want to:**
 * Have the ability to delete reviews that may be deemed rude or offensive.
+* Have the ability to delete books that may contain incorrect or inappropriate information.
 * Have the ability to remove members who abuse the service.
 
 **As Site Owner I want to:**
@@ -134,7 +138,6 @@ reviews. This also meant that a review could be deleted without affecting the bo
 Reviews auto populate the necessary information from the user's entry in the Members collection, and the book's information from the Library collection, so that the user only needs to add their written review
 and a book rating while the rest is filled in behind the scenes.
 
-
 ---
 
 # Features
@@ -186,7 +189,8 @@ Users can view the profiles of other members via the members list page, which ar
 ![Library](documents/images/library.png)
 
 Here users can view the entire contents of the library, or narrow down their search using the search bar above. Books are split into cards, with a truncated version of the book description 
-visible when the card is expanded. Users can click through to read more about their book of choice, or can add a book via the link at the bottom of the page.
+visible when the card is expanded. Users can click through to read more about their book of choice, or can add a book via the link at the bottom of the page. A future feature will allow the
+user to further define the library results by sorting it by book name, author name, or genre.
 
 
 ### Book page
@@ -245,7 +249,7 @@ a self-published author, he has access to his own affiliate link generator, so t
    `{https://www.amazon.co.uk/dp/}{1787633616}{&linkCode=ll1&tag=robertclark08-21&linkId=d522b720d1fabb445aea2ff6829000fb}`
 * Expanding the admin function to encompass more than just the **"AdminUser"** user. This would be devloped by granting current admins the access to nominate other users to admin status, toggling
 their "is_admin" field in the member database to True. Unfortunately time constraints stopped this from being included in the current build.
-   
+* A feature that was unfortunately cut due to time restaints was the implementation of a sort feature for the library. Users would be able to sort the results by book name, author name or genre.
 
 ---
 
@@ -289,7 +293,7 @@ their "is_admin" field in the member database to True. Unfortunately time constr
 
 * [Bson](https://docs.mongodb.com/manual/reference/bson-types/)
 
-## Hosting, Databases and Version Control
+## Hosting Databases and Version Control
 
 * [MongoDB](https://www.mongodb.com/)
 
@@ -433,7 +437,6 @@ To counter this, validation was added to each form to ensure that only the corre
 </div>
 ```
 
----
 
 ## Responsive Design
 
@@ -442,7 +445,7 @@ to ensure each feature was responsive and compatible. The only issue that arose 
 and adding or editing a review. These were quickly fixed to ensure that on small screen sizes they filled more of the screen than on larger desktops.
 
 
-## Validator Testing
+## Validator Tests
 
 ### W3 HTML Validator 
 The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML met the necessary standards.
@@ -586,7 +589,6 @@ The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML m
 
 * Validator confirmed **All right**
 
----
 
 ## Meeting Project Needs
 
@@ -596,7 +598,6 @@ The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML m
 3. Understand the benefits of becoming a member and locate the Register page.
 
 Through the introductory text on the homepage, the user is given an insight into the purpose of the site, and given easy access to a registration page, therefore meeting the criteria.
-
 
 **As a Member I want to:**
 1. Be able to write, edit and delete my own reviews.
@@ -609,20 +610,18 @@ Through the introductory text on the homepage, the user is given an insight into
 Members are given a wealth of actions available to them upon registration completion. Search functions allow them access to the library, while the Lucky Dip and What's Hot pages offer something
 new and unexpected. Members can add books, and add, edit or delete reviews, and can view the reviews of other members, therefore meeting all the criteria.
 
-
 **As an Admin I want to:**
 1. Have the ability to delete reviews that may be deemed rude or offensive.
-2. Have the ability to remove members who abuse the service.
+2. Have the ability to delete books that may contain incorrect or inappropriate information.
+3. Have the ability to remove members who abuse the service.
 
 A dedicated Admin account was created to meet these needs. When the user logs into **AdminUser** they can access restricted options to edit or delete books or members who do not meet the standards
 of the GoBooks website.
-
 
 **As Site Owner I want to:**
 1. Encourage users to become members and grow the platform.
 
 Through the implementation of various member options, the site has proved its usefulness, and will continue to expand as future features are added. Therefore the site owner criteria are met.
-
 
 ---
 
@@ -650,7 +649,7 @@ This project was deployed to Heroku via the following steps:
 8. Once Heroku has completed building the app, click **View App** to open it.
 
 
-## Running this project from the repository
+## Running This Project From The Repository
 
 This project was created using **Gitpod** and pushed to **GitHub**. To deploy this page to GitHub from its GitHub repository, the following steps were taken:
 
@@ -667,7 +666,7 @@ This project was created using **Gitpod** and pushed to **GitHub**. To deploy th
 6. This will create a link, visible just **below the GitHub Pages title**, which will take you to the deployed website.
 
 
-## Running this project locally
+## Running This Project Locally
 
    To clone this project into Gitpod you will need:
 
