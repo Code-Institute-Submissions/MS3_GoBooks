@@ -4,7 +4,7 @@
 
 <!--User Login Page-->
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+        <form class="col s12 l10 offset-l1" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel green darken-3">
                 <h3 class="center-align">Log In</h3>
             <!--Username-->
@@ -29,14 +29,14 @@
                 </div>
             </div>
         </form>
-    </div>
-<!--Link for users who don't yet have an account-->
-    <div class="row">
-        <div class="col s12">
-            <p class="center-align">
-                Not got an account yet? 
-                <a href="{{ url_for('register') }}" class="white-text pink darken-3 btn">Sign Up!</a>
-            </p>
+    <!--Link for users who don't yet have an account-->
+        <div class="col s12 l10 offset-l1">
+            <div class="card-panel green darken-3">
+                <p class="center-align white-text">
+                    Not got an account yet? 
+                    <a href="{{ url_for('register') }}" class="white-text pink darken-3 btn">Sign Up!</a>
+                </p>
+            </div>
         </div>
     </div>
 

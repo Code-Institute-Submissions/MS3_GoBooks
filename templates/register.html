@@ -3,8 +3,8 @@
 {% block content %}
 
 <!--User can create a profile by completing the form-->
-    <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+    <div class="row s12">
+        <form class="col s12 l10 offset-l1" method="POST" action="{{ url_for('register') }}">
             <div class="card-panel green darken-3">
                 <h3 class="center-align">Register</h3>
                 <h5 class="center-align">Please fill out the following questions to sign up</h5>
@@ -81,11 +81,13 @@
             </div>
         </form>
     <!--Link for users with profiles who clicked on register by accident-->
-        <div class="col s12">
-            <p class="center-align">
-                Already Registered? 
-                <a href="{{ url_for('login') }}" class="white-text pink darken-3 btn">Log In!</a>
-            </p>
+        <div class="col s12 l10 offset-l1">
+            <div class="card-panel green darken-3">
+                <p class="center-align white-text">
+                    Already Registered? 
+                    <a href="{{ url_for('login') }}" class="white-text pink darken-3 btn">Log In!</a>
+                </p>
+            </div>
         </div>
     </div>
 
