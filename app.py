@@ -252,8 +252,8 @@ def library():
     per_page = 12
     offset = page * per_page
     total = mongo.db.library.find().count()
-    books = mongo.db.library.find().sort("book_name")
-    paginatedResults = books[offset: offset + per_page]
+    books = mongo.db.library.find()
+    paginatedResults = books[offset: offset + per_page].sort("book_name")
     pagination = Pagination(page=page, per_page=per_page, total=total)
 
     return render_template("library.html",
@@ -271,12 +271,15 @@ def search():
     # Pagination Credit to DarilliGames (Link in README)
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-
+    per_page = 12
     query = request.args.get("query")
     books = mongo.db.library.find({"$text": {"$search": query}})
     total = books.count()
-    paginatedResults = books[offset: offset + per_page]
+    paginatedResults = books[offset: offset + per_page].sort("book_name")
     pagination = Pagination(page=page, per_page=per_page, total=total)
+
+    if total == 0:
+        flash("No Books Found")
 
     return render_template("library.html",
                            books=paginatedResults,
@@ -477,7 +480,6 @@ def delete_review(review_id):
 
     mongo.db.reviews.remove({"_id": ObjectId(review_id)})
     flash("Review Successfully Deleted")
-
     return redirect(url_for("library"))
 
 

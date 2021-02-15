@@ -11,7 +11,7 @@
             <!--Review-->
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="book_review" name="book_review" data-length="500"
+                        <textarea id="book_review" name="book_review" data-length="500" value="{{ review.book_review }}"
                         class="materialize-textarea validate" oninvalid="this.setCustomValidity('Enter Review. Only alphabetic characters are accepted')"
                         oninput="this.setCustomValidity('')" minlength="2" maxlength="500" required></textarea>
                         <label for="book_review">Leave a Review</label>

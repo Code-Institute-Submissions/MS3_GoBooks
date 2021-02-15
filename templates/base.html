@@ -35,7 +35,7 @@
     <!--Navbar-->
         <nav class="green darken-3">
             <div class="nav-wrapper container">
-                <a href="{{ url_for ('homepage') }}" class="brand-logo"><img src="{{ url_for('static', filename='/images/logo_mini.png') }}" class="logo" alt="GoBooks logo"></a>
+                <a href="{{ url_for ('homepage') }}" class="brand-logo"><img src="{{ url_for('static', filename='/images/logo_mini.png') }}" width="100" height="26" class="logo" alt="GoBooks logo"></a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if session.user %}
@@ -97,9 +97,9 @@
         <div class="container center-align">
             <div class="col s6">
             <!-- png images used in place of Font Awesome as FA interupted imported Quicksand font-->
-                <a target="_blank" href="https://www.facebook.com"><img src="{{ url_for('static', filename='/images/facebook.png') }}" class="social-logo" alt="Facebook"></a>
-                <a target="_blank" href="https://twitter.com"><img src="{{ url_for('static', filename='/images/twitter.png') }}" class="social-logo" alt="Twitter"></a>
-                <a target="_blank" href="https://www.instagram.com"><img src="{{ url_for('static', filename='/images/instagram.png') }}" class="social-logo" alt="Instagram"></a>
+                <a target="_blank" href="https://www.facebook.com"><img src="{{ url_for('static', filename='/images/facebook.png') }}" width="32" height="32" class="social-logo" alt="Facebook"></a>
+                <a target="_blank" href="https://twitter.com"><img src="{{ url_for('static', filename='/images/twitter.png') }}" width="32" height="32" class="social-logo" alt="Twitter"></a>
+                <a target="_blank" href="https://www.instagram.com"><img src="{{ url_for('static', filename='/images/instagram.png') }}" width="32" height="32" class="social-logo" alt="Instagram"></a>
             </div>
             <div class="col s6">
                 © 2021 GoBooks

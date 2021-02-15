@@ -26,7 +26,7 @@
 
  - [**Testing**](#testing)
     - [Bug Fixes](#bug-fixes)
-    - [Performance](#performance)
+    - [Responsive Design](#responsive-design)
     - [Validator Tests](#validator-tests)
     - [Meeting Project Needs](#meeting-project-needs)
 
@@ -124,7 +124,9 @@ Users start by creating an account, which is held in the **Members** collection,
 Users can add additional information beyond the required fields to personalise their account with a favourite book, profile image and reading level.
 
 Once a user has become a member, they can add a book to the **Library**. Pulling easily-sourced information from popular booksellers such as Amazon or Waterstones, the user populates the necessary fields.
-These fields are protected with validation requirements to deter the user from inputting incorrect information (such as URLs for the product page or book cover image).
+These fields are protected with validation requirements to deter the user from inputting incorrect information (such as URLs for the product page or book cover image). Once the user has added a new book to the
+library, they will not have any connection to it, and only admins will be able to edit or delete book data. This is to ensure that books are not tied to the user who added them, and users cannot abuse the library
+by editing or deleting books that should remain. Leaving these functions to the admin provides further differentiation between the user levels. 
 
 Once the user has added a book, they can **Review** it. The decision was made to keep the Reviews and Library collections separate so that entries in the Library collection didn't become overburdened with
 reviews. This also meant that a review could be deleted without affecting the book entry.
@@ -433,10 +435,11 @@ To counter this, validation was added to each form to ensure that only the corre
 
 ---
 
-## Performance
+## Responsive Design
 
-### Google Chrome Lighthouse 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse) was used to ensure this project ran efficiently.
+Google Chrome's Dev Tools were used to ensure this project had been optimised across all common devices. As the screenshots in the **Existing Features** will attest, every page was scrutinised
+to ensure each feature was responsive and compatible. The only issue that arose was the sizing of the forms for signing up, logging in, adding or editing a book, adding or editing a profile,
+and adding or editing a review. These were quickly fixed to ensure that on small screen sizes they filled more of the screen than on larger desktops.
 
 
 ## Validator Testing
