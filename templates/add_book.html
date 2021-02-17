@@ -12,19 +12,21 @@
             <!--Book Name-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <textarea id="book_name" name="book_name" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
-                        oninvalid="this.setCustomValidity('Please enter a book name between 2 and 50 characters. Only alphanumeric characters are accepted')"
-                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required></textarea>
+                        <textarea id="book_name" name="book_name" type="text" class="materialize-textarea validate"
+                        oninvalid="this.setCustomValidity('Please enter a book name between 2 and 100 characters. Only alphanumeric characters are accepted')"
+                        oninput="this.setCustomValidity('')" minlength="2" maxlength="100" required></textarea>
                         <label for="book_name">Book Name</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">Please enter a book name between 2 and 100 characters. Only alphanumeric characters are accepted</span>        
                     </div>
                 </div>
             <!--Author Name-->
                 <div class="row">   
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <textarea id="book_author" name="book_author" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
-                        oninvalid="this.setCustomValidity('Please enter a book name between 2 and 50 characters. Only alphanumeric characters are accepted')"
-                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required></textarea>
+                        <textarea id="book_author" name="book_author" type="text" class="materialize-textarea validate"
+                        oninvalid="this.setCustomValidity('Please enter author name between 2 and 50 characters. Only alphanumeric characters are accepted')"
+                        oninput="this.setCustomValidity('')"  minlength="2" maxlength="50" required></textarea>
                         <label for="book_author">Author</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">Please enter author name between 2 and 50 characters. Only alphanumeric characters are accepted</span>
                     </div>
                 </div>
             <!--ASIN-->
@@ -40,7 +42,7 @@
             <!--Book Genre-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <select id="book_genre" name="book_genre" class="validate" required>
+                        <select id="book_genre" name="book_genre" class="validate" oninvalid="alert('You must select a genre');" required>
                             <option value="" disabled selected>Select Genre</option>
                             <option value="Crime">Crime</option>
                             <option value="Thriller">Thriller</option>
@@ -61,10 +63,11 @@
             <!--Book Description-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" data-length="1000"
-                        oninvalid="this.setCustomValidity('Enter Book Description. Only alphanumeric characters are accepted')"
-                        oninput="this.setCustomValidity('')" minlength="9" maxlength="1000" required></textarea>
+                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" data-length="3000"
+                        oninvalid="this.setCustomValidity('Enter Book Description up to 3000 characters. Only alphanumeric characters are accepted')"
+                        oninput="this.setCustomValidity('')" minlength="9" maxlength="3000" required></textarea>
                         <label for="book_description">Book Description</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">Enter Book Description up to 3000 characters. Only alphanumeric characters are accepted</span>
                     </div>
                 </div>
             <!--Cover Image Link-->
@@ -82,6 +85,7 @@
                         <input id="book_url" name="book_url" type="text" class="validate count" pattern="(https?:\/\/.*(?))" data-length="400" maxlength="400"
                         oninvalid="this.setCustomValidity('URL must begin with http(s)')" oninput="this.setCustomValidity('')" required>
                         <label for="book_url">Book URL</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">URL must begin with http(s)</span>
                     </div>
                 </div>
             <!--Submit Button-->

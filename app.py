@@ -251,7 +251,6 @@ def library():
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
     per_page = 12
-    offset = page * per_page
     total = mongo.db.library.find().count()
     books = mongo.db.library.find()
     paginatedResults = books[offset: offset + per_page].sort("book_name")
