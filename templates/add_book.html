@@ -12,18 +12,18 @@
             <!--Book Name-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <input id="book_name" name="book_name" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
+                        <textarea id="book_name" name="book_name" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
                         oninvalid="this.setCustomValidity('Please enter a book name between 2 and 50 characters. Only alphanumeric characters are accepted')"
-                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required>
+                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required></textarea>
                         <label for="book_name">Book Name</label>
                     </div>
                 </div>
             <!--Author Name-->
                 <div class="row">   
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <input id="book_author" name="book_author" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
+                        <textarea id="book_author" name="book_author" type="text" pattern="^[a-zA-Z0-9]{2,50}$" class="validate"
                         oninvalid="this.setCustomValidity('Please enter a book name between 2 and 50 characters. Only alphanumeric characters are accepted')"
-                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required>
+                        oninput="this.setCustomValidity('')" minlength="2" maxlength="50" required></textarea>
                         <label for="book_author">Author</label>
                     </div>
                 </div>
@@ -61,9 +61,9 @@
             <!--Book Description-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" data-length="500"
+                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" data-length="1000"
                         oninvalid="this.setCustomValidity('Enter Book Description. Only alphanumeric characters are accepted')"
-                        oninput="this.setCustomValidity('')" minlength="9" maxlength="500" required></textarea>
+                        oninput="this.setCustomValidity('')" minlength="9" maxlength="1000" required></textarea>
                         <label for="book_description">Book Description</label>
                     </div>
                 </div>

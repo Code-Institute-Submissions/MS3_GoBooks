@@ -32,7 +32,6 @@
 
  - [**Deployment**](#deployment)
     - [Heroku Deployment](#heroku-deployment)
-    - [Running This Project From The Repository](#running-this-project-from-the-repository)
     - [Running This Project Locally](#running-this-project-locally)
 
  - [**Credits**](#credits)
@@ -259,57 +258,117 @@ their "is_admin" field in the member database to True. Unfortunately time constr
 
 * [HTML5](https://en.wikipedia.org/wiki/HTML5)
 
+   HTML5 was used to provide the structure and content of this project.
+
 * [CSS3](https://en.wikipedia.org/wiki/CSS)
 
-* [JavaScript](https://www.javascript.com/)
+   CSS3 was used to style to the HTML5 elements.
 
 * [JQuery](https://jquery.com/)
 
+   JQuery was used to provide JavaScript functionality.
+
 * [Python](https://www.python.org/)
+
+   Python was used to provide the backend of this project.
 
 ## APIS and Frameworks
 
 * [Pip3](https://pypi.org/project/pip/)
 
+   Pip3 was used to install packages to Python.
+
 * [Flask](https://flask.palletsprojects.com/)
+
+   Flask was used to provide libraries, tool and technologies.
 
 * [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
 
+   Werkzeug was used to provide password hashing and authentication.
+
 * [Jinja](https://jinja.palletsprojects.com/)
+
+   Jinja was used to provide templating for Python.
 
 * [PyMongo](https://pymongo.readthedocs.io/en/stable/)
 
-* [DNSPython](https://www.dnspython.org/)
+   PyMongo was used as the native Python driver for MongoDB.
 
 * [Request](https://requests.readthedocs.io/)
 
+   Request was used to make simple HTTP requests in Python.
+
 * [Functools](https://docs.python.org/3/library/functools.html)
+
+   Functools was used to create the login_required decorator.
 
 * [Datetime](https://docs.python.org/3/library/datetime.html)
 
+   Datetime was used to implement basic date and time types.
+
 * [Random](https://docs.python.org/3/library/random.html)
+
+   Random was used to generate random results on the Lucky Dip page.
 
 * [OS](https://docs.python.org/3/library/os.html)
 
+   OS was used to allow interaction with the operating system.
+
 * [Bson](https://docs.mongodb.com/manual/reference/bson-types/)
+
+   Bson was used to allow the use of ObjectId.
 
 ## Hosting Databases and Version Control
 
 * [MongoDB](https://www.mongodb.com/)
 
+   MongoDB was used to store the database used in this project.
+
 * [Git](https://git-scm.com/)
 
+   Git was used for version control, utilising the Gitpod terminal to commit to Git and Push to GitHub.
+
 * [GitHub](https://github.com/)
+
+   GitHub was used to store the project.
    
 * [Heroku](https://www.heroku.com/)
+
+   Heroku was used to deploy this site.
 
 ## Websites
 
 * [Materialize](https://materializecss.com/)
 
+   Materialize was used as the design language to build out necessary features on this project.
+
 * [RandomKeygen](https://randomkeygen.com/)
 
+   RandomKeygen was used to generate a random key which was used as the SECRET_KEY
+
 * [Google Fonts](https://fonts.google.com/specimen/Quicksand?query=quicksand&preview.text_type=custom)
+
+   The Quicksand Google Font was used as the primary font in this project.
+
+* [TinyPNG](https://tinypng.com/)
+
+   Tinypng was used to optimise jpg and png images to increase performance.
+
+* [W3C Markup Validation](https://validator.w3.org/#validate_by_input) 
+
+   W3C Markup Validation was used to ensure HTML met the necessary standards.
+
+* [Jigsaw](https://jigsaw.w3.org/css-validator/validator) 
+
+   Jigsaw was used to validate CSS code used in the project.
+
+* [JS Hint](https://jshint.com/) 
+   
+   JS Hint was used to validate JavaScript code used in the project.
+
+* [PEP8](http://pep8online.com/) 
+
+   PEP8 was used to validated Python code used in this project.
 
 ---
 
@@ -657,38 +716,54 @@ This project was deployed to Heroku via the following steps:
 8. Once Heroku has completed building the app, click **View App** to open it.
 
 
-## Running This Project From The Repository
-
-This project was created using **Gitpod** and pushed to **GitHub**. To deploy this page to GitHub from its GitHub repository, the following steps were taken:
-
-1. Visit [GitHub](https://github.com/) and log in.
-
-2. From the repositories, select **Robert-Clark-1990/MS3_GoBooks**.
-
-3. From the GitHub repository, click on **Settings**.
-
-4. Scroll down to the section entitled **GitHub Pages**.
-
-5. From the dropdown menu beneath **Source**, select the **Master branch** and hit **save**.
-
-6. This will create a link, visible just **below the GitHub Pages title**, which will take you to the deployed website.
-
-
 ## Running This Project Locally
 
-   To clone this project into Gitpod you will need:
+To run this project locally, you will need to use an IDE such as Gitpod, Visual Studio or PyCharm.
 
-1. A GitHub account.
+This project requires the following:
 
-2. Access to the Chrome browser.
+* Access to a MongoDB Atlas account, or MongoDB running locally. Please see [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) documentation if you require help setting up. 
 
-Then follow these steps:
+* [Pip3](https://pypi.org/project/pip/) to access necessary packages.
+
+* [Python3](https://www.python.org/) which is used as the backend language for this project.
+
+* [Git](https://git-scm.com/) for version control.
+
+This guide assumes you are using MongoDB:
+
+1. Sign up or log in to MongoDB.
+
+2. Create a cluster and a database.
+
+3. Create collections in your database for **Members**, **Library** and **Reviews**, adding string values to each that match those shown in the [Database Schema](#database-design)
+
+
+This guide assumes you are using Gitpod:
 
 1. Install the Gitpod Browser Extensions for Chrome and restart your browser.
 
-2. Log into Gitpod and navigate to the Project GitHub repository.
+2. Log into Gitpod and navigate to the [GoBooks Project GitHub repository](https://github.com/Robert-Clark-1990/MS3_GoBooks).
 
 3. Click the green **"Gitpod"** button at the top of the repository.
+
+* Alternatively, you can open up your repository and use the following command to clone this project.
+
+   `git clone https://github.com/Robert-Clark-1990/MS3_GoBooks.git`
+
+4. Ensure that all the requirements are downloaded by using the following command:
+
+   `pip3 install -r requirements.txt`
+
+5. Set the variables for **IP**, **PORT**, **SECRET_KEY**, **MONGO_URI** and **MONGODB_NAME** in the **env.py** file.
+
+6. Ensure the database name is the same as the one on MongoDB so that it can connect. For example, this project's database name is **gobooks**
+
+7. Ensure the **env.py** and **__pycache__/** files are added to the **.gitignore**
+
+8. Run the app in your browser by inputting the following command:
+
+   `python3 app.py`
 
 ---
 
@@ -702,6 +777,8 @@ Then follow these steps:
 ### Media
 
 - Background artwork and Project Logo created by the developer, [Robert Clark](https://github.com/Robert-Clark-1990).
+
+- GoBooks Favicon generated using [favicon.io](https://favicon.io/)
 
 
 ### Code

@@ -73,6 +73,15 @@ footer.page-footer {
     transform: translateY(12px);
 }
 
+textarea {
+    border-style: none;
+    padding: 10px;
+}
+
+textarea:active {
+    vertical-align: middle;
+}
+
 /* ----------------------------------------------- Home Page */
 
 .tagline {

@@ -210,6 +210,7 @@ def members():
     # Pagination Credit to DarilliGames (Link in README)
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
+    per_page = 12
     total = mongo.db.members.find().count()
     members = list(mongo.db.members.find().sort('register_date'))
     paginatedResults = members[offset: offset + per_page]
