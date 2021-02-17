@@ -65,9 +65,9 @@
             <!--Book Description-->
                 <div class="row">
                     <div class="input-field col s12 m10 offset-m1 l8 offset-l2">
-                        <input id="book_description" name="book_description" value="{{ book.book_description }}" class="materialize-textarea validate" type="text"
+                        <textarea id="book_description" name="book_description" class="materialize-textarea validate" type="text"
                         data-length="500" pattern="^[a-zA-Z0-9]{9,500}$" oninvalid="this.setCustomValidity('Enter Book Description. Only alphanumeric characters are accepted')"
-                        oninput="this.setCustomValidity('')" minlength="9" maxlength="500" required>
+                        oninput="this.setCustomValidity('')" minlength="9" maxlength="500" required>{{ book.book_description }}</textarea>
                         <label for="book_description">Book Description</label>
                     </div>
                 </div>

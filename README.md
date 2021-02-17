@@ -437,6 +437,14 @@ To counter this, validation was added to each form to ensure that only the corre
 </div>
 ```
 
+### Textarea Values Not Loading
+
+When the user submits a book or a review, the content of the book description and the user review are held in a textarea tag. This was so that the box would expand as the user filled more than
+a line of data. However, when the user attempted to edit said content via the edit_review or edit_book pages, this content would not load. The other form sections used input tags which would show
+the necessary data when the `value="{{ book.book_asin }}"` was added (with the .value changed depending on the input). But this did not work for the textarea tags.
+
+A solution was finally found when the jinja templating was added inbetween the textarea tags, instead of inside the first tag.
+
 
 ## Responsive Design
 

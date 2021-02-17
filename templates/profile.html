@@ -67,6 +67,9 @@
                                         <h5 class="review tagline">By {{ review.username }} on {{ review.review_date }}</h5>
                                         <p class="review white-text">{{ review.book_review }}</p>
                                     </div>
+                                    <div>
+                                        <a href="{{ url_for ('edit_review', review_id=review._id) }}" class="pink darken-3 waves-effect waves-light btn">Edit Review</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

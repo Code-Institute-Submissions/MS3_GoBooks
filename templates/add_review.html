@@ -19,7 +19,7 @@
                 </div>
             <!--Rating-->
                 <div class="input-field col s12">
-                    <select id="book_rating" name="book_rating" type="text" class="validate" required>
+                    <select id="book_rating" name="book_rating" class="validate modal-trigger" oninvalid="alert('You must rate this book');" required>
                         <option value="" disabled selected>Rate This Book</option>
                         <option value="1">1 Star</option>
                         <option value="2">2 Stars</option>
