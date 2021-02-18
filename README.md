@@ -26,6 +26,7 @@
 
  - [**Testing**](#testing)
     - [Bug Fixes](#bug-fixes)
+    - [Browser Compatibility](#browser-compatibility)
     - [Responsive Design](#responsive-design)
     - [Validator Tests](#validator-tests)
     - [Meeting Project Needs](#meeting-project-needs)
@@ -358,7 +359,7 @@ their "is_admin" field in the member database to True. Unfortunately time constr
 
    W3C Markup Validation was used to ensure HTML met the necessary standards.
 
-* [Jigsaw](https://jigsaw.w3.org/css-validator/validator) 
+* [Jigsaw](https://jigsaw.w3.org/css-validator/) 
 
    Jigsaw was used to validate CSS code used in the project.
 
@@ -505,11 +506,20 @@ the necessary data when the `value="{{ book.book_asin }}"` was added (with the .
 A solution was finally found when the jinja templating was added inbetween the textarea tags, instead of inside the first tag.
 
 
+## Browser Compatibility
+
+The prokect was tested on all major web browsers to ensure that it worked as intended. The results can be seen below:
+
+![Browser Compatibility](documents/images/browser_compatible.png)
+
+
 ## Responsive Design
 
-Google Chrome's Dev Tools were used to ensure this project had been optimised across all common devices. As the screenshots in the **Existing Features** will attest, every page was scrutinised
-to ensure each feature was responsive and compatible. The only issue that arose was the sizing of the forms for signing up, logging in, adding or editing a book, adding or editing a profile,
-and adding or editing a review. These were quickly fixed to ensure that on small screen sizes they filled more of the screen than on larger desktops.
+Google Chrome's Dev Tools were used to ensure this project had been optimised across all common devices. Each page was measured on the device sizes available on the Chrome Inspect tool, ensuring
+that they rendered as intended, and that images, links and text were all visible and worked properly. As the screenshots in the **Existing Features** will attest, every page was scrutinised
+to ensure each feature was responsive and compatible.
+
+![Responsive Design](documents/images/responsive_design.png)
 
 
 ## Validator Tests
@@ -517,7 +527,9 @@ and adding or editing a review. These were quickly fixed to ensure that on small
 ### W3 HTML Validator 
 The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML met the necessary standards.
 
-**The validator found issue with the use of Jinja, but as this is paramount to the site, these issues were discarded.**
+**The validator found issue with the use of Jinja templating as shown in the screenshot from the base.html. As these were paramount to the design of the site, these errors were omitted.**
+
+![W3C Validator](documents/images/w3c_validator.png)
 
 #### 404
 
@@ -640,9 +652,11 @@ The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML m
 
 
 ### Jigsaw CSS Validator
-[Jigsaw](https://jigsaw.w3.org/css-validator/validator) was used to validate CSS code used in the project.
+[Jigsaw](https://jigsaw.w3.org/css-validator/) was used to validate CSS code used in the project.
 
 * Validator confirmed **Document checking completed. No errors or warnings to show.**
+
+![Jigsaw Validator](documents/images/jigsaw_validator.png)
 
 
 ### JSHint JS Validator
@@ -650,11 +664,14 @@ The [W3C Markup Validation](https://validator.w3.org/) was used to ensure HTML m
 
 * Validator confirmed **There is only one function in this file. It takes no arguments. This function contains 6 statements. Cyclomatic complexity number for this function is 1.**
 
+![JSHint Validator](documents/images/jshint_validator.png)
 
 ### PEP8 Python Validator 
 [PEP8](http://pep8online.com/) was used to validated Python code used in this project.
 
 * Validator confirmed **All right**
+
+![PEP8 Validator](documents/images/pep8_validator.png)
 
 
 ## Meeting Project Needs

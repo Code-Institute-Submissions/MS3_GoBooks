@@ -182,18 +182,6 @@ textarea:active {
     border-radius: 50%;
 }
 
-[type="radio"]:not(:checked)+span:before, [type="radio"]:not(:checked)+span:after {
-    border: 2px solid #ffffff;
-}
-
-[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
-    background-color: #9c094e;
-}
-
-[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
-    border: 2px solid #9c094e;
-}
-
 /* ----------------------------------------------- Book Page */
 
 .book-cover {
