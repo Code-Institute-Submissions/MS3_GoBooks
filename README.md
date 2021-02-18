@@ -247,9 +247,9 @@ a self-published author, he has access to his own affiliate link generator, so t
    `{amazon_link}{ASIN/ISBN}{affiliate_link}`
 
    `{https://www.amazon.co.uk/dp/}{1787633616}{&linkCode=ll1&tag=robertclark08-21&linkId=d522b720d1fabb445aea2ff6829000fb}`
-* Expanding the admin function to encompass more than just the **"AdminUser"** user. This would be devloped by granting current admins the access to nominate other users to admin status, toggling
+* Expanding the admin function to encompass more than just the **"AdminUser"** user. This would be developed by granting current admins the access to nominate other users to admin status, toggling
 their "is_admin" field in the member database to True. Unfortunately time constraints stopped this from being included in the current build.
-* A feature that was unfortunately cut due to time restaints was the implementation of a sort feature for the library. Users would be able to sort the results by book name, author name or genre.
+* A feature that was unfortunately cut due to time restraints was the implementation of a sort feature for the library. Users would be able to sort the results by book name, author name or genre.
 
 ---
 
@@ -508,7 +508,7 @@ A solution was finally found when the jinja templating was added inbetween the t
 
 ## Browser Compatibility
 
-The prokect was tested on all major web browsers to ensure that it worked as intended. The results can be seen below:
+The project was tested on all major web browsers to ensure that it worked as intended. The results can be seen below:
 
 ![Browser Compatibility](documents/images/browser_compatible.png)
 

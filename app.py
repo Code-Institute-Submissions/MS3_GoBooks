@@ -21,7 +21,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-# Login Required Decorator by PalletsProjects
+# Login Required Decorator by PalletsProjects (Link in README)
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
